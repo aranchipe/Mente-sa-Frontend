@@ -1,3 +1,14 @@
+@import url('react-toastify/dist/ReactToastify.min.css');
+
+:root {
+  --toastify-color-success: #0E8750;
+  --toastify-color-error: #6813D5;
+  --toastify-icon-color-error: var(--toastify-color-error);
+  --toastify-toast-min-height: 54px;
+  --toastify-text-color-error: #fff;
+  --toastify-color-progress-error: red;
+}
+
 * {
   margin: 0;
   padding: 0;
