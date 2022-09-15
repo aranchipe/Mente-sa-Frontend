@@ -4,7 +4,6 @@ import Pacientes from './pages/Pacientes'
 import Sessoes from './pages/Sessoes'
 import { Routes, Route } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
-import Dashboard from './pages/Dashboard'
 function MainRoutes() {
     return (
         <>
@@ -15,7 +14,6 @@ function MainRoutes() {
                     <Route path="/" element={<Main />} />
                     <Route path="/main" element={<Main />} />
                 </Route>
-                <Route path='/dashboard' element={<Dashboard />} />
 
                 <Route path='/pacientes' element={<Pacientes />}></Route>
                 <Route path='/sessoes' element={<Sessoes />}></Route>
