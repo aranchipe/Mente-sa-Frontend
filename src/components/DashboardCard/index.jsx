@@ -1,11 +1,11 @@
 import './style.css'
 
-function DashboardCard() {
+function DashboardCard({ titulo, valor }) {
     return (
         <div className='dashboard-card-container'>
-            <h3>Sessões agendadas (dia)</h3>
+            <h3>{titulo}</h3>
             <div className="valor">
-                <h1>5</h1>
+                <h1>{valor}</h1>
 
             </div>
         </div>

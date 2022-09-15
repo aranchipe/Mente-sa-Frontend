@@ -1,6 +1,6 @@
 @import url('../../styles//global.css');
 
-.container{
+.container {
     width: 30vw;
     height: 100vh;
     background-color: blueviolet;
@@ -9,24 +9,25 @@
     display: flex;
     flex-direction: column;
     gap: 30px;
-    position: absolute;
+    position: fixed;
     left: 0;
+    top: 0;
 }
 
-nav{
+nav {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-.link{
+.link {
     color: white;
     text-decoration: none;
     font-weight: bold;
     padding: 10px;
 }
 
-.link:hover{
+.link:hover {
     background-color: white;
     color: blueviolet;
     padding: 10px;
