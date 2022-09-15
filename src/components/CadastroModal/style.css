@@ -60,7 +60,7 @@
 
  .botao {
      display: flex;
-     justify-content: end;
+     justify-content: flex-end;
      margin-top: 19px;
  }
 

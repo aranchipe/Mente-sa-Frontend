@@ -2,14 +2,15 @@
     width: 100vw;
     min-height: 100vh;
     display: flex;
-    justify-content: flex-end;
-    align-items: flex-start;
+    background-color: #EFEFEF;
 }
 
 .main-content {
     display: flex;
-    width: 70vw;
-    padding: 94px;
     gap: 48px;
     flex-wrap: wrap;
+    margin-left: 30vw;
+    position: absolute;
+    top: 91px;
+    left: 94px;
 }
