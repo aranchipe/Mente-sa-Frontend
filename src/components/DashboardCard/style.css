@@ -1,0 +1,27 @@
+.dashboard-card-container {
+    width: 226px;
+    height: 178px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    padding: 32px;
+    font-family: 'Roboto', sans-serif;
+    color: #666666;
+}
+
+.dashboard-card-container h3 {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 21px;
+}
+
+.valor {
+    text-align: center;
+    margin-top: 16px;
+}
+
+.valor h1 {
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 56px;
+}
