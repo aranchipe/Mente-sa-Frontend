@@ -1,13 +1,13 @@
 import './style.css';
 import MenuLateral from '../../components/MenuLateral';
 
-function Main() {
+function Sessoes() {
     return (
         <div className="Main">
-            <h1>Hello World</h1>
+            <h1>Sessões</h1>
             <MenuLateral></MenuLateral>
         </div>
     );
 }
 
-export default Main;
+export default Sessoes;
