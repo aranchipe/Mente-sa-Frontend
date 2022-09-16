@@ -3,6 +3,7 @@ import MenuLateral from '../../components/MenuLateral';
 import acao from '../../assets/acao.svg'
 import editIcon from '../../assets/edit-icon.svg'
 import deleteIcon from '../../assets/delete-icon.svg'
+import TabelaSessoes from '../../components/TabelaSessoes';
 
 function Sessoes() {
     return (
@@ -128,6 +129,8 @@ function Sessoes() {
 
 
             </div>
+            <MenuLateral />
+            <TabelaSessoes />
         </div>
     );
 }
