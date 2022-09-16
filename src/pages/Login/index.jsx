@@ -6,8 +6,7 @@ import './style.css'
 
 
 function Login() {
-   const [username, setUsername] = React.useState('');
-   const [password, setPassword] = React.useState('');
+
 
    function handleSubmit(event) {
     event.preventDefault();
