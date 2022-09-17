@@ -2,8 +2,6 @@ import { Routes, Route, Outlet, Navigate } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import Cadastro from './pages/Cadastro'
 import Login from './pages/Login'
-import Login2 from './pages/Login2'
-import LoginpPasswordLost from './pages/Login/LoginPasswordLost'
 import Main from './pages/Main'
 import Pacientes from './pages/Pacientes'
 import Sessoes from './pages/Sessoes'
@@ -23,12 +21,11 @@ function MainRoutes() {
             <ToastContainer />
 
             <Routes>
-                {/* <Route path='/LoginPasswordLost' element={<LoginpPasswordLost />} /> */}
                 <Route path='/cadastro' element={<Cadastro />} />
 
                 <Route path="/">
-                    <Route path="/" element={<Login2 />} />
-                    <Route path="/login" element={<Login2 />} />
+                    <Route path="/" element={<Login />} />
+                    <Route path="/login" element={<Login />} />
                 </Route>
 
                 <Route element={<ProtectedRoutes redirectTo='/login' />}>

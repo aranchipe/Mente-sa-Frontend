@@ -5,8 +5,23 @@ import deleteIcon from '../../assets/delete-icon.svg'
 import esquerda from '../../assets/esquerda.svg'
 import direita from '../../assets/direita.svg'
 
-function TabelaSessoes({ sessoes }) {
+function TabelaSessoes({ sessoes, page, setPage, size, setSize, sessoesTotais }) {
 
+    function handleChangeInputSize(e) {
+        setSize(e.target.value)
+
+        if (!e.target.value) {
+            setSize(6)
+        }
+        setPage(1)
+    }
+
+    function handleNextPage() {
+        if (((page - 1) * size + sessoes.length) === sessoesTotais.length) {
+            return
+        }
+        setPage(page + 1)
+    }
 
     return (
         <div className='table-completa'>
@@ -25,7 +40,7 @@ function TabelaSessoes({ sessoes }) {
                 <tbody>
                     {sessoes.map((item) => (
                         <tr key={item.id}>
-                            <td>{item.paciente}</td>
+                            <td>{item.paciente} {item.id}</td>
                             <td>{item.data}</td>
                             <td>
                                 <div className="status">
@@ -52,13 +67,14 @@ function TabelaSessoes({ sessoes }) {
             </table>
             <div className="table-footer">
                 <span>Itens por página: </span>
-                <input type="text" />
-                <span>1 - 6 de 100</span>
-                <img src={esquerda} alt='esquerda' className='esquerda' />
-                <img src={direita} alt='direita' className='direita' />
+                <input
+                    type='number'
+                    onChange={handleChangeInputSize}
+                />
+                <span>{(page - 1) * size + 1} - {(page - 1) * size + sessoes.length} de {sessoesTotais.length}</span>
+                <img onClick={() => page !== 1 && setPage(page - 1)} src={esquerda} alt='esquerda' className='esquerda' />
+                <img onClick={handleNextPage} src={direita} alt='direita' className='direita' />
             </div>
-
-
         </div>
     )
 }

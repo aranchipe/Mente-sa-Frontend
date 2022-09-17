@@ -11,18 +11,32 @@ import plus from '../../assets/plus.svg'
 function Sessoes() {
     const token = getItem('token')
     const [sessoes, setSessoes] = useState([])
+    const [sessoesTotais, setSessoesTotais] = useState([])
+    const [page, setPage] = useState(1)
+    const [size, setSize] = useState(6)
 
     useEffect(() => {
         listarSessoes()
     })
+
+
+
     async function listarSessoes() {
         try {
-            const response = await axios.get('/sessao', {
+            const response = await axios.get(`/sessao?page=${page}&size=${size}`, {
                 headers: {
                     Authorization: `Bearer ${token}`
 
                 }
             })
+            const sessoesTotais = await axios.get('/sessao', {
+                headers: {
+                    Authorization: `Bearer ${token}`
+
+                }
+            })
+
+            setSessoesTotais(sessoesTotais.data)
             setSessoes(response.data)
 
         } catch (error) {
@@ -44,7 +58,14 @@ function Sessoes() {
                     </button>
 
                 </div>
-                <TabelaSessoes sessoes={sessoes} />
+                <TabelaSessoes
+                    sessoes={sessoes}
+                    page={page}
+                    setPage={setPage}
+                    size={size}
+                    setSize={setSize}
+                    sessoesTotais={sessoesTotais}
+                />
             </div>
         </div>
     );
