@@ -1,8 +1,34 @@
 import './style.css';
 import MenuLateral from '../../components/MenuLateral';
 import DashboardCard from '../../components/DashboardCard';
+import axios from '../../services/axios';
+import { getItem } from '../../utils/storage'
+import { useState } from 'react';
+import { useEffect } from 'react';
+import { notifyError } from '../../utils/toast'
 
 function Main() {
+    const token = getItem('token')
+    const [pacientes, setPacientes] = useState()
+    useEffect(() => {
+        listarPacientes()
+    })
+
+    async function listarPacientes() {
+        try {
+            const response = await axios.get('/paciente', {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+
+            setPacientes(response.data.length)
+        } catch (error) {
+            return notifyError(error.response.data.mensagem);
+        }
+    }
+
+
     return (
         <div className="Main">
             <MenuLateral />
@@ -21,7 +47,7 @@ function Main() {
                 />
                 <DashboardCard
                     titulo='Total de pacientes cadastrados'
-                    valor='65152'
+                    valor={pacientes}
                 />
                 <DashboardCard
                     titulo='Total de sessões

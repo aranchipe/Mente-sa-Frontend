@@ -10,7 +10,7 @@ const removeItem = (key) => {
     localStorage.removeItem(key)
 }
 
-const clear = (key, value) => {
+const clear = () => {
     localStorage.clear();
 }
 

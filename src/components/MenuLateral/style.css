@@ -33,3 +33,13 @@ nav {
     padding: 10px;
     border-radius: 10px;
 }
+
+.logout {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logout img {
+    cursor: pointer;
+}

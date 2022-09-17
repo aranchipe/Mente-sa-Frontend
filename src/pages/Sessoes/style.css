@@ -10,82 +10,66 @@
     width: 70vw;
     min-height: 100vh;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    padding-top: 115px;
 }
 
-
-table,
-th,
-td {
-    border-collapse: collapse;
-}
-
-.table-sessoes {
+.sessoes-cabecalho {
+    display: flex;
     width: 966px;
-    font-size: 12px;
-    line-height: 14px;
-    filter: drop-shadow(10px 10px 10px rgba(0, 0, 0, 0.25));
-    overflow: hidden;
+    justify-content: space-between;
+    padding-bottom: 22.5px;
+    position: relative;
+}
 
+.sessoes-cabecalho input {
+    all: unset;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    width: 408px;
+    height: 37px;
+    border: 1px solid #333333;
     border-radius: 5px;
+    padding: 0 44px;
 }
 
-
-.table-sessoes thead {
-    background-color: #6813D5;
+.lupa {
+    position: absolute;
+    left: 310px;
+    top: 10px;
+    cursor: pointer;
 }
 
-.table-sessoes thead tr th {
-    padding: 10px;
-    color: white;
-    text-align: start;
-}
-
-.table-sessoes tbody tr {
-    text-align: center;
+.sessoes-cabecalho h1 {
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
-    font-size: 12px;
-    line-height: 14px;
+    font-size: 32px;
+    line-height: 38px;
     color: #666666;
 }
 
-.table-sessoes tbody tr:nth-child(1) {
-    background-color: white;
-}
-
-.table-sessoes tbody tr:nth-child(2) {
-    background: #EFEFEF;
-}
-
-.table-sessoes tbody tr:nth-child(3) {
-    background-color: white;
-}
-
-.table-sessoes tbody tr:nth-child(4) {
-    background: #EFEFEF;
-}
-
-.table-sessoes tbody tr:nth-child(5) {
-    background-color: white;
-}
-
-.table-sessoes tbody tr td {
-    padding: 10px;
-    text-align: start;
-}
-
-.action-icons {
-    gap: 44.75px;
-    display: flex;
-}
-
-.status {
-    background: #00A3FF;
-    border-radius: 14px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.sessoes-cabecalho button {
+    all: unset;
+    margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+    width: 190px;
+    height: 43px;
+    background-color: #6813D5;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
     color: white;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    padding: 0 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.plus {
+    width: 16px;
 }

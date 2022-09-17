@@ -1,16 +1,6 @@
-.sessoes-content {
-    width: 70vw;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-
 table,
 th,
 td {
-    border: 1px solid black;
     border-collapse: collapse;
 }
 
@@ -18,10 +8,8 @@ td {
     width: 966px;
     font-size: 12px;
     line-height: 14px;
-    filter: drop-shadow(10px 10px 10px rgba(0, 0, 0, 0.25));
     overflow: hidden;
-
-    border-radius: 5px;
+    border-radius: 5px 5px 0 0;
 }
 
 
@@ -81,4 +69,55 @@ td {
     justify-content: center;
     align-items: center;
     color: white;
+}
+
+.table-footer {
+    display: flex;
+    background-color: white;
+    padding: 4px 16px;
+    justify-content: end;
+    align-items: center;
+    border-radius: 0 0 5px 5px;
+}
+
+.esquerda {
+    margin-right: 16px;
+    width: 7px;
+    margin-left: 32px;
+    cursor: pointer;
+}
+
+.direita {
+    cursor: pointer;
+    width: 7px;
+}
+
+.table-footer input {
+    all: unset;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    width: 39px;
+    height: 30px;
+    background: #EFEFEF;
+    border-radius: 5px;
+    margin-right: 32px;
+    margin-left: 10px;
+    text-align: center;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: #666666;
+}
+
+.table-footer span {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: #666666;
+}
+
+.table-completa {
+    filter: drop-shadow(10px 10px 10px rgba(0, 0, 0, 0.25));
+
 }
