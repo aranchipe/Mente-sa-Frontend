@@ -42,6 +42,8 @@ function CadastroModal() {
                 "nome": form.nome,
                 "email": form.email,
                 "senha": form.senha
+            }, {
+
             })
 
             setForm({
