@@ -12,11 +12,14 @@ function Sessoes() {
     const token = getItem('token')
     const [sessoes, setSessoes] = useState([])
     const [sessoesTotais, setSessoesTotais] = useState([])
+    const [sessoesFiltradas, setSessoesFiltradas] = useState([])
     const [page, setPage] = useState(1)
     const [size, setSize] = useState(6)
+    const [filtro, setFiltro] = useState('')
 
     useEffect(() => {
         listarSessoes()
+
     })
 
 
@@ -44,6 +47,21 @@ function Sessoes() {
         }
     }
 
+
+    function handleFilter(e) {
+
+
+        setFiltro(e.target.value)
+
+        const filtrado = sessoesTotais.filter((item) => {
+            return item.paciente.toUpperCase().includes(e.target.value.toUpperCase().trim());
+        })
+
+        if (filtrado.length) {
+            setSessoesFiltradas(filtrado);
+        }
+    }
+
     return (
         <div className="sessoes">
             <MenuLateral />
@@ -51,7 +69,11 @@ function Sessoes() {
                 <div className="sessoes-cabecalho">
                     <h1>Minhas Sessões</h1>
                     <img src={lupa} alt='lupa' className='lupa' />
-                    <input placeholder='Pesquisar' type="text" />
+                    <input
+                        placeholder='Pesquisar'
+                        type="text"
+                        onChange={(e) => handleFilter(e)}
+                    />
                     <button>
                         <img src={plus} alt='plus' className='plus' />
                         Nova Sessão
@@ -59,7 +81,7 @@ function Sessoes() {
 
                 </div>
                 <TabelaSessoes
-                    sessoes={sessoes}
+                    sessoes={filtro.length !== 0 ? sessoesFiltradas : sessoes}
                     page={page}
                     setPage={setPage}
                     size={size}

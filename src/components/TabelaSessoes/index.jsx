@@ -23,6 +23,7 @@ function TabelaSessoes({ sessoes, page, setPage, size, setSize, sessoesTotais })
         setPage(page + 1)
     }
 
+
     return (
         <div className='table-completa'>
             <table className='table-sessoes'>
@@ -38,10 +39,10 @@ function TabelaSessoes({ sessoes, page, setPage, size, setSize, sessoesTotais })
                     </tr>
                 </thead>
                 <tbody>
-                    {sessoes.map((item) => (
-                        <tr key={item.id}>
-                            <td>{item.paciente} {item.id}</td>
-                            <td>{item.data}</td>
+                    {sessoes.map((item, indice) => (
+                        <tr className={(indice % 2 === 0) ? 'linha-branca' : ''} key={item.id}>
+                            <td>{item.paciente}</td>
+                            <td>{item.data} {indice}</td>
                             <td>
                                 <div className="status">
                                     <span>{item.status}</span>
