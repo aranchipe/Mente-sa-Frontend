@@ -1,14 +1,14 @@
 @import url('../../styles//global.css');
 
 .menu-lateral-container {
-    width: 30vw;
+    width: 20vw;
     height: 100vh;
-    background-color: blueviolet;
-    padding: 20px;
+    background-color: var(--purple);
+    padding: 1.25rem;
     color: white;
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 1.875rem;
     position: fixed;
     left: 0;
     top: 0;
@@ -17,7 +17,7 @@
 nav {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 1.25rem;
 }
 
 .link {
