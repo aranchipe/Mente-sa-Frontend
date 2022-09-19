@@ -1,5 +1,5 @@
 .sessoes {
-    width: 100vw;
+    width: 70vw;
     min-height: 100vh;
     display: flex;
     justify-content: flex-end;
@@ -8,7 +8,7 @@
 }
 
 .sessoes-content {
-    width: 70vw;
+    width: 70%;
     min-height: 100vh;
     display: flex;
     flex-direction: column;

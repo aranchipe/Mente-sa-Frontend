@@ -77,9 +77,9 @@ function Login() {
                             <div class="form-floating mb-3">
                                 <input
                                     id="password"
-                                    name="password"
+                                    name="senha"
                                     class="form-control"
-                                    value={form.password}
+                                    value={form.senha}
                                     type="password"
                                     onChange={handleChangeInput}
                                     placeholder="Digite a sua senha"
