@@ -1,3 +1,4 @@
+
 import MenuLateral from '../../components/MenuLateral';
 import TabelaPacientes from '../../components/TabelaPacientes';
 import axios from '../../services/axios';
@@ -35,6 +36,7 @@ function Pacientes() {
             <TabelaPacientes pacientes={pacientes} />
         </div>
     );
+
 }
 
 export default Pacientes;
