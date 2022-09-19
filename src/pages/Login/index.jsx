@@ -73,42 +73,42 @@ function Login() {
                                     placeholder="Digite o seu e-mail"
                                 />
                                 <label for="email" class="form-label">Digite o seu e-mail</label>
-                            </div> 
+                            </div>
                             <div class="form-floating mb-3">
                                 <input
                                     id="password"
-                                    name="password"
+                                    name="senha"
                                     class="form-control"
-                                    value={form.password}
+                                    value={form.senha}
                                     type="password"
                                     onChange={handleChangeInput}
                                     placeholder="Digite a sua senha"
                                 />
                                 <label for="password" class="form-label">Digite a sua senha</label>
-                            </div> 
+                            </div>
                             <div class="form-check">
                                 <input class="form-check-input" checked type="checkbox" id="lembrar" value="option1" />
                                 <label class="form-check-label" for="lembrar">Lembrar usuario</label>
                             </div>
-                            <input type="submit" class="btn btn-primary" value="Entrar"/>   
+                            <input type="submit" class="btn btn-primary" value="Entrar" />
                         </form>
                     </section>
                 </div>
                 <div class="col-md-6 order-md-1">
                     <div class="col-12">
-                        <img src={mindfull} alt="" srcset="" class="img-fluid"/>
+                        <img src={mindfull} alt="" srcset="" class="img-fluid" />
                     </div>
                     <div class="col-12 links" id="link-container">
                         <div class="d-flex justify-content-between">
                             <a href="">Esqueci minha senha</a>
                             <Link to="/Cadastro">Criar Conta</Link>
                         </div>
-                                  
+
                     </div>
                 </div>
             </div>
         </div>
-        
+
     )
 }
 

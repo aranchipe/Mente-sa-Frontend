@@ -1,8 +1,8 @@
-import { useForm } from "react-hook-form";
+/* import { useForm } from "react-hook-form"; */
 import { Confirm, Modal } from "./style";
 
 function ModalPacientes({ action, setModalCadastrar, setModalEditar, setModalExcluir }) {
-  const { register, handleSubmit } = useForm();
+  /* const { register, handleSubmit } = useForm(); */
 
   const onSubmitFunction = (e) => {
     e.preventDefault();
@@ -10,12 +10,12 @@ function ModalPacientes({ action, setModalCadastrar, setModalEditar, setModalExc
 
   return action === "excluir" ? (
     <Confirm>
-        <h2>Atenção</h2>
-        <span>Deseja excluir paciente?</span>
-        <div>
+      <h2>Atenção</h2>
+      <span>Deseja excluir paciente?</span>
+      <div>
         <button onClick={() => setModalExcluir(false)}>Cancelar</button>
         <button>Confirmar</button>
-        </div>
+      </div>
     </Confirm>
   ) : (
     <Modal action="submit" onSubmit={onSubmitFunction}>
@@ -23,8 +23,8 @@ function ModalPacientes({ action, setModalCadastrar, setModalEditar, setModalExc
         {action === "cadastrar"
           ? "Cadastro do paciente"
           : action === "editar"
-          ? "Editar paciente"
-          : ""}
+            ? "Editar paciente"
+            : ""}
       </h2>
       <input type="text" name="" id="" placeholder="Nome completo" />
       <input type="date" name="" id="" placeholder="Data de nascimento" />
