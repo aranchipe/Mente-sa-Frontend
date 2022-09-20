@@ -1,4 +1,4 @@
-
+import './style.css'
 import MenuLateral from '../../components/MenuLateral';
 import TabelaPacientes from '../../components/TabelaPacientes';
 import axios from '../../services/axios';
@@ -30,8 +30,8 @@ function Pacientes() {
         }
     }
     return (
-        <div className="Main">
-            <h1>Pacientes</h1>
+        <div className="paciente">
+            <h1>Meus Pacientes</h1>
             <MenuLateral />
             <TabelaPacientes pacientes={pacientes} />
         </div>
