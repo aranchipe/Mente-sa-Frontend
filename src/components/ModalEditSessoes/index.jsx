@@ -10,7 +10,7 @@ function ModalEditSessoes({ action = 'cadastrar', setModalCadastrar, setModalEdi
 
   return action === "excluir" ? (
     <Confirm>
-      <h2>Alterar status de sessão</h2>
+      <h2>Editar sessão</h2>
       <div>
         <button onClick={() => setModalExcluir(false)}>Cancelar</button>
         <button>Confirmar</button>

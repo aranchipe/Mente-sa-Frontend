@@ -1,18 +1,12 @@
 import { useForm } from "react-hook-form";
 import { Confirm, Modal } from "./style";
 import { notifyError, notifySucess } from '../../utils/toast'
+import { useState } from "react";
+import axios from "axios";
 
-function ModalDeleteSessoes({ action, setModalCadastrar, setModalEditar, setModalExcluir }) {
+function ModalCadastroSessao({ action, setModalCadastrar, setModalEditar, setModalExcluir }) {
 
-  function CadastroModal() {
-    const [typePassword, setTypePassword] = useState(true)
-    const [typeConfPassword, setTypeConfPassword] = useState(true)
-    const [form, setForm] = useState({
-      nome: '',
-      email: '',
-      senha: '',
-      confSenha: ''
-    })
+  const [form, setForm] = useState('')
 
     const onSubmitFunction = (e) => {
       e.preventDefault();
@@ -107,4 +101,4 @@ function ModalDeleteSessoes({ action, setModalCadastrar, setModalEditar, setModa
     );
   }
 
-  export default ModalDeleteSessoes;
+  export default ModalCadastroSessao;

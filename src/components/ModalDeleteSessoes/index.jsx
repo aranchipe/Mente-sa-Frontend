@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { Confirm, Modal } from "./style";
 
-function ModalEditSessoes({ action, setModalCadastrar, setModalEditar, setModalExcluir }) {
+function ModalDeleteSessoes({ action, setModalCadastrar, setModalEditar, setModalExcluir }) {
   const { register, handleSubmit } = useForm();
 
   const onSubmitFunction = (e) => {
@@ -52,4 +52,4 @@ function ModalEditSessoes({ action, setModalCadastrar, setModalEditar, setModalE
   );
 }
 
-export default ModalEditSessoes;
+export default ModalDeleteSessoes;
