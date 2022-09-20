@@ -49,12 +49,9 @@ function Pacientes() {
         }
     }
     return (
-<<<<<<< HEAD
-        <div className="paciente">
-            <h1>Meus Pacientes</h1>
-            <MenuLateral />
-            <TabelaPacientes pacientes={pacientes} />
-=======
+
+       
+
         <div className="Main">
             <h1>Pacientes</h1>
             < MenuLateral />
@@ -87,7 +84,7 @@ function Pacientes() {
                 modalExcluir={modalExcluir}
                 setModalAction={setModalAction}
             />
->>>>>>> 9daf08bc359771ab8e2015ae6c21251024e07016
+
         </div>
     );
 
