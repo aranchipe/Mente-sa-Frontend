@@ -27,7 +27,7 @@ function MainRoutes() {
 
                 <Route path="/">
                     <Route path="/" element={<Login />} />
-                    <Route path="/login" element={<Login />} />
+                    <Route path="/login" element={<Login />} />                    
                 </Route>
 
                 <Route element={<ProtectedRoutes redirectTo='/login' />}>

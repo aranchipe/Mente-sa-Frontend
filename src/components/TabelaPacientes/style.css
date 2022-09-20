@@ -1,21 +1,23 @@
 .container-paciente {
-  width: 64.3rem;
+  width: 50vw;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 0.65rem;
-  margin-right: 2rem;
-  filter: drop-shadow(10px 10px 10px rgba(0, 0, 0, 0.25));
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.75rem;
+  //margin-top: auto;
+  margin-bottom: auto;
+  font-weight: 400;
+  line-height: 0.875rem;
+  filter: drop-shadow(10px 10px 10px rgba(0, 0, 0, 0.25));  
 }
 
 .table-paciente {
-  text-align: start;
-  overflow: hidden;
-  border-collapse: collapse;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px 5px 0 0;
-  width: 100%;
+    width: 100%;
+    font-size: 12px;
+    line-height: 14px;
+    overflow: hidden;
+    border-radius: 5px 5px 0 0;
 }
 
 .table-paciente th {

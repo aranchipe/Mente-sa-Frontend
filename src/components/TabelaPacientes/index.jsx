@@ -2,7 +2,7 @@ import './style.css';
 import acao from '../../assets/acao.svg'
 import editIcon from '../../assets/edit-icon.svg'
 import deleteIcon from '../../assets/delete-icon.svg'
-import ModalPacientes from "../../components/ModalPacientes";
+import ModalPacientes from "../ModalPacientes";
 import { useState } from 'react';
 
 function TabelaPacientes({
