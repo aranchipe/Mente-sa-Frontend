@@ -1,5 +1,5 @@
 .container-paciente {
-  width: 60.4rem;
+  width: 64.3rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,10 +13,10 @@
   filter: drop-shadow(10px 10px 10px rgba(0, 0, 0, 0.25));  
 }
 
-.table-paciente {  
-  text-align: start;  
+.table-paciente {
+  text-align: start;
   overflow: hidden;
-  border-collapse: collapse;  
+  border-collapse: collapse;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px 5px 0 0;
@@ -32,7 +32,7 @@
 }
 
 .table-paciente td {
-  color: var(--gray-700);  
+  color: var(--gray-700);
   padding: 0.7rem;
 }
 
@@ -43,5 +43,3 @@
 .table-paciente tr {
   background: var(--white);
 }
-
-

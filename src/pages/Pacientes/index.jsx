@@ -7,10 +7,29 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import lupa from '../../assets/lupa.svg'
 import plus from '../../assets/plus.svg'
+import ModalPacientes from "../../components/ModalPacientes";
+import {
+    Main,
+    Container,
+    Header,
+    Table,
+    IconEye,
+    IconPencil,
+    IconTrash,
+    Tooltip,
+    TooltipText,
+} from "../Pacientes2/style";
+import { BsFillPersonPlusFill, BsSearch } from "react-icons/bs";
+
 
 function Pacientes() {
     const token = getItem('token')
     const [pacientes, setPacientes] = useState([])
+    const [modalCadastrar, setModalCadastrar] = useState(false);
+    const [modalEditar, setModalEditar] = useState(false);
+    const [modalExcluir, setModalExcluir] = useState(false);
+    const [modalAction, setModalAction] = useState("");
+
 
     useEffect(() => {
         listarPacientes()
@@ -30,10 +49,45 @@ function Pacientes() {
         }
     }
     return (
+<<<<<<< HEAD
         <div className="paciente">
             <h1>Meus Pacientes</h1>
             <MenuLateral />
             <TabelaPacientes pacientes={pacientes} />
+=======
+        <div className="Main">
+            <h1>Pacientes</h1>
+            < MenuLateral />
+            <Header>
+                <h1>Meus Pacientes</h1>
+                <div>
+                    <span>
+                        <BsSearch />
+                    </span>
+                    <input type="text" name="" id="" placeholder="Pesquisar" />
+                </div>
+                <button
+                    onClick={() => {
+                        setModalCadastrar(true);
+                        setModalAction("cadastrar");
+                    }}
+                >
+                    <BsFillPersonPlusFill size={20} />
+                    Novo Paciente
+                </button>
+            </Header>
+            <TabelaPacientes
+                action={modalAction}
+                setModalCadastrar={setModalCadastrar}
+                setModalEditar={setModalEditar}
+                setModalExcluir={setModalExcluir}
+                pacientes={pacientes}
+                modalCadastrar={modalCadastrar}
+                modalEditar={modalEditar}
+                modalExcluir={modalExcluir}
+                setModalAction={setModalAction}
+            />
+>>>>>>> 9daf08bc359771ab8e2015ae6c21251024e07016
         </div>
     );
 

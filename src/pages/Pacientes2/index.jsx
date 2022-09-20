@@ -114,4 +114,5 @@ function Pacientes() {
         </Table>
       </Container>
     </Main>
-  );}
+  );
+}
