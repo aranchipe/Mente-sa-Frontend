@@ -1,14 +1,15 @@
 .sessoes {
-    width: 70vw;
+    width: 100vw;
     min-height: 100vh;
     display: flex;
     justify-content: flex-end;
     background-color: #EFEFEF;
     padding: 0 0 40px 0;
+    position: absolute;
 }
 
 .sessoes-content {
-    width: 70%;
+    width: 80vw;
     min-height: 100vh;
     display: flex;
     flex-direction: column;

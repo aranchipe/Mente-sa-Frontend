@@ -4,12 +4,14 @@ import editIcon from '../../assets/edit-icon.svg'
 import deleteIcon from '../../assets/delete-icon.svg'
 import esquerda from '../../assets/esquerda.svg'
 import direita from '../../assets/direita.svg'
+import { format } from 'date-fns'
 
 function TabelaSessoes({ sessoes, page, setPage, size, setSize, sessoesTotais }) {
 
+
     function handleChangeInputSize(e) {
         setSize(e.target.value)
-
+        console.log(sessoes)
         if (!e.target.value) {
             setSize(6)
         }
@@ -42,9 +44,9 @@ function TabelaSessoes({ sessoes, page, setPage, size, setSize, sessoesTotais })
                     {sessoes.map((item, indice) => (
                         <tr className={(indice % 2 === 0) ? 'linha-branca' : ''} key={item.id}>
                             <td>{item.paciente}</td>
-                            <td>{item.data} {indice}</td>
+                            <td>{format(new Date(item.data), 'dd/MM/yyyy')}</td>
                             <td>
-                                <div className="status">
+                                <div className={item.status === 'Cancelado' ? 'status cancelado' : item.status === 'Atendido' ? 'status atendido' : 'status agendado'}>
                                     <span>{item.status}</span>
                                 </div>
                             </td>

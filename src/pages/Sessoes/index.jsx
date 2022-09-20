@@ -8,25 +8,24 @@ import { useEffect } from 'react';
 import lupa from '../../assets/lupa.svg'
 import plus from '../../assets/plus.svg'
 
-function Sessoes() {
+function Sessoes({ page, setPage }) {
     const token = getItem('token')
     const [sessoes, setSessoes] = useState([])
     const [sessoesTotais, setSessoesTotais] = useState([])
     const [sessoesFiltradas, setSessoesFiltradas] = useState([])
-    const [page, setPage] = useState(1)
+    const [pesquisando, setPesquisando] = useState(false)
+    const [pagina, setPagina] = useState(1)
     const [size, setSize] = useState(6)
-    const [filtro, setFiltro] = useState('')
 
     useEffect(() => {
         listarSessoes()
-
+        setPage('sessoes')
     })
-
 
 
     async function listarSessoes() {
         try {
-            const response = await axios.get(`/sessao?page=${page}&size=${size}`, {
+            const response = await axios.get(`/sessao?page=${pagina}&size=${size}`, {
                 headers: {
                     Authorization: `Bearer ${token}`
 
@@ -50,21 +49,24 @@ function Sessoes() {
 
     function handleFilter(e) {
 
-
-        setFiltro(e.target.value)
+        if (e.target.value !== '') {
+            setPesquisando(true)
+        } else {
+            setPesquisando(false)
+        }
 
         const filtrado = sessoesTotais.filter((item) => {
             return item.paciente.toUpperCase().includes(e.target.value.toUpperCase().trim());
         })
 
-        if (filtrado.length) {
-            setSessoesFiltradas(filtrado);
-        }
+        setSessoesFiltradas(filtrado);
+        console.log(sessoesFiltradas)
     }
 
     return (
         <div className="sessoes">
-            <MenuLateral />
+
+            <MenuLateral page={page} setPage={setPage} />
             <div className="sessoes-content">
                 <div className="sessoes-cabecalho">
                     <h1>Minhas Sessões</h1>
@@ -80,10 +82,11 @@ function Sessoes() {
                     </button>
 
                 </div>
+                {pesquisando && <h1>Pesquisando</h1>}
                 <TabelaSessoes
-                    sessoes={filtro.length !== 0 ? sessoesFiltradas : sessoes}
-                    page={page}
-                    setPage={setPage}
+                    sessoes={pesquisando ? sessoesFiltradas : sessoes}
+                    page={pagina}
+                    setPage={setPagina}
                     size={size}
                     setSize={setSize}
                     sessoesTotais={sessoesTotais}

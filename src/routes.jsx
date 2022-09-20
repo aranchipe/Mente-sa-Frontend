@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Routes, Route, Outlet, Navigate } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import Cadastro from './pages/Cadastro'
@@ -15,6 +16,7 @@ function ProtectedRoutes({ redirectTo }) {
 }
 
 function MainRoutes() {
+    const [page, setPage] = useState('sessoes')
 
     return (
         <>
@@ -29,9 +31,9 @@ function MainRoutes() {
                 </Route>
 
                 <Route element={<ProtectedRoutes redirectTo='/login' />}>
-                    <Route path='/main' element={<Main />}></Route>
-                    <Route path='/sessoes' element={<Sessoes />}></Route>
-                    <Route path='/pacientes' element={<Pacientes />}></Route>
+                    <Route path='/main' element={<Main page={page} setPage={setPage} />} />
+                    <Route path='/sessoes' element={<Sessoes page={page} setPage={setPage} />} />
+                    <Route path='/pacientes' element={<Pacientes page={page} setPage={setPage} />} />
                 </Route>
             </Routes>
         </>
