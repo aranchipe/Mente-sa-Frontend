@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import lupa from '../../assets/lupa.svg'
 import plus from '../../assets/plus.svg'
+import ModalEditSessoes from '../../components/ModalEditSessoes';
 
 function Sessoes({ page, setPage }) {
     const token = getItem('token')

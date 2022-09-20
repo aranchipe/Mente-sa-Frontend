@@ -15,6 +15,7 @@ export const Modal = styled.form`
 
   box-shadow: 8px 8px 20px 1px rgba(0, 0, 0, 0.3);
 
+
   h2 {
     color: #6813d4;
     text-align: center;

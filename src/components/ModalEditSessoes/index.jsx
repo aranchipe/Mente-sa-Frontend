@@ -1,8 +1,8 @@
-import { useForm } from "react-hook-form";
+/* import { useForm } from "react-hook-form"; */
 import { Confirm, Modal } from "./style";
 
-function ModalEditSessoes({ action, setModalCadastrar, setModalEditar, setModalExcluir }) {
-  const { register, handleSubmit } = useForm();
+function ModalEditSessoes({ action = 'cadastrar', setModalCadastrar, setModalEditar, setModalExcluir }) {
+  /* const { register, handleSubmit } = useForm(); */
 
   const onSubmitFunction = (e) => {
     e.preventDefault();
@@ -10,11 +10,11 @@ function ModalEditSessoes({ action, setModalCadastrar, setModalEditar, setModalE
 
   return action === "excluir" ? (
     <Confirm>
-        <h2>Alterar status de sessão</h2>
-        <div>
+      <h2>Alterar status de sessão</h2>
+      <div>
         <button onClick={() => setModalExcluir(false)}>Cancelar</button>
         <button>Confirmar</button>
-        </div>
+      </div>
     </Confirm>
   ) : (
     <Modal action="submit" onSubmit={onSubmitFunction}>
@@ -22,13 +22,13 @@ function ModalEditSessoes({ action, setModalCadastrar, setModalEditar, setModalE
         {action === "cadastrar"
           ? "Cadastro da sessão"
           : action === "editar"
-          ? "Editar sessão"
-          : ""}
+            ? "Editar sessão"
+            : ""}
       </h2>
       <select name="" id="" placeholder="Pacientes" />
       <input type="date" name="" id="" placeholder="Data do agendamento" />
       <input type="text" name="" id="" placeholder="Tema abordado" />
-      <input type="text" name="" id="" placeholder="Duração"/>
+      <input type="text" name="" id="" placeholder="Duração" />
       <select name="" id="" placeholder="Tipo da sessão" />
       <div>
         <button
