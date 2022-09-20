@@ -5,8 +5,17 @@ import deleteIcon from '../../assets/delete-icon.svg'
 import esquerda from '../../assets/esquerda.svg'
 import direita from '../../assets/direita.svg'
 import { format } from 'date-fns'
+import ModalCadastroSessao from '../ModalCadastroSessao'
 
-function TabelaSessoes({ sessoes, page, setPage, size, setSize, sessoesTotais }) {
+function TabelaSessoes({ sessoes, page, setPage, size, setSize, sessoesTotais, 
+    setModalCadastrar,
+    setModalEditar,
+    setModalExcluir,
+    modalCadastrar,
+    modalEditar,
+    modalExcluir,
+    showModal,
+    setShowModal }) {
 
 
     function handleChangeInputSize(e) {
@@ -28,6 +37,11 @@ function TabelaSessoes({ sessoes, page, setPage, size, setSize, sessoesTotais })
 
     return (
         <div className='table-completa'>
+            <ModalCadastroSessao
+                setModalCadastrar={setModalCadastrar}
+                modalCadastrar={modalCadastrar}
+                showModal={showModal}
+                />
             <table className='table-sessoes'>
                 <thead >
                     <tr>

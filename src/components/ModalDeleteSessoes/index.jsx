@@ -10,7 +10,8 @@ function ModalDeleteSessoes({ action, setModalCadastrar, setModalEditar, setModa
 
   return action === "excluir" ? (
     <Confirm>
-        <h2>Editar sessão</h2>
+        <h2>Atenção</h2>
+        <span>Você deseja excluir essa sessão?</span>
         <div>
         <button onClick={() => setModalExcluir(false)}>Cancelar</button>
         <button>Confirmar</button>

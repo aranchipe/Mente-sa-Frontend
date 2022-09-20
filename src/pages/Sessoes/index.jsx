@@ -17,6 +17,10 @@ function Sessoes({ page, setPage }) {
     const [pesquisando, setPesquisando] = useState(false)
     const [pagina, setPagina] = useState(1)
     const [size, setSize] = useState(6)
+    const [modalCadastrar, setModalCadastrar] = useState(false);
+    const [modalEditar, setModalEditar] = useState(false);
+    const [modalExcluir, setModalExcluir] = useState(false);
+    const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
         listarSessoes()
@@ -78,7 +82,11 @@ function Sessoes({ page, setPage }) {
                         onChange={(e) => handleFilter(e)}
                     />
                     <button>
-                        <img src={plus} alt='plus' className='plus' />
+                        <img src={plus} alt='plus' className='plus' 
+                        onClick={() => {
+                            setModalCadastrar(true);
+                            setShowModal(true)
+                        }}/>
                         Nova Sessão
                     </button>
 
@@ -91,6 +99,14 @@ function Sessoes({ page, setPage }) {
                     size={size}
                     setSize={setSize}
                     sessoesTotais={sessoesTotais}
+                    setModalCadastrar={setModalCadastrar}
+                    setModalEditar={setModalEditar}
+                    setModalExcluir={setModalExcluir}                
+                    modalCadastrar={modalCadastrar}
+                    modalEditar={modalEditar}
+                    modalExcluir={modalExcluir}
+                    showModal={showModal}
+                    setShowModal={setShowModal}
                 />
             </div>
         </div>

@@ -4,7 +4,7 @@ import { notifyError, notifySucess } from '../../utils/toast'
 import { useState } from "react";
 import axios from "axios";
 
-function ModalCadastroSessao({ action, setModalCadastrar, setModalEditar, setModalExcluir }) {
+function ModalCadastroSessao({ setModalCadastrar, setModalEditar, showModal, setShowModal }) {
 
   const [form, setForm] = useState('')
 
@@ -18,24 +18,6 @@ function ModalCadastroSessao({ action, setModalCadastrar, setModalEditar, setMod
 
     async function handleSubmit(e) {
       e.preventDefault();
-
-      if (!form.nome) {
-        return notifyError('O nome é obrigatório')
-      }
-      if (!form.email) {
-        return notifyError('O email é obrigatório')
-      }
-      if (!form.senha || !form.confSenha) {
-        return notifyError('Informe as senhas')
-      }
-
-      if (form.senha !== form.confSenha) {
-        return notifyError('As senhas não conferem')
-      }
-
-      if (form.senha.length < 6) {
-        return notifyError('A senha deve ter ao menos 6 caracteres')
-      }
 
       try {
         await axios.post('/profissional', {
@@ -62,7 +44,8 @@ function ModalCadastroSessao({ action, setModalCadastrar, setModalEditar, setMod
     }
 
 
-    return action === "excluir" ? (
+    return showModal ? (
+      <>
       <Confirm>
         <h2>Cadastro de sessão</h2>
         <div>
@@ -70,7 +53,7 @@ function ModalCadastroSessao({ action, setModalCadastrar, setModalEditar, setMod
           <button>Confirmar</button>
         </div>
       </Confirm>
-    ) : (
+      
       <Modal action="submit" onSubmit={handleSubmit}>
         <h2>
           {action === "cadastrar"
@@ -98,7 +81,8 @@ function ModalCadastroSessao({ action, setModalCadastrar, setModalEditar, setMod
           </button>
         </div>
       </Modal>
-    );
+    </>
+    ) : '';
   }
 
   export default ModalCadastroSessao;
