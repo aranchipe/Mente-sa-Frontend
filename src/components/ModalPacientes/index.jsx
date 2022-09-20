@@ -9,18 +9,27 @@ function ModalPacientes({ action, setModalCadastrar, setModalEditar, setModalExc
   /* const { register, handleSubmit } = useForm(); */
   const token = getItem('token')
   const id = getItem('id')
-  const { nome, data_nascimento, cpf, genero, endereco, email, telefone } = pacienteAtual
 
-
-  const [form, setForm] = useState({
+  const [formEditar, setFormEditar] = useState({
     profissional_id: id,
-    nome,
-    data_nascimento,
-    cpf,
-    genero,
-    endereco,
-    email,
-    telefone
+    nome: pacienteAtual && pacienteAtual.nome,
+    data_nascimento: pacienteAtual && pacienteAtual.data_nascimento,
+    cpf: pacienteAtual && pacienteAtual.cpf,
+    genero: pacienteAtual && pacienteAtual.genero,
+    endereco: pacienteAtual && pacienteAtual.endereco,
+    email: pacienteAtual && pacienteAtual.email,
+    telefone: pacienteAtual && pacienteAtual.telefone
+  })
+
+  const [formCadastrar, setFormCadastrar] = useState({
+    profissional_id: id,
+    nome: '',
+    data_nascimento: '',
+    cpf: '',
+    genero: '',
+    endereco: '',
+    email: '',
+    telefone: ''
   })
 
   const onSubmitFunction = async (e) => {
@@ -29,7 +38,7 @@ function ModalPacientes({ action, setModalCadastrar, setModalEditar, setModalExc
     if (action === 'editar') {
       try {
         const response = await axios.put(`/paciente/${pacienteAtual.id}`, {
-          ...form
+          ...formEditar
         }, {
           headers: {
             Authorization: `Bearer ${token}`
@@ -42,7 +51,7 @@ function ModalPacientes({ action, setModalCadastrar, setModalEditar, setModalExc
   };
 
   function handleChangeInput(e) {
-    action === 'editar' && setForm({ ...form, [e.target.name]: e.target.value })
+    action === 'editar' && setFormEditar({ ...formEditar, [e.target.name]: e.target.value })
   }
 
 
@@ -64,19 +73,19 @@ function ModalPacientes({ action, setModalCadastrar, setModalEditar, setModalExc
             ? "Editar paciente"
             : ""}
       </h2>
-      <input type="text" name="nome" id="" placeholder="Nome completo" value={form.nome} onChange={(e) => handleChangeInput(e)} />
-      <input type="date" name="data_nascimento" id="" placeholder="Data de nascimento" value={form.data_nascimento} onChange={(e) => handleChangeInput(e)} />
-      <input type="text" name="cpf" id="" placeholder="CPF" value={form.cpf} onChange={(e) => handleChangeInput(e)} />
-      <select name="genero" id="" placeholder="Gênero" value={form.genero} onChange={(e) => handleChangeInput(e)}>
+      <input type="text" name="nome" id="" placeholder="Nome completo" value={(action === 'editar' ? formEditar : formCadastrar).nome} onChange={(e) => handleChangeInput(e)} />
+      <input type="date" name="data_nascimento" id="" placeholder="Data de nascimento" value={(action === 'editar' ? formEditar : formCadastrar).data_nascimento} onChange={(e) => handleChangeInput(e)} />
+      <input type="text" name="cpf" id="" placeholder="CPF" value={(action === 'editar' ? formEditar : formCadastrar).cpf} onChange={(e) => handleChangeInput(e)} />
+      <select name="genero" id="" placeholder="Gênero" value={(action === 'editar' ? formEditar : formCadastrar).genero} onChange={(e) => handleChangeInput(e)}>
         <option value="" disabled selected>
           Gênero
         </option>
         <option value="feminino">Feminino</option>
         <option value="masculino">Masculino</option>
       </select>
-      <input type="text" name="endereco" id="" placeholder="Endereço" value={form.endereco} onChange={(e) => handleChangeInput(e)} />
-      <input type="email" name="email" id="" placeholder="E-mail" value={form.email} onChange={(e) => handleChangeInput(e)} />
-      <input type="tel" name="telefone" id="" placeholder="Telefone" value={form.telefone} onChange={(e) => handleChangeInput(e)} />
+      <input type="text" name="endereco" id="" placeholder="Endereço" value={(action === 'editar' ? formEditar : formCadastrar).endereco} onChange={(e) => handleChangeInput(e)} />
+      <input type="email" name="email" id="" placeholder="E-mail" value={(action === 'editar' ? formEditar : formCadastrar).email} onChange={(e) => handleChangeInput(e)} />
+      <input type="tel" name="telefone" id="" placeholder="Telefone" value={(action === 'editar' ? formEditar : formCadastrar).telefone} onChange={(e) => handleChangeInput(e)} />
       <div>
         <button
           onClick={() => {
