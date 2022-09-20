@@ -4,13 +4,18 @@ td {
     border-collapse: collapse;
 }
 
+.table-completa {
+    width: 50vw;
+}
+
 .table-sessoes {
-    width: 70%;
+    width: 100%;
     font-size: 12px;
     line-height: 14px;
     overflow: hidden;
     border-radius: 5px 5px 0 0;
 }
+
 
 
 .table-sessoes thead {
@@ -63,12 +68,23 @@ td {
 }
 
 .status {
-    background: #00A3FF;
     border-radius: 14px;
     display: flex;
     justify-content: center;
     align-items: center;
     color: white;
+}
+
+.agendado {
+    background: #00A3FF;
+}
+
+.cancelado {
+    background-color: #BB3131;
+}
+
+.atendido {
+    background: #419B4A;
 }
 
 .table-footer {

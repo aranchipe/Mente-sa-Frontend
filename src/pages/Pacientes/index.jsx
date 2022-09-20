@@ -22,7 +22,7 @@ import {
 import { BsFillPersonPlusFill, BsSearch } from "react-icons/bs";
 
 
-function Pacientes() {
+function Pacientes({ page, setPage }) {
     const token = getItem('token')
     const [pacientes, setPacientes] = useState([])
     const [modalCadastrar, setModalCadastrar] = useState(false);
@@ -33,6 +33,8 @@ function Pacientes() {
 
     useEffect(() => {
         listarPacientes()
+        setPage('pacientes')
+
     })
     async function listarPacientes() {
         try {
@@ -53,8 +55,7 @@ function Pacientes() {
        
 
         <div className="Main">
-            <h1>Pacientes</h1>
-            < MenuLateral />
+            < MenuLateral page={page} setPage={setPage} />
             <Header>
                 <h1>Meus Pacientes</h1>
                 <div>

@@ -4,6 +4,7 @@ import axios from '../../services/axios'
 import { getItem } from '../../utils/storage'
 import { useState } from "react";
 import { notifyError } from '../../utils/toast'
+import { format } from 'date-fns'
 
 function ModalPacientes({ action, setModalCadastrar, setModalEditar, setModalExcluir, pacienteAtual }) {
   /* const { register, handleSubmit } = useForm(); */
@@ -13,7 +14,7 @@ function ModalPacientes({ action, setModalCadastrar, setModalEditar, setModalExc
   const [formEditar, setFormEditar] = useState({
     profissional_id: id,
     nome: pacienteAtual && pacienteAtual.nome,
-    data_nascimento: pacienteAtual && pacienteAtual.data_nascimento,
+    data_nascimento: pacienteAtual && format(new Date(pacienteAtual.data_nascimento), 'yyyy-MM-dd'),
     cpf: pacienteAtual && pacienteAtual.cpf,
     genero: pacienteAtual && pacienteAtual.genero,
     endereco: pacienteAtual && pacienteAtual.endereco,

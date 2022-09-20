@@ -7,11 +7,13 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { notifyError } from '../../utils/toast'
 
-function Main() {
+function Main({ page, setPage }) {
     const token = getItem('token')
     const [pacientes, setPacientes] = useState()
+
     useEffect(() => {
         listarPacientes()
+        setPage('dashboard')
     })
 
     async function listarPacientes() {
@@ -31,7 +33,7 @@ function Main() {
 
     return (
         <div className="Main">
-            <MenuLateral />
+            <MenuLateral page={page} setPage={setPage} />
             <div className='main-content'>
                 <DashboardCard
                     titulo='Sessões agendadas (dia)'
