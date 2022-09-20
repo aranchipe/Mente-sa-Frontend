@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Modal = styled.form`
   height: fit-content;
-  width: 25%;
+  width: 50%;
 
   padding: 15px;
 

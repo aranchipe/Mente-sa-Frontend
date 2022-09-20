@@ -1,8 +1,78 @@
 .paciente {  
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    justify-content: flex-end;
+    background-color: #EFEFEF;
+    padding: 0 0 40px 0;
+    position: absolute;
+}
+
+.pacientes-content {
+  width: 80vw;
+  min-height: 100vh;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  gap: 2rem;
-  margin: auto;
+  padding-top: 115px;
+}
+
+.pacientes-cabecalho {
+  display: flex;
+  width: 966px;
+  justify-content: space-between;
+  padding-bottom: 22.5px;
+  position: relative;
+}
+
+.pacientes-cabecalho input {
+  all: unset;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  width: 408px;
+  height: 37px;
+  border: 1px solid #333333;
+  border-radius: 5px;
+  padding: 0 44px;
+}
+
+.lupa {
+  position: absolute;
+  left: 310px;
+  top: 10px;
+  cursor: pointer;
+}
+
+.pacientes-cabecalho h1 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 38px;
+  color: #666666;
+}
+
+.pacientes-cabecalho button {
+  all: unset;
+  margin: 0;
+  box-sizing: border-box;
+  padding: 0;
+  width: 190px;
+  height: 43px;
+  background-color: #6813D5;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.plus {
+  width: 16px;
 }
 
