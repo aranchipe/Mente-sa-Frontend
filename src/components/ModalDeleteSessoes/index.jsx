@@ -10,7 +10,7 @@ function ModalEditSessoes({ action, setModalCadastrar, setModalEditar, setModalE
 
   return action === "excluir" ? (
     <Confirm>
-        <h2>Atenção</h2>
+        <h2>Editar sessão</h2>
         <div>
         <button onClick={() => setModalExcluir(false)}>Cancelar</button>
         <button>Confirmar</button>
@@ -25,7 +25,16 @@ function ModalEditSessoes({ action, setModalCadastrar, setModalEditar, setModalE
           ? "Editar sessão"
           : ""}
       </h2>
-     <span>Deseja excluir sessão?</span>
+      <select name="" id="" placeholder="Pacientes" />
+      <input type="date" name="" id="" placeholder="Data do agendamento" />
+      <input type="text" name="" id="" placeholder="Tema abordado" />
+      <input type="text" name="" id="" placeholder="Duração"/>
+      <select name="" id="" placeholder="Tipo da sessão" />
+      <select name="" id="" placeholder="Status">
+      <option value="Agendado"></option>
+      <option value="Cancelado"></option>
+      <option value="Atendido"></option>
+      </select>
       <div>
         <button
           onClick={() => {
