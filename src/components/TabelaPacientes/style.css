@@ -1,11 +1,10 @@
 .container-paciente {
   width: 50vw;
-  display: flex;
-  justify-content: center;
+  //display: flex;
+  //justify-content: center;
   align-items: center;
   font-family: 'Roboto', sans-serif;
   font-size: 0.75rem;
-  //margin-top: auto;
   margin-bottom: auto;
   font-weight: 400;
   line-height: 0.875rem;
@@ -40,3 +39,54 @@
 .table-paciente tr {
   background: var(--white);
 }
+
+.action-icons img:hover {
+  cursor: pointer;
+}
+
+.table-footer {
+  display: flex;
+  background-color: white;
+  padding: 4px 16px;
+  justify-content: end;
+  align-items: center;
+  border-radius: 0 0 5px 5px;
+}
+
+.esquerda {
+  margin-right: 16px;
+  width: 7px;
+  margin-left: 32px;
+  cursor: pointer;
+}
+
+.direita {
+  cursor: pointer;
+  width: 7px;
+}
+
+.table-footer input {
+  all: unset;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  width: 39px;
+  height: 30px;
+  background: #EFEFEF;
+  border-radius: 5px;
+  margin-right: 32px;
+  margin-left: 10px;
+  text-align: center;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  color: #666666;
+}
+
+.table-footer span {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  color: #666666;
+}
+

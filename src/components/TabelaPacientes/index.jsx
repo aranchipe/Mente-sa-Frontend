@@ -1,4 +1,6 @@
 import './style.css';
+import esquerda from '../../assets/esquerda.svg'
+import direita from '../../assets/direita.svg'
 import acao from '../../assets/acao.svg'
 import editIcon from '../../assets/edit-icon.svg'
 import deleteIcon from '../../assets/delete-icon.svg'
@@ -7,6 +9,11 @@ import { useState } from 'react';
 
 function TabelaPacientes({
     pacientes,
+    pacientesTotais,
+    setPage,
+    setSize,
+    page,
+    size,
     action,
     setModalCadastrar,
     setModalEditar,
@@ -17,6 +24,23 @@ function TabelaPacientes({
     setModalAction
 }) {
     const [pacienteAtual, setPacienteAtual] = useState()
+
+    function handleChangeInputSize(e) {
+        setSize(e.target.value)
+        console.log(pacientes)
+        if (!e.target.value) {
+            setSize(6)
+        }
+        setPage(1)
+    }
+
+    function handleNextPage() {
+        if (((page - 1) * size + pacientes.length) === pacientesTotais.length) {
+            return
+        }
+        setPage(page + 1)
+    }
+
     return (
         <div className='container-paciente'>
             {modalCadastrar === true || modalEditar === true || modalExcluir === true ? (
@@ -71,6 +95,17 @@ function TabelaPacientes({
                 </tbody>
 
             </table>
+
+            <div className="table-footer">
+                <span>Itens por página: </span>
+                <input
+                    type='number'
+                    onChange={handleChangeInputSize}
+                />
+                <span>{(page - 1) * size + 1} - {(page - 1) * size + pacientes.length} de {pacientesTotais.length}</span>
+                <img onClick={() => page !== 1 && setPage(page - 1)} src={esquerda} alt='esquerda' className='esquerda' />
+                <img onClick={handleNextPage} src={direita} alt='direita' className='direita' />
+            </div>
 
 
         </div>
