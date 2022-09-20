@@ -1,8 +1,5 @@
-import { useForm } from "react-hook-form";
 import { Confirm, Modal } from "./style";
-import { notifyError, notifySucess } from '../../utils/toast'
-import { getItem } from '../../utils/storage'
-import axios from "axios";
+import { useState } from "react";
 
 
 
@@ -18,11 +15,8 @@ function ModalCadastroSessoes({ action, setModalCadastrar, setModalEditar, setMo
   //       confSenha: ''
   //   })
 
-  const token = getItem('token')
+  const [form, setForm] = useState('')
 
-  const onSubmitFunction = (e) => {
-    e.preventDefault();
-  };
 
   function handleChangeInput(e) {
     setForm({ ...form, [e.target.name]: e.target.value })
@@ -31,46 +25,6 @@ function ModalCadastroSessoes({ action, setModalCadastrar, setModalEditar, setMo
   async function handleSubmit(e) {
     e.preventDefault();
 
-    if (!form.nome) {
-        return notifyError('O nome é obrigatório')
-    }
-    if (!form.email) {
-        return notifyError('O email é obrigatório')
-    }
-    if (!form.senha || !form.confSenha) {
-        return notifyError('Informe as senhas')
-    }
-
-    if (form.senha !== form.confSenha) {
-        return notifyError('As senhas não conferem')
-    }
-
-    if (form.senha.length < 6) {
-        return notifyError('A senha deve ter ao menos 6 caracteres')
-    }
-
-    try {
-        await axios.post('/profissional', {
-            "nome": form.nome,
-            "email": form.email,
-            "senha": form.senha
-        }, {
-
-        })
-
-        setForm({
-            nome: '',
-            email: '',
-            senha: '',
-            confSenha: ''
-        })
-        return notifySucess('Profissional cadastrado com sucesso')
-
-
-    } catch (error) {
-        return notifyError(error.response.data.mensagem)
-
-    }
 }
 
 
@@ -92,9 +46,9 @@ function ModalCadastroSessoes({ action, setModalCadastrar, setModalEditar, setMo
           : ""}
       </h2>
       <select name="" id="" placeholder="Pacientes" />
-      <input type="date" name="" id="" placeholder="Data do agendamento" />
-      <input type="text" name="" id="" placeholder="Tema abordado" />
-      <input type="text" name="" id="" placeholder="Duração"/>
+      <input type="date" name="" id="" placeholder="Data do agendamento" onChange={handleChangeInput}/>
+      <input type="text" name="" id="" placeholder="Tema abordado" onChange={handleChangeInput}/>
+      <input type="text" name="" id="" placeholder="Duração" onChange={handleChangeInput}/>
       <select name="" id="" placeholder="Tipo da sessão" />
       <select name="" id="" placeholder="Status">
       <option value="Agendado"></option>
