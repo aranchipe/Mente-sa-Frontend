@@ -8,7 +8,7 @@ import { useEffect } from 'react';
 import lupa from '../../assets/lupa.svg'
 import plus from '../../assets/plus.svg'
 import ModalPacientes from "../../components/ModalPacientes";
-import { BsFillPersonPlusFill, BsSearch } from "react-icons/bs";
+import { BsFillPersonPlusFill } from "react-icons/bs";
 
 
 function Pacientes({ page, setPage }) {
@@ -17,6 +17,8 @@ function Pacientes({ page, setPage }) {
     const [pacientesFiltrados, setPacientesFiltrados] = useState([])
     const [pesquisando, setPesquisando] = useState(false)
     const [pacientesTotais, setPacientesTotais] = useState([])
+    const [pagina, setPagina] = useState(1)
+    const [size, setSize] = useState(6)
     const [modalCadastrar, setModalCadastrar] = useState(false);
     const [modalEditar, setModalEditar] = useState(false);
     const [modalExcluir, setModalExcluir] = useState(false);
@@ -30,19 +32,19 @@ function Pacientes({ page, setPage }) {
     })
     async function listarPacientes() {
         try {
-            const response = await axios.get('/paciente', {
-                headers: {
-                    Authorization: `Bearer ${token}`
-
-                }
-            })
-
             const pacientesTotais = await axios.get('/paciente', {
                 headers: {
                     Authorization: `Bearer ${token}`
 
                 }
-            })           
+            })  
+            
+            const response = await axios.get(`/paciente?page=${pagina}&size=${size}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+
+                }
+            })
             
             setPacientes(response.data)
             setPacientesTotais(pacientesTotais.data)
@@ -61,7 +63,7 @@ function Pacientes({ page, setPage }) {
         }
 
         const filtrado = pacientesTotais.filter((item) => {
-            return item.paciente.toUpperCase().includes(e.target.value.toUpperCase().trim());
+            return item.nome.toUpperCase().includes(e.target.value.toUpperCase().trim());
         })
 
         setPacientesFiltrados(filtrado);
@@ -96,12 +98,16 @@ function Pacientes({ page, setPage }) {
             </div>
             {pesquisando && <h1>Pesquisando</h1>}
             <TabelaPacientes
-                sessoes={pesquisando ? pacientesFiltrados : pacientes}
+                pacientes={pesquisando ? pacientesFiltrados : pacientes}
+                page={pagina}
+                setPage={setPagina}
+                size={size}
+                setSize={setSize}
+                pacientesTotais={pacientesTotais}
                 action={modalAction}
                 setModalCadastrar={setModalCadastrar}
                 setModalEditar={setModalEditar}
-                setModalExcluir={setModalExcluir}
-                pacientes={pacientes}
+                setModalExcluir={setModalExcluir}                
                 modalCadastrar={modalCadastrar}
                 modalEditar={modalEditar}
                 modalExcluir={modalExcluir}
