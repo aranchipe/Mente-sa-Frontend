@@ -43,7 +43,7 @@ function TabelaPacientes({
 
     return (
         <div className='container-paciente'>
-            {modalCadastrar === true || modalEditar === true || modalExcluir === true ? (
+            {modalCadastrar || modalEditar || modalExcluir ? (
                 <ModalPacientes
                     action={action}
                     setModalCadastrar={setModalCadastrar}

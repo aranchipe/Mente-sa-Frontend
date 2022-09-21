@@ -8,6 +8,7 @@ import { format } from "date-fns";
 import ModalCadastroSessao from "../ModalCadastroSessao";
 import ModalEditSessoes from "../ModalEditSessoes";
 import ModalDeleteSessoes from "../ModalDeleteSessoes";
+import { useState } from "react";
 
 function TabelaSessoes({
   sessoes,
@@ -23,6 +24,9 @@ function TabelaSessoes({
   modalEditar,
   modalExcluir,
 }) {
+
+  const [sessaoAtual, setSessaoAtual] = useState()
+
   function handleChangeInputSize(e) {
     setSize(e.target.value);
     console.log(sessoes);
@@ -42,7 +46,7 @@ function TabelaSessoes({
   return (
     <div className="table-completa">
       {modalCadastrar ? <ModalCadastroSessao setModalCadastrar={setModalCadastrar} /> : ""}
-      {modalEditar ? <ModalEditSessoes modalEditar={modalEditar} setModalEditar={setModalEditar} /> : ""}
+      {modalEditar ? <ModalEditSessoes sessaoAtual={sessaoAtual} setModalEditar={setModalEditar} /> : ""}
       {modalExcluir ? <ModalDeleteSessoes setModalExcluir={setModalExcluir} /> : ""}
       <table className="table-sessoes">
         <thead>
@@ -57,7 +61,9 @@ function TabelaSessoes({
           </tr>
         </thead>
         <tbody>
-          {sessoes.map((item, indice) => (
+          {sessoes.map((item, indice) =>
+          
+          (
             <tr
               className={indice % 2 === 0 ? "linha-branca" : ""}
               key={item.id}
@@ -84,7 +90,10 @@ function TabelaSessoes({
               <td>
                 <div className="action-icons">
                   <img src={acao} alt="acao" />
-                  <img src={editIcon} alt="editIcon" onClick={() => setModalEditar(true)}/>
+                  <img src={editIcon} alt="editIcon" onClick={() => {
+                    setSessaoAtual(item)
+                    console.log(item)
+                    setModalEditar(true)}}/>
                   <img src={deleteIcon} alt="deleteIcon" onClick={() => {
                     
                     setModalExcluir(true)}}/>
