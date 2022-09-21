@@ -2,11 +2,11 @@ import styled from "styled-components";
 
 export const Modal = styled.form`
   height: fit-content;
-  width: 25%;
+  width: 40vh;
 
   padding: 15px;
 
-  margin-left: 25%;
+  margin-left: 25%;  
   background-color: #ffffff;
 
   position: absolute;
