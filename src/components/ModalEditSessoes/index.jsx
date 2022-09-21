@@ -1,29 +1,25 @@
 /* import { useForm } from "react-hook-form"; */
 import { Confirm, Modal } from "./style";
 
-function ModalEditSessoes({ action = 'cadastrar', setModalCadastrar, setModalEditar, setModalExcluir }) {
+function ModalEditSessoes({ setModalEditar}) {
   /* const { register, handleSubmit } = useForm(); */
 
   const onSubmitFunction = (e) => {
     e.preventDefault();
   };
 
-  return action === "excluir" ? (
+  return  (
+    <>
     <Confirm>
       <h2>Editar sessão</h2>
       <div>
-        <button onClick={() => setModalExcluir(false)}>Cancelar</button>
+        <button onClick={() => setModalEditar(false)}>Cancelar</button>
         <button>Confirmar</button>
       </div>
     </Confirm>
-  ) : (
     <Modal action="submit" onSubmit={onSubmitFunction}>
       <h2>
-        {action === "cadastrar"
-          ? "Cadastro da sessão"
-          : action === "editar"
-            ? "Editar sessão"
-            : ""}
+        Editar sessão
       </h2>
       <select name="" id="" placeholder="Pacientes" />
       <input type="date" name="" id="" placeholder="Data do agendamento" />
@@ -33,17 +29,17 @@ function ModalEditSessoes({ action = 'cadastrar', setModalCadastrar, setModalEdi
       <div>
         <button
           onClick={() => {
-            setModalCadastrar(false);
             setModalEditar(false);
           }}
         >
           Cancelar
         </button>
         <button type="submit">
-          {action === "cadastrar" ? "Cadastrar" : "Confirmar"}
+          Editar
         </button>
       </div>
     </Modal>
+    </>
   );
 }
 

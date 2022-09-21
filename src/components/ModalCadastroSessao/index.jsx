@@ -44,23 +44,19 @@ function ModalCadastroSessao({ setModalCadastrar, setModalEditar, showModal, set
     }
 
 
-    return showModal ? (
+    return (
       <>
       <Confirm>
         <h2>Cadastro de sessão</h2>
         <div>
-          <button onClick={() => setModalExcluir(false)}>Cancelar</button>
+          <button onClick={() => setModalCadastrar(false)}>Cancelar</button>
           <button>Confirmar</button>
         </div>
       </Confirm>
       
       <Modal action="submit" onSubmit={handleSubmit}>
         <h2>
-          {action === "cadastrar"
-            ? "Cadastro da sessão"
-            : action === "editar"
-              ? "Editar sessão"
-              : ""}
+      Cadastrar sessão
         </h2>
         <select name="" id="" placeholder="Pacientes" />
         <input type="date" name="" id="" placeholder="Data do agendamento" />
@@ -71,18 +67,17 @@ function ModalCadastroSessao({ setModalCadastrar, setModalEditar, showModal, set
           <button
             onClick={() => {
               setModalCadastrar(false);
-              setModalEditar(false);
             }}
           >
             Cancelar
           </button>
           <button type="submit">
-            {action === "cadastrar" ? "Cadastrar" : "Confirmar"}
+            Cadastrar
           </button>
         </div>
       </Modal>
     </>
-    ) : '';
+    );
   }
 
   export default ModalCadastroSessao;

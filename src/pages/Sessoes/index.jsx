@@ -7,7 +7,6 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import lupa from '../../assets/lupa.svg'
 import plus from '../../assets/plus.svg'
-import ModalEditSessoes from '../../components/ModalEditSessoes';
 
 function Sessoes({ page, setPage }) {
     const token = getItem('token')
@@ -20,7 +19,6 @@ function Sessoes({ page, setPage }) {
     const [modalCadastrar, setModalCadastrar] = useState(false);
     const [modalEditar, setModalEditar] = useState(false);
     const [modalExcluir, setModalExcluir] = useState(false);
-    const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
         listarSessoes()
@@ -81,12 +79,11 @@ function Sessoes({ page, setPage }) {
                         type="text"
                         onChange={(e) => handleFilter(e)}
                     />
-                    <button>
-                        <img src={plus} alt='plus' className='plus' 
-                        onClick={() => {
-                            setModalCadastrar(true);
-                            setShowModal(true)
-                        }}/>
+                    <button onClick={() => {
+                        setModalCadastrar(true)
+                    }}>
+                        <img src={plus} alt='plus' className='plus' />
+                        
                         Nova Sessão
                     </button>
 
@@ -105,8 +102,7 @@ function Sessoes({ page, setPage }) {
                     modalCadastrar={modalCadastrar}
                     modalEditar={modalEditar}
                     modalExcluir={modalExcluir}
-                    showModal={showModal}
-                    setShowModal={setShowModal}
+
                 />
             </div>
         </div>

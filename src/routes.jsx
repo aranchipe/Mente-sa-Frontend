@@ -32,9 +32,9 @@ function MainRoutes() {
 
                 <Route element={<ProtectedRoutes redirectTo='/login' />}>
                     <Route path='/main' element={<Main page={page} setPage={setPage} />} />
-                    <Route path='/sessoes' element={<Sessoes page={page} setPage={setPage} />} />
                     <Route path='/pacientes' element={<Pacientes page={page} setPage={setPage} />} />
                 </Route>
+                    <Route path='/sessoes' element={<Sessoes page={page} setPage={setPage} />} />
             </Routes>
         </>
     )
