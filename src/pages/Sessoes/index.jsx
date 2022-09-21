@@ -63,7 +63,6 @@ function Sessoes({ page, setPage }) {
         })
 
         setSessoesFiltradas(filtrado);
-        console.log(sessoesFiltradas)
     }
 
     return (
@@ -83,7 +82,7 @@ function Sessoes({ page, setPage }) {
                         setModalCadastrar(true)
                     }}>
                         <img src={plus} alt='plus' className='plus' />
-                        
+
                         Nova Sessão
                     </button>
 
@@ -98,7 +97,7 @@ function Sessoes({ page, setPage }) {
                     sessoesTotais={sessoesTotais}
                     setModalCadastrar={setModalCadastrar}
                     setModalEditar={setModalEditar}
-                    setModalExcluir={setModalExcluir}                
+                    setModalExcluir={setModalExcluir}
                     modalCadastrar={modalCadastrar}
                     modalEditar={modalEditar}
                     modalExcluir={modalExcluir}

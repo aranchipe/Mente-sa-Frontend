@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form";
+/* import { useForm } from "react-hook-form"; */
 import { Confirm, Modal } from "./style";
 import { notifyError, notifySucess } from '../../utils/toast'
 import { useState } from "react";
@@ -8,44 +8,44 @@ function ModalCadastroSessao({ setModalCadastrar }) {
 
   const [form, setForm] = useState('')
 
-    const onSubmitFunction = (e) => {
-      e.preventDefault();
-    };
+  const onSubmitFunction = (e) => {
+    e.preventDefault();
+  };
 
-    function handleChangeInput(e) {
-      setForm({ ...form, [e.target.name]: e.target.value })
+  function handleChangeInput(e) {
+    setForm({ ...form, [e.target.name]: e.target.value })
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    try {
+      await axios.post('/profissional', {
+        "nome": form.nome,
+        "email": form.email,
+        "senha": form.senha
+      }, {
+
+      })
+
+      setForm({
+        nome: '',
+        email: '',
+        senha: '',
+        confSenha: ''
+      })
+      return notifySucess('Profissional cadastrado com sucesso')
+
+
+    } catch (error) {
+      return notifyError(error.response.data.mensagem)
+
     }
-
-    async function handleSubmit(e) {
-      e.preventDefault();
-
-      try {
-        await axios.post('/profissional', {
-          "nome": form.nome,
-          "email": form.email,
-          "senha": form.senha
-        }, {
-
-        })
-
-        setForm({
-          nome: '',
-          email: '',
-          senha: '',
-          confSenha: ''
-        })
-        return notifySucess('Profissional cadastrado com sucesso')
+  }
 
 
-      } catch (error) {
-        return notifyError(error.response.data.mensagem)
-
-      }
-    }
-
-
-    return (
-      <>
+  return (
+    <>
       <Confirm>
         <h2>Cadastro de sessão</h2>
         <div>
@@ -53,10 +53,10 @@ function ModalCadastroSessao({ setModalCadastrar }) {
           <button>Confirmar</button>
         </div>
       </Confirm>
-      
+
       <Modal action="submit" onSubmit={handleSubmit}>
         <h2>
-      Cadastrar sessão
+          Cadastrar sessão
         </h2>
         <select name="" id="" placeholder="Pacientes" />
         <input type="date" name="" id="" placeholder="Data do agendamento" />
@@ -77,7 +77,7 @@ function ModalCadastroSessao({ setModalCadastrar }) {
         </div>
       </Modal>
     </>
-    );
-  }
+  );
+}
 
-  export default ModalCadastroSessao;
+export default ModalCadastroSessao;

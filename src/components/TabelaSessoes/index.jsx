@@ -29,7 +29,6 @@ function TabelaSessoes({
 
   function handleChangeInputSize(e) {
     setSize(e.target.value);
-    console.log(sessoes);
     if (!e.target.value) {
       setSize(6);
     }
@@ -62,7 +61,7 @@ function TabelaSessoes({
         </thead>
         <tbody>
           {sessoes.map((item, indice) =>
-          
+
           (
             <tr
               className={indice % 2 === 0 ? "linha-branca" : ""}
@@ -76,8 +75,8 @@ function TabelaSessoes({
                     item.status === "Cancelado"
                       ? "status cancelado"
                       : item.status === "Atendido"
-                      ? "status atendido"
-                      : "status agendado"
+                        ? "status atendido"
+                        : "status agendado"
                   }
                 >
                   <span>{item.status}</span>
@@ -92,11 +91,12 @@ function TabelaSessoes({
                   <img src={acao} alt="acao" />
                   <img src={editIcon} alt="editIcon" onClick={() => {
                     setSessaoAtual(item)
-                    console.log(item)
-                    setModalEditar(true)}}/>
+                    setModalEditar(true)
+                  }} />
                   <img src={deleteIcon} alt="deleteIcon" onClick={() => {
-                    
-                    setModalExcluir(true)}}/>
+
+                    setModalExcluir(true)
+                  }} />
                 </div>
               </td>
             </tr>
