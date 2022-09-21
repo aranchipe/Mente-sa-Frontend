@@ -42,8 +42,8 @@ function TabelaSessoes({
   return (
     <div className="table-completa">
       {modalCadastrar ? <ModalCadastroSessao setModalCadastrar={setModalCadastrar} /> : ""}
-      {modalEditar ? <ModalEditSessoes setModalEditar={setModalCadastrar} /> : ""}
-      {modalExcluir ? <ModalDeleteSessoes setModalExcluir={setModalCadastrar} /> : ""}
+      {modalEditar ? <ModalEditSessoes modalEditar={modalEditar} setModalEditar={setModalEditar} /> : ""}
+      {modalExcluir ? <ModalDeleteSessoes setModalExcluir={setModalExcluir} /> : ""}
       <table className="table-sessoes">
         <thead>
           <tr>
@@ -85,7 +85,9 @@ function TabelaSessoes({
                 <div className="action-icons">
                   <img src={acao} alt="acao" />
                   <img src={editIcon} alt="editIcon" onClick={() => setModalEditar(true)}/>
-                  <img src={deleteIcon} alt="deleteIcon" onClick={() => setModalExcluir(true)}/>
+                  <img src={deleteIcon} alt="deleteIcon" onClick={() => {
+                    
+                    setModalExcluir(true)}}/>
                 </div>
               </td>
             </tr>

@@ -4,7 +4,7 @@ import { notifyError, notifySucess } from '../../utils/toast'
 import { useState } from "react";
 import axios from "axios";
 
-function ModalCadastroSessao({ setModalCadastrar, setModalEditar, showModal, setShowModal }) {
+function ModalCadastroSessao({ setModalCadastrar }) {
 
   const [form, setForm] = useState('')
 
