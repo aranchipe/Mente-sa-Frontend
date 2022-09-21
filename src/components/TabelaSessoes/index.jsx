@@ -88,7 +88,7 @@ function TabelaSessoes({
               <td>{item.tipo}</td>
               <td>
                 <div className="action-icons">
-                  <img src={acao} alt="acao" />
+                  
                   <img src={editIcon} alt="editIcon" onClick={() => {
                     setSessaoAtual(item)
                     setModalEditar(true)
