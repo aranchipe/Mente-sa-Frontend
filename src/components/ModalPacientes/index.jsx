@@ -3,11 +3,11 @@ import { Confirm, Modal } from "./style";
 import axios from '../../services/axios'
 import { getItem } from '../../utils/storage'
 import { useState } from "react";
-import { notifyError } from '../../utils/toast'
+import { notifyError, notifySucess } from '../../utils/toast'
 import { format } from 'date-fns'
 
-function ModalPacientes({ action, setModalCadastrar, setModalEditar, setModalExcluir, pacienteAtual }) {
-  /* const { register, handleSubmit } = useForm(); */
+function ModalPacientes({ action, setModalCadastrar, setModalEditar, setModalExcluir, pacienteAtual, listarPacientes }) {
+  //const { register, handleSubmit } = useForm(); 
   const token = getItem('token')
   const id = getItem('id')
 
@@ -22,7 +22,7 @@ function ModalPacientes({ action, setModalCadastrar, setModalEditar, setModalExc
     telefone: pacienteAtual && pacienteAtual.telefone
   })
 
-  const [formCadastrar, setFormCadastrar] = useState({
+  const [formCadastrar, setFormCadastrar] = useState({    
     profissional_id: id,
     nome: '',
     data_nascimento: '',
@@ -45,14 +45,40 @@ function ModalPacientes({ action, setModalCadastrar, setModalEditar, setModalExc
             Authorization: `Bearer ${token}`
           }
         })
+        setModalEditar(false)
+        
+        return notifySucess('Paciente alterado com sucesso')
       } catch (error) {
         notifyError(error.response.data.mensagem)
-      }
+      } 
+    } else if (action === 'cadastrar') {
+      try {         
+        await axios.post('/paciente', {
+          ...formCadastrar
+        }, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        })
+        setModalCadastrar(false)
+        
+        return notifySucess('Paciente cadastrado com sucesso')
+
+
+    } catch (error) {
+        return notifyError(error.response.data.mensagem)
+
+    }
     }
   };
 
   function handleChangeInput(e) {
-    action === 'editar' && setFormEditar({ ...formEditar, [e.target.name]: e.target.value })
+    if (action === 'editar') {
+      setFormEditar({ ...formEditar, [e.target.name]: e.target.value })
+    } else{
+      setFormCadastrar({ ...formCadastrar, [e.target.name]: e.target.value })
+    }
+    
   }
 
 
@@ -78,7 +104,7 @@ function ModalPacientes({ action, setModalCadastrar, setModalEditar, setModalExc
       <input type="date" name="data_nascimento" id="" placeholder="Data de nascimento" value={(action === 'editar' ? formEditar : formCadastrar).data_nascimento} onChange={(e) => handleChangeInput(e)} />
       <input type="text" name="cpf" id="" placeholder="CPF" value={(action === 'editar' ? formEditar : formCadastrar).cpf} onChange={(e) => handleChangeInput(e)} />
       <select name="genero" id="" placeholder="Gênero" value={(action === 'editar' ? formEditar : formCadastrar).genero} onChange={(e) => handleChangeInput(e)}>
-        <option value="" disabled selected>
+        <option value="" defaultValue>
           Gênero
         </option>
         <option value="feminino">Feminino</option>

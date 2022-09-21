@@ -24,7 +24,7 @@ function TabelaPacientes({
     modalExcluir,
     setModalAction,
     modalSessoes,
-    setModalSessoes
+    setModalSessoes,   
 }) {
     const [pacienteAtual, setPacienteAtual] = useState()
 
