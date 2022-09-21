@@ -82,7 +82,7 @@ export const Modal = styled.form`
 
 export const Confirm = styled.div`
 height: fit-content;
-  width: 25%;
+  width: 23vw;
 
   padding: 15px;
 

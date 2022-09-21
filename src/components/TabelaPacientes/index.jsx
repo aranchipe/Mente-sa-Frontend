@@ -24,7 +24,7 @@ function TabelaPacientes({
     modalExcluir,
     setModalAction,
     modalSessoes,
-    setModalSessoes,   
+    setModalSessoes,
 }) {
     const [pacienteAtual, setPacienteAtual] = useState()
 
@@ -125,10 +125,19 @@ function TabelaPacientes({
 
                 <div className="table-footer">
                     <span>Itens por página: </span>
-                    <input
-                        type='number'
-                        onChange={handleChangeInputSize}
-                    />
+                    <select
+                        onChange={handleChangeInputSize}>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6" selected>6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
                     <span>{(page - 1) * size + 1} - {(page - 1) * size + pacientes.length} de {pacientesTotais.length}</span>
                     <img onClick={() => page !== 1 && setPage(page - 1)} src={esquerda} alt='esquerda' className='esquerda' />
                     <img onClick={handleNextPage} src={direita} alt='direita' className='direita' />

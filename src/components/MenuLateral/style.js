@@ -36,6 +36,7 @@ export const MenuLateralStyle = styled.form`
 nav {
     display: flex;
     flex-direction: column;
+    gap: 10px;
 }
 
 .link {

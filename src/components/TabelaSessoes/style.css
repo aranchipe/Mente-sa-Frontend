@@ -108,8 +108,7 @@ td {
     width: 7px;
 }
 
-.table-footer input {
-    all: unset;
+.table-footer select {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
