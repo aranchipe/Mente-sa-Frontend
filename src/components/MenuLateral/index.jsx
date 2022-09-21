@@ -25,6 +25,7 @@ export default function MenuLateral({ page, setPage }) {
     return (
         <div className="menu-lateral-container">
 
+            <h1>Mente Sã</h1>
 
             <p>Bem-vindo(a),</p>
             <div className='logout'>
