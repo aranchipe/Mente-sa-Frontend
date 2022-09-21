@@ -1,10 +1,12 @@
-import './style.css'
+import './style.js'
 import iconClose from '../../assets/icon-close.svg'
 import axios from '../../services/axios'
 import { getItem } from '../../utils/storage'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import { format } from 'date-fns'
+import { ModalSessoesDoPacienteStyle } from './style.js'
+
 
 function ModalSessoesDoPaciente({ setModalSessoes, pacienteAtual }) {
     const token = getItem('token')
@@ -33,6 +35,8 @@ function ModalSessoesDoPaciente({ setModalSessoes, pacienteAtual }) {
         }
     }
     return (
+
+    <ModalSessoesDoPacienteStyle>
         <div className='sessoes-pacientes-container'>
             <div className="sessoes-pacientes-modal">
                 <h2>Sessões de {pacienteAtual.nome}</h2>
@@ -42,7 +46,7 @@ function ModalSessoesDoPaciente({ setModalSessoes, pacienteAtual }) {
                     alt='icon-close'
                     onClick={() => setModalSessoes(false)}
                 />
-                {sessoesDoPaciente.length === 0 && <p>Nenhuma Sessão Encontrada</p>}
+                {sessoesDoPaciente.length === 0 && <p id='nenhuma-sessao'>Nenhuma Sessão Encontrada</p>}
 
                 {sessoesDoPaciente.map((item) => (
                     <ul key={item.id}>
@@ -59,6 +63,7 @@ function ModalSessoesDoPaciente({ setModalSessoes, pacienteAtual }) {
 
             </div>
         </div>
+    </ModalSessoesDoPacienteStyle>
     )
 }
 

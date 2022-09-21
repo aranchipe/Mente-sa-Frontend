@@ -1,3 +1,7 @@
+import styled from 'styled-components'
+
+export const ModalSessoesDoPacienteStyle = styled.form`
+
 .sessoes-pacientes-container {
     position: fixed;
     top: 0;
@@ -30,6 +34,13 @@
     color: #666666;
 }
 
+h2 {
+    color: #6813d4;
+    text-align: center;
+
+    margin-bottom: 20px;
+  }
+
 .sessoes-pacientes-modal h2 {
     margin-bottom: 30px;
 }
@@ -41,6 +52,16 @@
 .icon-close {
     position: absolute;
     top: 30px;
-    right: 30px;
+    right: 5px;
     cursor: pointer;
 }
+
+#nenhuma-sessao{
+    color: #6813d4;
+    text-align: center;
+}
+
+ul li{
+    
+}
+`

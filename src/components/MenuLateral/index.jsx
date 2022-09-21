@@ -1,4 +1,4 @@
-import './style.css'
+import './style.js'
 import { Link, useNavigate } from 'react-router-dom'
 import { getItem, clear } from '../../utils/storage'
 import exit from '../../assets/exit.svg'
@@ -9,6 +9,7 @@ import sessoesRoxo from '../../assets/sessoes-roxo.svg'
 import pacientes from '../../assets/pacientes.svg'
 import pacientesRoxo from '../../assets/pacientes-roxo.svg'
 import { useState } from 'react'
+import { MenuLateralStyle } from './style.js'
 
 
 export default function MenuLateral({ page, setPage }) {
@@ -23,6 +24,7 @@ export default function MenuLateral({ page, setPage }) {
         navigate('/login')
     }
     return (
+    <MenuLateralStyle>
         <div className="menu-lateral-container">
 
             <h1>Mente Sã</h1>
@@ -82,5 +84,6 @@ export default function MenuLateral({ page, setPage }) {
             </nav >
 
         </div >
+    </MenuLateralStyle>
     )
 }

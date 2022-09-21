@@ -1,4 +1,6 @@
-@import url('../../styles//global.css');
+import styled from "styled-components";
+
+export const MenuLateralStyle = styled.form`
 
 .menu-lateral-container {
     width: 20vw;
@@ -80,3 +82,4 @@ nav {
     background-color: white;
     border-radius: 0px 48px 48px 0px;
 }
+`
