@@ -1,13 +1,78 @@
 import './style.css';
 import MenuLateral from '../../components/MenuLateral';
+import TabelaSessoes from '../../components/TabelaSessoes';
+import axios from '../../services/axios';
+import { getItem } from '../../utils/storage'
+import { useState } from 'react';
+import { useEffect } from 'react';
+import lupa from '../../assets/lupa.svg'
+import plus from '../../assets/plus.svg'
+import ModalEditSessoes from '../../components/ModalEditSessoes';
 
-function Sessoes() {
+function Sessoes({ page, setPage }) {
+    const token = getItem('token')
+    const [sessoes, setSessoes] = useState([])
+    const [sessoesTotais, setSessoesTotais] = useState([])
+    const [sessoesFiltradas, setSessoesFiltradas] = useState([])
+    const [pesquisando, setPesquisando] = useState(false)
+    const [pagina, setPagina] = useState(1)
+    const [size, setSize] = useState(6)
+
+    useEffect(() => {
+        listarSessoes()
+        setPage('sessoes')
+    })
+
+
+    async function listarSessoes() {
+        try {
+            const response = await axios.get(`/sessao?page=${pagina}&size=${size}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+
+                }
+            })
+            const sessoesTotais = await axios.get('/sessao', {
+                headers: {
+                    Authorization: `Bearer ${token}`
+
+                }
+            })
+
+            setSessoesTotais(sessoesTotais.data)
+            setSessoes(response.data)
+
+        } catch (error) {
+
+        }
+    }
+
+
+    function handleFilter(e) {
+
+        if (e.target.value !== '') {
+            setPesquisando(true)
+        } else {
+            setPesquisando(false)
+        }
+
+        const filtrado = sessoesTotais.filter((item) => {
+            return item.paciente.toUpperCase().includes(e.target.value.toUpperCase().trim());
+        })
+
+        setSessoesFiltradas(filtrado);
+        console.log(sessoesFiltradas)
+    }
+
     return (
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
         <div className="Main">
             <h1>Sessões</h1>
             <MenuLateral></MenuLateral>
 =======
+=======
+>>>>>>> Stashed changes
         <div className="sessoes">
 
             <MenuLateral page={page} setPage={setPage} />
@@ -21,11 +86,15 @@ function Sessoes() {
                         onChange={(e) => handleFilter(e)}
                     />
                     <button>
+<<<<<<< Updated upstream
                         <img src={plus} alt='plus' className='plus'/>
                         onClick={() => {
                             setModalCadastrar(true);
                             setShowModal(true)}/>
                             }
+=======
+                        <img src={plus} alt='plus' className='plus' />
+>>>>>>> Stashed changes
                         Nova Sessão
                     </button>
 
@@ -38,6 +107,7 @@ function Sessoes() {
                     size={size}
                     setSize={setSize}
                     sessoesTotais={sessoesTotais}
+<<<<<<< Updated upstream
                     setModalCadastrar={setModalCadastrar}
                     setModalEditar={setModalEditar}
                     setModalExcluir={setModalExcluir}                
@@ -46,6 +116,10 @@ function Sessoes() {
                     modalExcluir={modalExcluir}
                     showModal={showModal}
                     setShowModal={setShowModal}
+                />
+            </div>
+>>>>>>> Stashed changes
+=======
                 />
             </div>
 >>>>>>> Stashed changes
