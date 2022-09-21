@@ -1,51 +1,38 @@
-import { useForm } from "react-hook-form";
-import { Confirm, Modal } from "./style";
+import axios from "../../services/axios";
+import { getItem } from "../../utils/storage";
+import { notifyError } from "../../utils/toast";
+import { Confirm } from "./style";
 
-function ModalDeleteSessoes({
-  action,
-  setModalCadastrar,
-  setModalEditar,
-  setModalExcluir,
-}) {
-  const { register, handleSubmit } = useForm();
+function ModalDeleteSessoes({ setModalExcluir, sessaoAtual }) {
+  const token = getItem("token");
 
-  const onSubmitFunction = (e) => {
+  const onSubmitFunction = async (e) => {
     e.preventDefault();
+
+    try {
+      const response = await axios.delete(`/sessao/${sessaoAtual.id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (response.status === 200) {
+        setModalExcluir(false);
+      }
+    } catch (error) {
+      notifyError(error.response.data.mensagem);
+    }
   };
 
   return (
     <>
-      <Confirm>
+      <Confirm onSubmit={onSubmitFunction}>
         <h2>Atenção</h2>
         <span>Você deseja excluir essa sessão?</span>
         <div>
           <button onClick={() => setModalExcluir(false)}>Cancelar</button>
-          <button>Confirmar</button>
-        </div>
-      </Confirm>
-      <Modal action="submit" onSubmit={onSubmitFunction}>
-        <h2>Deletar sessão</h2>
-        <select name="" id="" placeholder="Pacientes" />
-        <input type="date" name="" id="" placeholder="Data do agendamento" />
-        <input type="text" name="" id="" placeholder="Tema abordado" />
-        <input type="text" name="" id="" placeholder="Duração" />
-        <select name="" id="" placeholder="Tipo da sessão" />
-        <select name="" id="" placeholder="Status">
-          <option value="Agendado"></option>
-          <option value="Cancelado"></option>
-          <option value="Atendido"></option>
-        </select>
-        <div>
-          <button
-            onClick={() => {
-              setModalExcluir(false);
-            }}
-          >
-            Cancelar
-          </button>
           <button type="submit">Confirmar</button>
         </div>
-      </Modal>
+      </Confirm>
     </>
   );
 }

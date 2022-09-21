@@ -80,7 +80,7 @@ export const Modal = styled.form`
   }
 `;
 
-export const Confirm = styled.div`
+export const Confirm = styled.form`
 height: fit-content;
   width: 25%;
 

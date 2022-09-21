@@ -47,7 +47,7 @@ function TabelaSessoes({
     <div className="table-completa">
       {modalCadastrar ? <ModalCadastroSessao setModalCadastrar={setModalCadastrar} /> : ""}
       {modalEditar ? <ModalEditSessoes sessaoAtual={sessaoAtual} setModalEditar={setModalEditar} /> : ""}
-      {modalExcluir ? <ModalDeleteSessoes setModalExcluir={setModalExcluir} /> : ""}
+      {modalExcluir ? <ModalDeleteSessoes sessaoAtual={sessaoAtual} setModalExcluir={setModalExcluir} /> : ""}
       <table className="table-sessoes">
         <thead>
           <tr>
