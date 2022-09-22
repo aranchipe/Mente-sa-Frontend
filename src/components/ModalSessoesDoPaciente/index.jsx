@@ -14,7 +14,7 @@ function ModalSessoesDoPaciente({ setModalSessoes, pacienteAtual }) {
 
     useEffect(() => {
         SessoesDoPaciente()
-    }, [])
+    })
 
     async function SessoesDoPaciente() {
         try {

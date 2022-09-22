@@ -6,10 +6,7 @@ import { getItem } from '../../utils/storage';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import lupa from '../../assets/lupa.svg';
-import plus from '../../assets/plus.svg'
-import ModalPacientes from "../../components/ModalPacientes";
 import { BsFillPersonPlusFill } from "react-icons/bs";
-import ModalSessoesDoPaciente from '../../components/ModalSessoesDoPaciente';
 
 
 function Pacientes({ page, setPage }) {
@@ -31,7 +28,7 @@ function Pacientes({ page, setPage }) {
         listarPacientes()
         setPage('pacientes')
 
-    })
+    }, [pacientes, size, page])
     async function listarPacientes() {
         try {
             const pacientesTotais = await axios.get('/paciente', {
@@ -75,7 +72,7 @@ function Pacientes({ page, setPage }) {
 
 
         <div className="paciente">
-            
+
             <MenuLateral page={page} setPage={setPage} />
             <div className="pacientes-content">
                 <div className='pacientes-cabecalho'>

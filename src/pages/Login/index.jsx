@@ -7,7 +7,6 @@ import { notifyError } from '../../utils/toast';
 import { useNavigate } from 'react-router-dom';
 import React from 'react';
 import mindfull from "../../assets/mindfull.png";
-//import { Button, FormGroup } from 'reactstrap';
 
 function Login() {
     const navigate = useNavigate()
@@ -21,7 +20,7 @@ function Login() {
         if (token) {
             navigate('/main')
         }
-    }, [])
+    })
 
     async function handleSubmit(event) {
         event.preventDefault();
@@ -100,7 +99,6 @@ function Login() {
                     </div>
                     <div class="col-12 links" id="link-container">
                         <div class="d-flex justify-content-between">
-                            <a href="">Esqueci minha senha</a>
                             <Link to="/Cadastro">Criar Conta</Link>
                         </div>
 
