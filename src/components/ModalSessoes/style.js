@@ -2,10 +2,10 @@ import styled from "styled-components";
 
 export const Modal = styled.form`
   height: fit-content;
-  width: 25%;
+  width: 40vh;
 
   padding: 15px;
-  
+
   background-color: #ffffff;
 
   position: absolute;
@@ -79,13 +79,26 @@ export const Modal = styled.form`
   }
 `;
 
+export const ModalContainer = styled.div`
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(145, 154, 150, 0.3);
+    backdrop-filter: blur(4px);
+    z-index: 2;
+`
+
 export const Confirm = styled.div`
 height: fit-content;
-  width: 25%;
+  width: 23vw;
 
   padding: 15px;
 
-  margin-left: 25%;
   background-color: #ffffff;
 
   position: absolute;
