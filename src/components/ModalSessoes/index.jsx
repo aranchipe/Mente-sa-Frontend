@@ -30,10 +30,10 @@ function ModalSessoes({
     profissional_id: id,
     paciente_id: "",
     data: "",
-    status: "agendada",
+    status: "Agendado",
     tema: "",
     duracao: "",
-    tipo: "",
+    tipo: "Individual",
   });
 
   const onSubmitFunction = async (e) => {
@@ -63,7 +63,7 @@ function ModalSessoes({
         await axios.post(
           "/sessao",
           {
-            ...formCadastrar,
+            ...formCadastrar
           },
           {
             headers: {
@@ -123,25 +123,19 @@ function ModalSessoes({
   ) : (
     <ModalContainer>
       <Modal action="submit" onSubmit={onSubmitFunction}>
-        <h2>
+        <h2 >
           {action === "cadastrar"
             ? "Cadastro de sessão"
             : action === "editar"
-            ? "Editar sessão"
-            : ""}
+              ? "Editar sessão"
+              : ""}
         </h2>
         <select
-          disabled={action === "editar"}
           name="paciente_id"
           id=""
-          defaultValue={
-            action === "editar" ? sessaoAtual.paciente : "pacientes"
-          }
+          defaultValue={action === "editar" ? formEditar.paciente_id : 'Pacientes'}
           onChange={(e) => handleChangeInput(e)}
         >
-          <option disabled value="pacientes">
-            Pacientes
-          </option>
           {pacientes.map((paciente) => (
             <option key={paciente.id} value={paciente.id}>
               {paciente.nome}
@@ -153,13 +147,14 @@ function ModalSessoes({
           name="data"
           id=""
           onChange={(e) => handleChangeInput(e)}
+          value={(action === "editar" ? formEditar : formCadastrar).data}
         />
         <input
           type="text"
           name="tema"
           id=""
           placeholder="Tema abordado"
-          defaultValue={action === "editar" ? sessaoAtual.tema : ""}
+          value={(action === "editar" ? formEditar : formCadastrar).tema}
           onChange={(e) => handleChangeInput(e)}
         />
         <input
@@ -167,22 +162,22 @@ function ModalSessoes({
           name="duracao"
           id=""
           placeholder="Duração"
-          defaultValue={action === "editar" ? sessaoAtual.duracao : ""}
+          value={(action === "editar" ? formEditar : formCadastrar).duracao}
           onChange={(e) => handleChangeInput(e)}
         />
         <select
           name="tipo"
           id="tipo"
-          defaultValue={action === "editar" ? sessaoAtual.tipo : "tipo"}
+          value={(action === "editar" ? formEditar : formCadastrar).tipo}
           onChange={(e) => handleChangeInput(e)}
         >
           <option disabled value="tipo">
             Tipo da sessão
           </option>
-          <option value="individual">Individual</option>
-          <option value="casal">Casal</option>
-          <option value="dupla">Dupla</option>
-          <option value="grupo">Grupo</option>
+          <option value="Individual">Individual</option>
+          <option value="Casal">Casal</option>
+          <option value="Dupla">Dupla</option>
+          <option value="Grupo">Grupo</option>
         </select>
         <div>
           <button
