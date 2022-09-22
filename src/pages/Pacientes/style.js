@@ -1,32 +1,33 @@
-/* .paciente {
+import styled from "styled-components";
+
+export const PacientesContainer = styled.div`
   width: 100vw;
   height: 100vh;
   display: flex;
   justify-content: flex-end;
   background-color: #EFEFEF;
-  padding: 0 0 40px 0;
   position: absolute;
-}
 
-.pacientes-content {
+`
+
+export const PacientesContent = styled.div`
   width: 80vw;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-top: 115px;
   position: relative;
-}
+`
 
-.pacientes-cabecalho {
-  display: flex;
+export const PacientesCabecalho = styled.div`
+display: flex;
   width: 966px;
   justify-content: space-between;
   padding-bottom: 22.5px;
   position: relative;
-}
 
-.pacientes-cabecalho input {
-  all: unset;
+  input {
+    all: unset;
   box-sizing: border-box;
   padding: 0;
   margin: 0;
@@ -35,25 +36,18 @@
   border: 1px solid #333333;
   border-radius: 5px;
   padding: 0 44px;
-}
+  }
 
-.lupa {
-  position: absolute;
-  left: 310px;
-  top: 10px;
-  cursor: pointer;
-}
-
-.pacientes-cabecalho h1 {
-  font-family: 'Roboto', sans-serif;
+  h1{
+    font-family: 'Roboto', sans-serif;
   font-weight: 400;
   font-size: 32px;
   line-height: 38px;
   color: #666666;
-}
+  }
 
-.pacientes-cabecalho button {
-  all: unset;
+  button{
+    all: unset;
   margin: 0;
   box-sizing: border-box;
   padding: 0;
@@ -70,4 +64,12 @@
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
-} */
+  }
+`
+export const Lupa = styled.img`
+  position: absolute;
+  left: 310px;
+  top: 10px;
+  cursor: pointer;
+`;
+

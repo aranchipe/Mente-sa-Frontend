@@ -6,10 +6,8 @@ import { getItem } from '../../utils/storage';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import lupa from '../../assets/lupa.svg';
-import plus from '../../assets/plus.svg'
-import ModalPacientes from "../../components/ModalPacientes";
 import { BsFillPersonPlusFill } from "react-icons/bs";
-import ModalSessoesDoPaciente from '../../components/ModalSessoesDoPaciente';
+import { PacientesCabecalho, PacientesContainer, PacientesContent, Lupa } from './style';
 
 
 function Pacientes({ page, setPage }) {
@@ -74,13 +72,14 @@ function Pacientes({ page, setPage }) {
 
 
 
-        <div className="paciente">
+        
+        <PacientesContainer>
             <MenuLateral page={page} setPage={setPage} />
-            <div className="pacientes-content">
-                <div className='pacientes-cabecalho'>
+            <PacientesContent>
+                <PacientesCabecalho>
                     <h1>Meus Pacientes</h1>
                     <div>
-                        <img src={lupa} alt='lupa' className='lupa' />
+                        <Lupa src={lupa}/>
                         <input
                             type="text"
                             placeholder="Pesquisar"
@@ -96,7 +95,7 @@ function Pacientes({ page, setPage }) {
                         <BsFillPersonPlusFill size={20} />
                         Novo Paciente
                     </button>
-                </div>
+                    </PacientesCabecalho>
                 {pesquisando && <h1>Pesquisando</h1>}
                 <TabelaPacientes
                     pacientes={pesquisando ? pacientesFiltrados : pacientes}
@@ -116,8 +115,8 @@ function Pacientes({ page, setPage }) {
                     modalSessoes={modalSessoes}
                     setModalSessoes={setModalSessoes}
                 />
-            </div>
-        </div>
+            </PacientesContent>
+            </PacientesContainer>
     );
 
 }
