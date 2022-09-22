@@ -36,34 +36,34 @@ function ModalSessoesDoPaciente({ setModalSessoes, pacienteAtual }) {
     }
     return (
 
-    <ModalSessoesDoPacienteStyle>
-        <div className='sessoes-pacientes-container'>
-            <div className="sessoes-pacientes-modal">
-                <h2>Sessões de {pacienteAtual.nome}</h2>
-                <img
-                    className='icon-close'
-                    src={iconClose}
-                    alt='icon-close'
-                    onClick={() => setModalSessoes(false)}
-                />
-                {sessoesDoPaciente.length === 0 && <p id='nenhuma-sessao'>Nenhuma Sessão Encontrada</p>}
+        <ModalSessoesDoPacienteStyle>
+            <div className='sessoes-pacientes-container'>
+                <div className="sessoes-pacientes-modal">
+                    <h2>Sessões de {pacienteAtual.nome}</h2>
+                    <img
+                        className='icon-close'
+                        src={iconClose}
+                        alt='icon-close'
+                        onClick={() => setModalSessoes(false)}
+                    />
+                    {sessoesDoPaciente.length === 0 && <p id='nenhuma-sessao'>Nenhuma Sessão Encontrada</p>}
 
-                {sessoesDoPaciente.map((item) => (
-                    <ul key={item.id}>
-                        <li><b>Sessão:</b> {item.id}</li>
-                        <li><b>Data:</b> {format(new Date(item.data), 'dd/MM/yyyy')}</li>
-                        <li><b>Status:</b> {item.status}</li>
-                        <li><b>Tema:</b> {item.tema}</li>
-                        <li><b>Duração:</b> {item.duracao}</li>
-                        <li><b>Tipo:</b> {item.tipo}</li>
+                    {sessoesDoPaciente.map((item) => (
+                        <ul key={item.id}>
+                            <li><b>Sessão:</b> {item.id}</li>
+                            <li><b>Data:</b> {format(new Date(item.data), 'dd/MM/yyyy')}</li>
+                            <li><b>Status:</b> {item.status}</li>
+                            <li><b>Tema:</b> {item.tema}</li>
+                            <li><b>Duração:</b> {item.duracao}</li>
+                            <li><b>Tipo:</b> {item.tipo}</li>
 
-                    </ul>
-                ))}
+                        </ul>
+                    ))}
 
 
+                </div>
             </div>
-        </div>
-    </ModalSessoesDoPacienteStyle>
+        </ModalSessoesDoPacienteStyle>
     )
 }
 

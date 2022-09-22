@@ -3,6 +3,7 @@ import { Confirm, Modal } from "./style";
 import { notifyError, notifySucess } from '../../utils/toast'
 import { useState } from "react";
 import axios from "axios";
+import { ModalContainer } from '../ModalPacientes/style'
 
 function ModalCadastroSessao({ setModalCadastrar }) {
 
@@ -54,28 +55,32 @@ function ModalCadastroSessao({ setModalCadastrar }) {
         </div>
       </Confirm>
 
-      <Modal action="submit" onSubmit={handleSubmit}>
-        <h2>
-          Cadastrar sessão
-        </h2>
-        <select name="" id="" placeholder="Pacientes" />
-        <input type="date" name="" id="" placeholder="Data do agendamento" />
-        <input type="text" name="" id="" placeholder="Tema abordado" />
-        <input type="text" name="" id="" placeholder="Duração" />
-        <select name="" id="" placeholder="Tipo da sessão" />
-        <div>
-          <button
-            onClick={() => {
-              setModalCadastrar(false);
-            }}
-          >
-            Cancelar
-          </button>
-          <button type="submit">
-            Cadastrar
-          </button>
-        </div>
-      </Modal>
+      <ModalContainer>
+
+        <Modal action="submit" onSubmit={handleSubmit}>
+          <h2>
+            Cadastrar sessão
+          </h2>
+          <select name="" id="" placeholder="Pacientes" />
+          <input type="date" name="" id="" placeholder="Data do agendamento" />
+          <input type="text" name="" id="" placeholder="Tema abordado" />
+          <input type="text" name="" id="" placeholder="Duração" />
+          <select name="" id="" placeholder="Tipo da sessão" />
+          <div>
+            <button
+              onClick={() => {
+                setModalCadastrar(false);
+              }}
+            >
+              Cancelar
+            </button>
+            <button type="submit">
+              Cadastrar
+            </button>
+          </div>
+        </Modal>
+      </ModalContainer>
+
     </>
   );
 }

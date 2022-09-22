@@ -7,6 +7,10 @@ import deleteIcon from '../../assets/delete-icon.svg'
 import ModalPacientes from "../ModalPacientes";
 import { useState } from 'react';
 import ModalSessoesDoPaciente from '../ModalSessoesDoPaciente';
+import axios from '../../services/axios'
+import { getItem } from '../../utils/storage'
+import { notifyError } from '../../utils/toast'
+
 
 function TabelaPacientes({
     pacientes,
@@ -26,6 +30,9 @@ function TabelaPacientes({
     modalSessoes,
     setModalSessoes,
 }) {
+    const token = getItem('token')
+
+    const [temSessoes, setTemSessoes] = useState(false)
     const [pacienteAtual, setPacienteAtual] = useState()
 
     function handleChangeInputSize(e) {
@@ -43,6 +50,29 @@ function TabelaPacientes({
         setPage(page + 1)
     }
 
+    async function verificarSessoes(id) {
+        try {
+            const response = await axios.get('/sessao', {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+
+            })
+
+            const sessoesDoPaciente = response.data.filter((item) => {
+                return item.paciente_id === id
+            })
+
+            if (sessoesDoPaciente.length) {
+                setTemSessoes(true)
+            }
+
+        } catch (error) {
+
+        }
+
+    }
+
     return (
         <>
             {
@@ -52,19 +82,21 @@ function TabelaPacientes({
                     setModalSessoes={setModalSessoes}
                 />
             }
+            {(modalCadastrar || modalEditar || modalExcluir) && (
+                <ModalPacientes
+                    action={action}
+                    setModalCadastrar={setModalCadastrar}
+                    setModalEditar={setModalEditar}
+                    setModalExcluir={setModalExcluir}
+                    pacienteAtual={pacienteAtual}
+                    temSessoes={temSessoes}
+                    setTemSessoes={setTemSessoes}
+                />
+            ) /* : (
+                        "" */
+            }
             <div className='container-paciente'>
 
-                {(modalCadastrar || modalEditar || modalExcluir) && (
-                    <ModalPacientes
-                        action={action}
-                        setModalCadastrar={setModalCadastrar}
-                        setModalEditar={setModalEditar}
-                        setModalExcluir={setModalExcluir}
-                        pacienteAtual={pacienteAtual}
-                    />
-                ) /* : (
-                        "" */
-                }
                 <table className='table-paciente'>
                     <thead >
                         <tr>
@@ -108,6 +140,7 @@ function TabelaPacientes({
                                                 setModalAction('excluir');
                                                 setModalExcluir(true);
                                                 setPacienteAtual(item);
+                                                verificarSessoes(item.id);
                                             }}
                                         />
 

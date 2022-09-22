@@ -6,7 +6,7 @@ import { notifyError } from "../../utils/toast";
 import { Confirm, Modal } from "./style";
 
 function ModalEditSessoes({ setModalEditar, sessaoAtual }) {
-  
+
   const token = getItem("token");
   const professionalId = getItem("id");
 
@@ -32,7 +32,7 @@ function ModalEditSessoes({ setModalEditar, sessaoAtual }) {
           Authorization: `Bearer ${token}`
         }
       })
-      if (response.status === 200){
+      if (response.status === 200) {
         setModalEditar(false)
       }
     } catch (error) {
@@ -56,8 +56,8 @@ function ModalEditSessoes({ setModalEditar, sessaoAtual }) {
       <Modal action="submit" onSubmit={onSubmitFunction}>
         <h2>Editar sessão</h2>
         <input
-        type='text'
-        disabled
+          type='text'
+          disabled
           name="paciente"
           id=""
           placeholder="Pacientes"

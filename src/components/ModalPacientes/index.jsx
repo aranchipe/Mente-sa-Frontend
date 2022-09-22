@@ -1,13 +1,12 @@
 /* import { useForm } from "react-hook-form"; */
-import { Confirm, Modal } from "./style";
+import { Confirm, Modal, ModalContainer } from "./style";
 import axios from '../../services/axios'
 import { getItem } from '../../utils/storage'
 import { useState } from "react";
 import { notifyError, notifySucess } from '../../utils/toast'
 import { format } from 'date-fns'
 
-function ModalPacientes({ action, setModalCadastrar, setModalEditar, setModalExcluir, pacienteAtual, listarPacientes }) {
-  //const { register, handleSubmit } = useForm(); 
+function ModalPacientes({ action, setModalCadastrar, setModalEditar, setModalExcluir, pacienteAtual, temSessoes, setTemSessoes }) {
   const token = getItem('token')
   const id = getItem('id')
 
@@ -22,7 +21,7 @@ function ModalPacientes({ action, setModalCadastrar, setModalEditar, setModalExc
     telefone: pacienteAtual && pacienteAtual.telefone
   })
 
-  const [formCadastrar, setFormCadastrar] = useState({    
+  const [formCadastrar, setFormCadastrar] = useState({
     profissional_id: id,
     nome: '',
     data_nascimento: '',
@@ -33,12 +32,15 @@ function ModalPacientes({ action, setModalCadastrar, setModalEditar, setModalExc
     telefone: ''
   })
 
+
+
+
   const onSubmitFunction = async (e) => {
     e.preventDefault();
 
     if (action === 'editar') {
       try {
-        const response = await axios.put(`/paciente/${pacienteAtual.id}`, {
+        await axios.put(`/paciente/${pacienteAtual.id}`, {
           ...formEditar
         }, {
           headers: {
@@ -46,13 +48,13 @@ function ModalPacientes({ action, setModalCadastrar, setModalEditar, setModalExc
           }
         })
         setModalEditar(false)
-        
+
         return notifySucess('Paciente alterado com sucesso')
       } catch (error) {
         notifyError(error.response.data.mensagem)
-      } 
+      }
     } else if (action === 'cadastrar') {
-      try {         
+      try {
         await axios.post('/paciente', {
           ...formCadastrar
         }, {
@@ -61,72 +63,114 @@ function ModalPacientes({ action, setModalCadastrar, setModalEditar, setModalExc
           }
         })
         setModalCadastrar(false)
-        
+
         return notifySucess('Paciente cadastrado com sucesso')
 
 
-    } catch (error) {
+      } catch (error) {
         return notifyError(error.response.data.mensagem)
 
-    }
+      }
     }
   };
 
   function handleChangeInput(e) {
     if (action === 'editar') {
       setFormEditar({ ...formEditar, [e.target.name]: e.target.value })
-    } else{
+    } else {
       setFormCadastrar({ ...formCadastrar, [e.target.name]: e.target.value })
     }
-    
+
+  }
+
+  async function handleDeletePaciente() {
+
+    try {
+
+      if (temSessoes) {
+        await axios.delete(`/sessoes/${pacienteAtual.id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        })
+
+      }
+
+      await axios.delete(`/paciente/${pacienteAtual.id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+
+      setModalExcluir(false)
+      setTemSessoes(false)
+      return notifySucess('Paciente excluído com sucesso')
+
+
+    } catch (error) {
+      return notifyError('Não foi possível excluir o paciente')
+    }
   }
 
 
   return action === "excluir" ? (
-    <Confirm>
-      <h2>Atenção</h2>
-      <span>Deseja excluir paciente?</span>
-      <div>
-        <button onClick={() => setModalExcluir(false)}>Cancelar</button>
-        <button>Confirmar</button>
-      </div>
-    </Confirm>
+
+    <ModalContainer>
+      <Confirm>
+        <h2>Atenção</h2>
+        {
+          temSessoes ?
+            <span>Este paciente possui sessões cadastradas!<br /> Deseja excluir mesmo assim?</span>
+            :
+            <span>Deseja excluir paciente?</span>
+        }
+
+
+        <div>
+          <button onClick={() => { setModalExcluir(false); setTemSessoes(false) }}>Cancelar</button>
+          <button onClick={handleDeletePaciente}>Confirmar</button>
+        </div>
+      </Confirm>
+
+    </ModalContainer>
   ) : (
-    <Modal action="submit" onSubmit={onSubmitFunction}>
-      <h2>
-        {action === "cadastrar"
-          ? "Cadastro do paciente"
-          : action === "editar"
-            ? "Editar paciente"
-            : ""}
-      </h2>
-      <input type="text" name="nome" id="" placeholder="Nome completo" value={(action === 'editar' ? formEditar : formCadastrar).nome} onChange={(e) => handleChangeInput(e)} />
-      <input type="date" name="data_nascimento" id="" placeholder="Data de nascimento" value={(action === 'editar' ? formEditar : formCadastrar).data_nascimento} onChange={(e) => handleChangeInput(e)} />
-      <input type="text" name="cpf" id="" placeholder="CPF" value={(action === 'editar' ? formEditar : formCadastrar).cpf} onChange={(e) => handleChangeInput(e)} />
-      <select name="genero" id="" placeholder="Gênero" value={(action === 'editar' ? formEditar : formCadastrar).genero} onChange={(e) => handleChangeInput(e)}>
-        <option value="" defaultValue>
-          Gênero
-        </option>
-        <option value="feminino">Feminino</option>
-        <option value="masculino">Masculino</option>
-      </select>
-      <input type="text" name="endereco" id="" placeholder="Endereço" value={(action === 'editar' ? formEditar : formCadastrar).endereco} onChange={(e) => handleChangeInput(e)} />
-      <input type="email" name="email" id="" placeholder="E-mail" value={(action === 'editar' ? formEditar : formCadastrar).email} onChange={(e) => handleChangeInput(e)} />
-      <input type="tel" name="telefone" id="" placeholder="Telefone" value={(action === 'editar' ? formEditar : formCadastrar).telefone} onChange={(e) => handleChangeInput(e)} />
-      <div>
-        <button
-          onClick={() => {
-            setModalCadastrar(false);
-            setModalEditar(false);
-          }}
-        >
-          Cancelar
-        </button>
-        <button type="submit">
-          {action === "cadastrar" ? "Cadastrar" : "Confirmar"}
-        </button>
-      </div>
-    </Modal>
+    <ModalContainer>
+      <Modal action="submit" onSubmit={onSubmitFunction}>
+        <h2>
+          {action === "cadastrar"
+            ? "Cadastro do paciente"
+            : action === "editar"
+              ? "Editar paciente"
+              : ""}
+        </h2>
+        <input type="text" name="nome" id="" placeholder="Nome completo" value={(action === 'editar' ? formEditar : formCadastrar).nome} onChange={(e) => handleChangeInput(e)} />
+        <input type="date" name="data_nascimento" id="" placeholder="Data de nascimento" value={(action === 'editar' ? formEditar : formCadastrar).data_nascimento} onChange={(e) => handleChangeInput(e)} />
+        <input type="text" name="cpf" id="" placeholder="CPF" value={(action === 'editar' ? formEditar : formCadastrar).cpf} onChange={(e) => handleChangeInput(e)} />
+        <select name="genero" id="" placeholder="Gênero" value={(action === 'editar' ? formEditar : formCadastrar).genero} onChange={(e) => handleChangeInput(e)}>
+          <option value="" defaultValue>
+            Gênero
+          </option>
+          <option value="feminino">Feminino</option>
+          <option value="masculino">Masculino</option>
+        </select>
+        <input type="text" name="endereco" id="" placeholder="Endereço" value={(action === 'editar' ? formEditar : formCadastrar).endereco} onChange={(e) => handleChangeInput(e)} />
+        <input type="email" name="email" id="" placeholder="E-mail" value={(action === 'editar' ? formEditar : formCadastrar).email} onChange={(e) => handleChangeInput(e)} />
+        <input type="tel" name="telefone" id="" placeholder="Telefone" value={(action === 'editar' ? formEditar : formCadastrar).telefone} onChange={(e) => handleChangeInput(e)} />
+        <div>
+          <button
+            onClick={() => {
+              setModalCadastrar(false);
+              setModalEditar(false);
+            }}
+          >
+            Cancelar
+          </button>
+          <button type="submit">
+            {action === "cadastrar" ? "Cadastrar" : "Confirmar"}
+          </button>
+        </div>
+      </Modal>
+    </ModalContainer>
   );
 }
 

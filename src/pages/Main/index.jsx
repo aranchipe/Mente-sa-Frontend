@@ -10,10 +10,12 @@ import { notifyError } from '../../utils/toast'
 function Main({ page, setPage }) {
     const token = getItem('token')
     const [pacientes, setPacientes] = useState()
+    const [sessoesDoDia, setSessoesDoDia] = useState()
 
     useEffect(() => {
         listarPacientes()
         setPage('dashboard')
+        listarSessoesDoDia()
     })
 
     async function listarPacientes() {
@@ -30,6 +32,28 @@ function Main({ page, setPage }) {
         }
     }
 
+    async function listarSessoesDoDia() {
+        try {
+            const response = await axios.get('/sessao', {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+
+            const sessoesDoDia = response.data.filter((item) => {
+                return new Date().getDate() === new Date(item.data).getDate() &&
+                    new Date().getMonth() === new Date(item.data).getMonth() &&
+                    new Date().getYear() === new Date(item.data).getYear()
+            })
+
+            setSessoesDoDia(sessoesDoDia.length)
+
+
+        } catch (error) {
+
+        }
+    }
+
 
     return (
         <div className="Main">
@@ -37,7 +61,7 @@ function Main({ page, setPage }) {
             <div className='main-content'>
                 <DashboardCard
                     titulo='Sessões agendadas (dia)'
-                    valor='5'
+                    valor={sessoesDoDia}
                 />
                 <DashboardCard
                     titulo='Sessões agendadas (mês)'

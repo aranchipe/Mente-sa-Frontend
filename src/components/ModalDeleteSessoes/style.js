@@ -6,7 +6,6 @@ export const Modal = styled.form`
 
   padding: 15px;
 
-  margin-left: 25%;
   background-color: #ffffff;
 
   position: absolute;
