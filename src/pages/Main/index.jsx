@@ -5,6 +5,7 @@ import axios from '../../services/axios';
 import { getItem } from '../../utils/storage'
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { notifyError } from '../../utils/toast'
 
 function Main({ page, setPage }) {
     const token = getItem('token')
@@ -32,6 +33,7 @@ function Main({ page, setPage }) {
 
             setPacientes(response.data.length)
         } catch (error) {
+            return notifyError(error.response.data.mensagem);
         }
     }
 
