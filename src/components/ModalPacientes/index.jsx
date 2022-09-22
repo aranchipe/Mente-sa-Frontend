@@ -4,6 +4,8 @@ import { getItem } from "../../utils/storage";
 import { useState } from "react";
 import { notifyError, notifySucess } from "../../utils/toast";
 import { format } from "date-fns";
+import MaskedInput from "../../utils/MaskedInput";
+
 
 function ModalPacientes({
   action,
@@ -150,8 +152,8 @@ function ModalPacientes({
           {action === "cadastrar"
             ? "Cadastro do paciente"
             : action === "editar"
-            ? "Editar paciente"
-            : ""}
+              ? "Editar paciente"
+              : ""}
         </h2>
         <input
           type="text"
@@ -171,13 +173,13 @@ function ModalPacientes({
           }
           onChange={(e) => handleChangeInput(e)}
         />
-        <input
-          type="text"
-          name="cpf"
-          id=""
-          placeholder="CPF"
+
+        <MaskedInput
+          name='cpf'
+          mask='999.999.999-99'
           value={(action === "editar" ? formEditar : formCadastrar).cpf}
-          onChange={(e) => handleChangeInput(e)}
+          onChange={handleChangeInput}
+          placeholder='CPF'
         />
         <select
           name="genero"
@@ -208,13 +210,13 @@ function ModalPacientes({
           value={(action === "editar" ? formEditar : formCadastrar).email}
           onChange={(e) => handleChangeInput(e)}
         />
-        <input
-          type="tel"
-          name="telefone"
-          id=""
-          placeholder="Telefone"
+
+        <MaskedInput
+          name='telephone'
+          mask='(99)9.9999-9999'
           value={(action === "editar" ? formEditar : formCadastrar).telefone}
-          onChange={(e) => handleChangeInput(e)}
+          onChange={handleChangeInput}
+          placeholder='Telefone'
         />
         <div>
           <button

@@ -116,7 +116,7 @@ function CadastroModal() {
                     <img style={{ cursor: 'pointer' }} src={termos} alt='termos' />
                     <span style={{ color: '#AAAAAA' }}>Aceito os <span style={{ color: 'var(--purple)', fontWeight: '700' }}>termos</span> e <span style={{ color: 'var(--purple)', fontWeight: '700' }}>políticas de privacidade</span></span>
                 </div>
-                <Link style={{ textDecoration: 'none', marginTop: '10px', color: 'var(--purple)' }} to={'#'}>Fazer Login</Link>
+                <Link style={{ textDecoration: 'none', marginTop: '10px', color: 'var(--purple)' }} to={'/login'}>Fazer Login</Link>
 
                 <div className="botao">
                     <button type='submit'>Confirmar</button>

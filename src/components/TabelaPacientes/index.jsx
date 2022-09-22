@@ -62,7 +62,7 @@ function TabelaPacientes({
       if (sessoesDoPaciente.length) {
         setTemSessoes(true);
       }
-    } catch (error) {}
+    } catch (error) { }
   }
 
   return (
@@ -92,7 +92,7 @@ function TabelaPacientes({
               <th>Endereço</th>
               <th>E-mail</th>
               <th>Gênero</th>
-              <th>Ações</th>             
+              <th>Ações</th>
             </tr>
           </thead>
           <tbody>
@@ -150,9 +150,9 @@ function TabelaPacientes({
             <option value="7">7</option>
             <option value="8">8</option>
             <option value="9">9</option>
-            <option value="10">10</option>            
+            <option value="10">10</option>
           </select>
-          
+
           <span>
             {(page - 1) * size + 1} - {(page - 1) * size + pacientes.length} de{" "}
             {pacientesTotais.length}
