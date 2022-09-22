@@ -11,7 +11,12 @@ function Main({ page, setPage }) {
     const token = getItem('token')
     const [pacientes, setPacientes] = useState()
     const [sessoesDoDia, setSessoesDoDia] = useState()
-
+    const [sessoesDoMes, setSessoesDoMes] = useState()
+    const [sessoesCanceladasMes, setSessoesCanceladasMes ] = useState()
+    const [sessoesIndividuais, setSessoesIndividuais] = useState()
+    const [sessoesDupla, setSessoesDupla] = useState()
+    const [sessoesGrupo, setSessoesGrupo] = useState()
+    
     useEffect(() => {
         listarPacientes()
         setPage('dashboard')
@@ -46,8 +51,36 @@ function Main({ page, setPage }) {
                     new Date().getYear() === new Date(item.data).getYear()
             })
 
-            setSessoesDoDia(sessoesDoDia.length)
+            const sessoesDoMes = response.data.filter((item) => {
+                return new Date().getMonth() === new Date(item.data).getMonth() &&
+                    new Date().getYear() === new Date(item.data).getYear()
+            })
 
+            const sessoesCanceladasMes = response.data.filter((item) => {
+                return new Date().getMonth() === new Date(item.data).getMonth() &&
+                    new Date().getYear() === new Date(item.data).getYear() &&
+                    item.status === "Cancelado"
+            })
+
+            const sessoesIndividuais = response.data.filter((item) => {
+                return item.tipo === "Individual"
+            })
+
+            const sessoesDupla = response.data.filter((item) => {
+                return item.tipo === "Dupla"
+            })
+
+            const sessoesGrupo = response.data.filter((item) => {
+                return item.tipo === "Grupo"
+            })         
+            
+            
+            setSessoesDoMes(sessoesDoMes.length)
+            setSessoesDoDia(sessoesDoDia.length)
+            setSessoesCanceladasMes(sessoesCanceladasMes.length)
+            setSessoesIndividuais(sessoesIndividuais.length)
+            setSessoesDupla(sessoesDupla.length)
+            setSessoesGrupo(sessoesGrupo.length)
 
         } catch (error) {
 
@@ -65,11 +98,11 @@ function Main({ page, setPage }) {
                 />
                 <DashboardCard
                     titulo='Sessões agendadas (mês)'
-                    valor='5'
+                    valor={sessoesDoMes}
                 />
                 <DashboardCard
                     titulo='Sessões canceladas (mês)'
-                    valor='5'
+                    valor={sessoesCanceladasMes}
                 />
                 <DashboardCard
                     titulo='Total de pacientes cadastrados'
@@ -78,16 +111,16 @@ function Main({ page, setPage }) {
                 <DashboardCard
                     titulo='Total de sessões
                     (individuais)'
-                    valor='5'
+                    valor={sessoesIndividuais}
                 />
                 <DashboardCard
                     titulo='Total de sessões
                     (dupla)'
-                    valor='5'
+                    valor={sessoesDupla}
                 />
                 <DashboardCard
                     titulo='Total de sessões (grupo)'
-                    valor='5'
+                    valor={sessoesGrupo}
                 />
             </div>
         </div>
