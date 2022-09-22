@@ -130,9 +130,9 @@ function ModalSessoes({
               ? "Editar sessão"
               : ""}
         </h2>
-        <select
+        <select       
           name="paciente_id"
-          id=""
+          id=""          
           defaultValue={action === "editar" ? formEditar.paciente_id : 'Pacientes'}
           onChange={(e) => handleChangeInput(e)}
         >
@@ -167,7 +167,7 @@ function ModalSessoes({
         />
         <select
           name="tipo"
-          id="tipo"
+          id="tipo"          
           value={(action === "editar" ? formEditar : formCadastrar).tipo}
           onChange={(e) => handleChangeInput(e)}
         >

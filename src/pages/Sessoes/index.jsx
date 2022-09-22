@@ -75,7 +75,9 @@ function Sessoes({ page, setPage }) {
   }
 
   return (
+    
     <div className="sessoes">
+     
       <MenuLateral page={page} setPage={setPage} />
       <div className="sessoes-content">
         <div className="sessoes-cabecalho">
