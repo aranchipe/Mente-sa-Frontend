@@ -1,14 +1,11 @@
 import "./style.css";
-import acao from "../../assets/acao.svg";
 import editIcon from "../../assets/edit-icon.svg";
 import deleteIcon from "../../assets/delete-icon.svg";
 import esquerda from "../../assets/esquerda.svg";
 import direita from "../../assets/direita.svg";
 import { format } from "date-fns";
-import ModalCadastroSessao from "../ModalCadastroSessao";
-import ModalEditSessoes from "../ModalEditSessoes";
-import ModalDeleteSessoes from "../ModalDeleteSessoes";
 import { useState } from "react";
+import ModalSessoes from "../ModalSessoes";
 
 function TabelaSessoes({
   sessoes,
@@ -23,9 +20,11 @@ function TabelaSessoes({
   modalCadastrar,
   modalEditar,
   modalExcluir,
+  action,
+  setModalAction,
+  pacientes,
 }) {
-
-  const [sessaoAtual, setSessaoAtual] = useState()
+  const [sessaoAtual, setSessaoAtual] = useState();
 
   function handleChangeInputSize(e) {
     setSize(e.target.value);
@@ -44,9 +43,16 @@ function TabelaSessoes({
 
   return (
     <div className="table-completa">
-      {modalCadastrar ? <ModalCadastroSessao setModalCadastrar={setModalCadastrar} /> : ""}
-      {modalEditar ? <ModalEditSessoes sessaoAtual={sessaoAtual} setModalEditar={setModalEditar} /> : ""}
-      {modalExcluir ? <ModalDeleteSessoes sessaoAtual={sessaoAtual} setModalExcluir={setModalExcluir} /> : ""}
+      {(modalCadastrar || modalEditar || modalExcluir) && (
+        <ModalSessoes
+          action={action}
+          setModalCadastrar={setModalCadastrar}
+          setModalEditar={setModalEditar}
+          setModalExcluir={setModalExcluir}
+          pacientes={pacientes}
+          sessaoAtual={sessaoAtual}
+        />
+      )}
       <table className="table-sessoes">
         <thead>
           <tr>
@@ -60,9 +66,7 @@ function TabelaSessoes({
           </tr>
         </thead>
         <tbody>
-          {sessoes.map((item, indice) =>
-
-          (
+          {sessoes.map((item, indice) => (
             <tr
               className={indice % 2 === 0 ? "linha-branca" : ""}
               key={item.id}
@@ -75,8 +79,8 @@ function TabelaSessoes({
                     item.status === "Cancelado"
                       ? "status cancelado"
                       : item.status === "Atendido"
-                        ? "status atendido"
-                        : "status agendado"
+                      ? "status atendido"
+                      : "status agendado"
                   }
                 >
                   <span>{item.status}</span>
@@ -88,15 +92,24 @@ function TabelaSessoes({
               <td>{item.tipo}</td>
               <td>
                 <div className="action-icons">
-
-                  <img src={editIcon} alt="editIcon" onClick={() => {
-                    setSessaoAtual(item)
-                    setModalEditar(true)
-                  }} />
-                  <img src={deleteIcon} alt="deleteIcon" onClick={() => {
-
-                    setModalExcluir(true)
-                  }} />
+                  <img
+                    src={editIcon}
+                    alt="editIcon"
+                    onClick={() => {
+                      setSessaoAtual(item);
+                      setModalEditar(true);
+                      setModalAction("editar");
+                    }}
+                  />
+                  <img
+                    src={deleteIcon}
+                    alt="deleteIcon"
+                    onClick={() => {
+                      setSessaoAtual(item);
+                      setModalExcluir(true);
+                      setModalAction("excluir");
+                    }}
+                  />
                 </div>
               </td>
             </tr>
@@ -105,14 +118,15 @@ function TabelaSessoes({
       </table>
       <div className="table-footer">
         <span>Itens por página: </span>
-        <select
-          onChange={handleChangeInputSize}>
+        <select onChange={handleChangeInputSize}>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
           <option value="4">4</option>
           <option value="5">5</option>
-          <option value="6" selected>6</option>
+          <option value="6" selected>
+            6
+          </option>
           <option value="7">7</option>
           <option value="8">8</option>
           <option value="9">9</option>
