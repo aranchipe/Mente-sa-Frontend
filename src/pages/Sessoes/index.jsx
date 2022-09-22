@@ -26,7 +26,7 @@ function Sessoes({ page, setPage }) {
     listarSessoes();
     setPage("sessoes");
     listarPacientes();
-  });
+  }, [sessoes, sessoesTotais, pagina, size]);
 
   async function listarSessoes() {
     try {
@@ -43,7 +43,7 @@ function Sessoes({ page, setPage }) {
 
       setSessoesTotais(sessoesTotais.data);
       setSessoes(response.data);
-    } catch (error) {}
+    } catch (error) { }
   }
 
   async function listarPacientes() {
@@ -55,7 +55,7 @@ function Sessoes({ page, setPage }) {
       });
 
       setPacientes(response.data);
-    } catch (error) {}
+    } catch (error) { }
   }
 
   function handleFilter(e) {
@@ -75,9 +75,9 @@ function Sessoes({ page, setPage }) {
   }
 
   return (
-    
+
     <div className="sessoes">
-     
+
       <MenuLateral page={page} setPage={setPage} />
       <div className="sessoes-content">
         <div className="sessoes-cabecalho">

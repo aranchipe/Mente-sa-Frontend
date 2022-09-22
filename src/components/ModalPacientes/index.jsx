@@ -178,7 +178,7 @@ function ModalPacientes({
           name='cpf'
           mask='999.999.999-99'
           value={(action === "editar" ? formEditar : formCadastrar).cpf}
-          onChange={handleChangeInput}
+          onChange={(e) => handleChangeInput(e)}
           placeholder='CPF'
         />
         <select
@@ -212,10 +212,10 @@ function ModalPacientes({
         />
 
         <MaskedInput
-          name='telephone'
+          name='telefone'
           mask='(99)9.9999-9999'
           value={(action === "editar" ? formEditar : formCadastrar).telefone}
-          onChange={handleChangeInput}
+          onChange={(e) => handleChangeInput(e)}
           placeholder='Telefone'
         />
         <div>

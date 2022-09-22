@@ -23,7 +23,7 @@ export const Modal = styled.form`
 
   input,
   select {
-    height: 50px;
+    height: 55px;
     width: 100%;
 
     outline: none;

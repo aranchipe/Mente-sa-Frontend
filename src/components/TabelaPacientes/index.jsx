@@ -140,7 +140,7 @@ function TabelaPacientes({
 
         <div className="table-footer">
           <span>Itens por página: </span>
-          <select onChange={handleChangeInputSize}>
+          <select defaultValue='6' onChange={handleChangeInputSize}>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
