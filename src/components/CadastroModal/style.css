@@ -12,13 +12,9 @@
      color: var(--purple)
  }
 
- .titulo {
+ .titulo, .sub-titulo {
      text-align: center;
      margin-bottom: 24px;
- }
-
- .sub-titulo {
-     margin-bottom: 16px;
  }
 
  .cadastro-modal-form {
