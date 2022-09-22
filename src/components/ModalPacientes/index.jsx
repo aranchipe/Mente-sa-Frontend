@@ -186,7 +186,7 @@ function ModalPacientes({
           value={(action === "editar" ? formEditar : formCadastrar).genero}
           onChange={(e) => handleChangeInput(e)}
         >
-          <option value="" defaultValue>
+          <option value="" >
             Gênero
           </option>
           <option value="feminino">Feminino</option>

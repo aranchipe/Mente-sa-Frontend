@@ -32,7 +32,6 @@ function TabelaPacientes({
 
   const [temSessoes, setTemSessoes] = useState(false);
   const [pacienteAtual, setPacienteAtual] = useState();
-
   function handleChangeInputSize(e) {
     setSize(e.target.value);
     if (!e.target.value) {
@@ -93,7 +92,7 @@ function TabelaPacientes({
               <th>Endereço</th>
               <th>E-mail</th>
               <th>Gênero</th>
-              <th>Ações</th>
+              <th>Ações</th>             
             </tr>
           </thead>
           <tbody>
@@ -147,14 +146,13 @@ function TabelaPacientes({
             <option value="3">3</option>
             <option value="4">4</option>
             <option value="5">5</option>
-            <option value="6" selected>
-              6
-            </option>
+            <option value="6" defaultValue="6">6</option>
             <option value="7">7</option>
             <option value="8">8</option>
             <option value="9">9</option>
-            <option value="10">10</option>
+            <option value="10">10</option>            
           </select>
+          
           <span>
             {(page - 1) * size + 1} - {(page - 1) * size + pacientes.length} de{" "}
             {pacientesTotais.length}

@@ -42,7 +42,7 @@ function TabelaSessoes({
   }
 
   return (
-    <div className="table-completa">
+    <>    
       {(modalCadastrar || modalEditar || modalExcluir) && (
         <ModalSessoes
           action={action}
@@ -53,6 +53,7 @@ function TabelaSessoes({
           sessaoAtual={sessaoAtual}
         />
       )}
+      <div className="table-completa">
       <table className="table-sessoes">
         <thead>
           <tr>
@@ -66,11 +67,8 @@ function TabelaSessoes({
           </tr>
         </thead>
         <tbody>
-          {sessoes.map((item, indice) => (
-            <tr
-              className={indice % 2 === 0 ? "linha-branca" : ""}
-              key={item.id}
-            >
+          {sessoes.map((item) => (
+            <tr key={item.id}>
               <td>{item.paciente}</td>
               <td>{format(new Date(item.data), "dd/MM/yyyy")}</td>
               <td>
@@ -86,7 +84,6 @@ function TabelaSessoes({
                   <span>{item.status}</span>
                 </div>
               </td>
-
               <td>{item.tema}</td>
               <td>{item.duracao}</td>
               <td>{item.tipo}</td>
@@ -118,15 +115,13 @@ function TabelaSessoes({
       </table>
       <div className="table-footer">
         <span>Itens por página: </span>
-        <select onChange={handleChangeInputSize}>
+        <select value="6" onChange={handleChangeInputSize}>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
           <option value="4">4</option>
           <option value="5">5</option>
-          <option value="6" selected>
-            6
-          </option>
+          <option value="6">6</option>
           <option value="7">7</option>
           <option value="8">8</option>
           <option value="9">9</option>
@@ -150,6 +145,7 @@ function TabelaSessoes({
         />
       </div>
     </div>
+    </>
   );
 }
 

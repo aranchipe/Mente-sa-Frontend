@@ -75,6 +75,7 @@ function Pacientes({ page, setPage }) {
 
 
         <div className="paciente">
+            
             <MenuLateral page={page} setPage={setPage} />
             <div className="pacientes-content">
                 <div className='pacientes-cabecalho'>
