@@ -11,7 +11,7 @@ function ModalSessoes({
   setModalCadastrar,
   setModalEditar,
   setModalExcluir,
-  sessaoAtual,
+  sessaoAtual
 }) {
   const token = getItem("token");
   const id = getItem("id");
@@ -35,6 +35,7 @@ function ModalSessoes({
     duracao: "",
     tipo: "Individual",
   });
+
 
   const onSubmitFunction = async (e) => {
     e.preventDefault();
