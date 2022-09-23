@@ -1,70 +1,32 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Mente Sã - Frontend 🧠
 
-## Available Scripts
+O web app Mente Sã é um sistema pensado para profissionais
+da Psicologia. 
 
-In the project directory, you can run:
+Nele, os psicólogos podem se cadastrar como administradores
+e fazer o cadastro de seus pacientes e sessões
+para uma gestão mais eficiente da clínica. 👩‍⚕️
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+## Tecnologias e Dependências ⚒️
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+ReactJS, React Router, React Hook Form, React Icons, React Input Mask, React Scripts, React Toastify, Axios, Bootstrap, Styled Components
+## Teste o app!
 
-### `npm run build`
+Experimente utilizar o sistema Mente Sã agora mesmo pelo link: https://mente-sa-frontend-8w12.vercel.app/
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Colaboradores 🤓
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Luca Aranchipe - https://github.com/aranchipe
 
-### `npm run eject`
+Denise Costa - https://github.com/denisinhacosta
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Alessandra Vicentini - https://github.com/alessandravicentini
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+João Marcelo Dantas - https://github.com/jmgrd98
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Igor Valério - https://github.com/IgorValerio
