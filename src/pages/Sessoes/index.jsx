@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import lupa from "../../assets/lupa.svg";
 import plus from "../../assets/plus.svg";
+import { notifyError } from "../../utils/toast";
 
 function Sessoes({ page, setPage }) {
   const token = getItem("token");
@@ -74,6 +75,14 @@ function Sessoes({ page, setPage }) {
     setSessoesFiltradas(filtrado);
   }
 
+  function handleNovaSessao() {
+    if (!pacientes) {
+      return notifyError('Você não possui um paciente para cadastrar uma nova sessão')
+    }
+    setModalCadastrar(true);
+    setModalAction("cadastrar");
+  }
+
   return (
 
     <div className="sessoes">
@@ -89,16 +98,12 @@ function Sessoes({ page, setPage }) {
             onChange={(e) => handleFilter(e)}
           />
           <button
-            onClick={() => {
-              setModalCadastrar(true);
-              setModalAction("cadastrar");
-            }}
+            onClick={handleNovaSessao}
           >
             <img
               src={plus}
               alt="plus"
               className="plus"
-              onClick={() => setModalAction("cadastrar")}
             />
             Nova Sessão
           </button>

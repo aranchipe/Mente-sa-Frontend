@@ -70,7 +70,7 @@ function TabelaSessoes({
             {sessoes.map((item) => (
               <tr key={item.id}>
                 <td>{item.paciente}</td>
-                <td>{format(new Date(item.data), "dd/MM/yyyy")}</td>
+                <td>{format(new Date(item.data), "dd/MM/yyyy HH:mm")}</td>
                 <td>
                   <div
                     className={

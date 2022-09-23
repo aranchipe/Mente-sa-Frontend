@@ -28,7 +28,7 @@ function ModalSessoes({
 
   const [formCadastrar, setFormCadastrar] = useState({
     profissional_id: id,
-    paciente_id: "",
+    paciente_id: pacientes[0].id,
     data: "",
     status: "Agendado",
     tema: "",
@@ -133,17 +133,20 @@ function ModalSessoes({
         <select
           name="paciente_id"
           id=""
-          defaultValue={action === "editar" ? formEditar.paciente_id : 'Pacientes'}
+          defaultValue={action === "editar" ? formEditar.paciente_id : formCadastrar.paciente_id}
           onChange={(e) => handleChangeInput(e)}
         >
+          <option disabled value='Pacientes'>
+            Escolha o paciente
+          </option>
           {pacientes.map((paciente) => (
-            <option key={paciente.id} value={paciente.id}>
+            <option key={paciente.id} value={paciente.id} >
               {paciente.nome}
             </option>
           ))}
         </select>
         <input
-          type="date"
+          type="datetime-local"
           name="data"
           id=""
           onChange={(e) => handleChangeInput(e)}
