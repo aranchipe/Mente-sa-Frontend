@@ -29,20 +29,20 @@ td {
     font-weight: bold;
     text-align: start;
     padding: 0.7rem;
-  }
-  
-  .table-sessoes td {
+}
+
+.table-sessoes td {
     color: var(--gray-700);
     padding: 0.7rem;
-  }
-  
-  .table-sessoes tr:nth-child(even) {
+}
+
+.table-sessoes tr:nth-child(even) {
     background: var(--gray-200);
-  }
-  
-  .table-sessoes tr {
+}
+
+.table-sessoes tr {
     background: var(--white);
-  }
+}
 
 .action-icons {
     gap: 44.75px;
@@ -67,6 +67,10 @@ td {
 
 .atendido {
     background: #419B4A;
+}
+
+.expirado {
+    background-color: #C5A605;
 }
 
 .table-footer {
@@ -113,5 +117,3 @@ td {
     line-height: 14px;
     color: #666666;
 }
-
-

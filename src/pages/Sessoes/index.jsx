@@ -111,6 +111,7 @@ function Sessoes({ page, setPage }) {
         {pesquisando && <h1>Pesquisando</h1>}
         <TabelaSessoes
           sessoes={pesquisando ? sessoesFiltradas : sessoes}
+          setSessoes={setSessoes}
           page={pagina}
           setPage={setPagina}
           size={size}

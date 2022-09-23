@@ -9,6 +9,7 @@ import ModalSessoes from "../ModalSessoes";
 
 function TabelaSessoes({
   sessoes,
+  setSessoes,
   page,
   setPage,
   size,
@@ -41,6 +42,7 @@ function TabelaSessoes({
     setPage(page + 1);
   }
 
+
   return (
     <>
       {(modalCadastrar || modalEditar || modalExcluir) && (
@@ -58,7 +60,7 @@ function TabelaSessoes({
           <thead>
             <tr>
               <th>Paciente</th>
-              <th>Data de Agendamento</th>
+              <th >Data de Agendamento</th>
               <th>Status</th>
               <th>Tema</th>
               <th>Duração</th>
@@ -78,7 +80,9 @@ function TabelaSessoes({
                         ? "status cancelado"
                         : item.status === "Atendido"
                           ? "status atendido"
-                          : "status agendado"
+                          : item.status === "Expirado"
+                            ? "status expirado"
+                            : "status agendado"
                     }
                   >
                     <span>{item.status}</span>
