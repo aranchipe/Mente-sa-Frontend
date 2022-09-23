@@ -31,7 +31,7 @@ export default function MenuLateral({ page, setPage }) {
 
                 <p>Bem-vindo(a),</p>
                 <div className='logout'>
-                    <span style={{ fontWeight: '700' }}>Dr(a) {nome}</span>
+                    <span className='doutor' style={{ fontWeight: '700' }}>Dr(a) {nome}</span>
                     <img src={exit} alt='exit' style={{ width: '30px' }} onClick={logout} />
                 </div>
 
@@ -43,13 +43,12 @@ export default function MenuLateral({ page, setPage }) {
                         onClick={() => navigate('/main')}
                     >
                         <img style={{ width: '24px' }} src={linkDashboard || page === 'dashboard' ? dashboardRoxo : dashboard} alt='dashboard' />
-                        <Link
+                        <span
                             style={linkDashboard || page === 'dashboard' ? { color: 'blueviolet' } : {}}
                             className='link'
-                            to={'/main'}
                         >
                             Dashboard
-                        </Link>
+                        </span>
                     </div>
                     <div
                         onMouseLeave={() => setLinkPacientes(false)}
@@ -60,13 +59,12 @@ export default function MenuLateral({ page, setPage }) {
 
                     >
                         <img style={{ width: '24px' }} src={linkPacientes || page === 'pacientes' ? pacientesRoxo : pacientes} alt='pacientes' />
-                        <Link
+                        <span
                             style={linkPacientes || page === 'pacientes' ? { color: 'blueviolet' } : {}}
-                            to='/pacientes'
                             className='link'
                         >
                             Pacientes
-                        </Link>
+                        </span>
                     </div>
 
                     <div
@@ -76,10 +74,10 @@ export default function MenuLateral({ page, setPage }) {
                         onClick={() => navigate('/sessoes')}
                     >
                         <img style={{ width: '24px' }} src={linkSessoes || page === 'sessoes' ? sessoesRoxo : sessoes} alt='sessoes' />
-                        <Link
+                        <span
                             style={linkSessoes || page === 'sessoes' ? { color: 'blueviolet' } : {}}
-                            to='/sessoes'
-                            className='link'>Sessões</Link>
+                            className='link'>Sessões
+                        </span>
                     </div>
                 </nav >
 

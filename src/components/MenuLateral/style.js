@@ -25,12 +25,10 @@ export const MenuLateralStyle = styled.form`
     line-height: 49px;
 }
 
-.menu-lateral-container span {
+.menu-lateral-container .doutor {
     font-weight: 700;
     font-size: 14px;
     line-height: 16px;
-
-
 }
 
 nav {
@@ -39,7 +37,7 @@ nav {
     gap: 10px;
 }
 
-.link {
+.menu-lateral-container .link {
     color: white;
     text-decoration: none;
     font-weight: bold;
@@ -47,6 +45,7 @@ nav {
     font-weight: 700;
     font-size: 24px;
     line-height: 28px;
+    margin: auto 0
 }
 
 
