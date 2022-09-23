@@ -14,7 +14,7 @@ function ModalSessoesDoPaciente({ setModalSessoes, pacienteAtual }) {
 
     useEffect(() => {
         SessoesDoPaciente()
-    }, [])
+    })
 
     async function SessoesDoPaciente() {
         try {
@@ -51,7 +51,7 @@ function ModalSessoesDoPaciente({ setModalSessoes, pacienteAtual }) {
                     {sessoesDoPaciente.map((item) => (
                         <ul key={item.id}>
                             <li><b>Sessão:</b> {item.id}</li>
-                            <li><b>Data:</b> {format(new Date(item.data), 'dd/MM/yyyy')}</li>
+                            <li><b>Data:</b> {format(new Date(item.data), 'dd/MM/yyyy -- HH:mm')}</li>
                             <li><b>Status:</b> {item.status}</li>
                             <li><b>Tema:</b> {item.tema}</li>
                             <li><b>Duração:</b> {item.duracao}</li>

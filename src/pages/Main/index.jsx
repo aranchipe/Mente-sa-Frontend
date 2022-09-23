@@ -12,11 +12,11 @@ function Main({ page, setPage }) {
     const [pacientes, setPacientes] = useState()
     const [sessoesDoDia, setSessoesDoDia] = useState()
     const [sessoesDoMes, setSessoesDoMes] = useState()
-    const [sessoesCanceladasMes, setSessoesCanceladasMes ] = useState()
+    const [sessoesCanceladasMes, setSessoesCanceladasMes] = useState()
     const [sessoesIndividuais, setSessoesIndividuais] = useState()
     const [sessoesDupla, setSessoesDupla] = useState()
     const [sessoesGrupo, setSessoesGrupo] = useState()
-    
+
     useEffect(() => {
         listarPacientes()
         setPage('dashboard')
@@ -33,7 +33,6 @@ function Main({ page, setPage }) {
 
             setPacientes(response.data.length)
         } catch (error) {
-            return notifyError(error.response.data.mensagem);
         }
     }
 
@@ -72,9 +71,9 @@ function Main({ page, setPage }) {
 
             const sessoesGrupo = response.data.filter((item) => {
                 return item.tipo === "Grupo"
-            })         
-            
-            
+            })
+
+
             setSessoesDoMes(sessoesDoMes.length)
             setSessoesDoDia(sessoesDoDia.length)
             setSessoesCanceladasMes(sessoesCanceladasMes.length)

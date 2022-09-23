@@ -12,13 +12,10 @@
      color: var(--purple)
  }
 
- .titulo {
+ .titulo,
+ .sub-titulo {
      text-align: center;
      margin-bottom: 24px;
- }
-
- .sub-titulo {
-     margin-bottom: 16px;
  }
 
  .cadastro-modal-form {
@@ -45,8 +42,9 @@
  }
 
  form img {
-     width: 24px;
+     width: 20px;
      margin-right: 11px;
+     margin-top: 5px;
  }
 
  .termos {

@@ -19,7 +19,7 @@ function ModalSessoes({
   const [formEditar, setFormEditar] = useState({
     profissional_id: id,
     paciente_id: sessaoAtual && sessaoAtual.paciente_id,
-    data: sessaoAtual && format(new Date(sessaoAtual.data), "yyyy-MM-dd"),
+    data: sessaoAtual && format(new Date(sessaoAtual.data), "yyyy-MM-dd HH:mm"),
     status: sessaoAtual && sessaoAtual.status,
     tema: sessaoAtual && sessaoAtual.tema,
     duracao: sessaoAtual && sessaoAtual.duracao,
@@ -28,7 +28,7 @@ function ModalSessoes({
 
   const [formCadastrar, setFormCadastrar] = useState({
     profissional_id: id,
-    paciente_id: "",
+    paciente_id: pacientes[0].id,
     data: "",
     status: "Agendado",
     tema: "",
@@ -59,7 +59,12 @@ function ModalSessoes({
         notifyError(error.response.data.mensagem);
       }
     } else if (action === "cadastrar") {
+      const now = new Date()
+      if (+new Date(formCadastrar.data) < +now) {
+        return notifyError('Não é possível cadastrar uma sessão marcada para datas passadas')
+      }
       try {
+
         await axios.post(
           "/sessao",
           {
@@ -130,20 +135,23 @@ function ModalSessoes({
               ? "Editar sessão"
               : ""}
         </h2>
-        <select       
+        <select
           name="paciente_id"
-          id=""          
-          defaultValue={action === "editar" ? formEditar.paciente_id : 'Pacientes'}
+          id=""
+          defaultValue={action === "editar" ? formEditar.paciente_id : formCadastrar.paciente_id}
           onChange={(e) => handleChangeInput(e)}
         >
+          <option disabled value='Pacientes'>
+            Escolha o paciente
+          </option>
           {pacientes.map((paciente) => (
-            <option key={paciente.id} value={paciente.id}>
+            <option key={paciente.id} value={paciente.id} >
               {paciente.nome}
             </option>
           ))}
         </select>
         <input
-          type="date"
+          type="datetime-local"
           name="data"
           id=""
           onChange={(e) => handleChangeInput(e)}
@@ -158,7 +166,7 @@ function ModalSessoes({
           onChange={(e) => handleChangeInput(e)}
         />
         <input
-          type="text"
+          type="time"
           name="duracao"
           id=""
           placeholder="Duração"
@@ -167,7 +175,7 @@ function ModalSessoes({
         />
         <select
           name="tipo"
-          id="tipo"          
+          id="tipo"
           value={(action === "editar" ? formEditar : formCadastrar).tipo}
           onChange={(e) => handleChangeInput(e)}
         >

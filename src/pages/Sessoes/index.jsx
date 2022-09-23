@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import lupa from "../../assets/lupa.svg";
 import plus from "../../assets/plus.svg";
+import { notifyError } from "../../utils/toast";
 
 function Sessoes({ page, setPage }) {
   const token = getItem("token");
@@ -26,7 +27,7 @@ function Sessoes({ page, setPage }) {
     listarSessoes();
     setPage("sessoes");
     listarPacientes();
-  });
+  }, [sessoes, sessoesTotais, pagina, size]);
 
   async function listarSessoes() {
     try {
@@ -43,7 +44,7 @@ function Sessoes({ page, setPage }) {
 
       setSessoesTotais(sessoesTotais.data);
       setSessoes(response.data);
-    } catch (error) {}
+    } catch (error) { }
   }
 
   async function listarPacientes() {
@@ -55,7 +56,7 @@ function Sessoes({ page, setPage }) {
       });
 
       setPacientes(response.data);
-    } catch (error) {}
+    } catch (error) { }
   }
 
   function handleFilter(e) {
@@ -74,10 +75,18 @@ function Sessoes({ page, setPage }) {
     setSessoesFiltradas(filtrado);
   }
 
+  function handleNovaSessao() {
+    if (!pacientes) {
+      return notifyError('Você não possui um paciente para cadastrar uma nova sessão')
+    }
+    setModalCadastrar(true);
+    setModalAction("cadastrar");
+  }
+
   return (
-    
+
     <div className="sessoes">
-     
+
       <MenuLateral page={page} setPage={setPage} />
       <div className="sessoes-content">
         <div className="sessoes-cabecalho">
@@ -89,16 +98,12 @@ function Sessoes({ page, setPage }) {
             onChange={(e) => handleFilter(e)}
           />
           <button
-            onClick={() => {
-              setModalCadastrar(true);
-              setModalAction("cadastrar");
-            }}
+            onClick={handleNovaSessao}
           >
             <img
               src={plus}
               alt="plus"
               className="plus"
-              onClick={() => setModalAction("cadastrar")}
             />
             Nova Sessão
           </button>
@@ -106,6 +111,7 @@ function Sessoes({ page, setPage }) {
         {pesquisando && <h1>Pesquisando</h1>}
         <TabelaSessoes
           sessoes={pesquisando ? sessoesFiltradas : sessoes}
+          setSessoes={setSessoes}
           page={pagina}
           setPage={setPagina}
           size={size}

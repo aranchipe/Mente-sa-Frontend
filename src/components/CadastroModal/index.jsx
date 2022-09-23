@@ -1,10 +1,11 @@
 import './style.css'
-import termos from '../../assets/termos.svg'
-import olho from '../../assets/olho.svg'
+import olhoAberto from '../../assets/olho-aberto.svg'
+import olhoFechado from '../../assets/olho-fechado.svg'
 import { useState } from 'react'
 import axios from '../../services/axios'
 import { notifyError, notifySucess } from '../../utils/toast'
 import { Link } from 'react-router-dom'
+import { useEffect } from 'react'
 
 function CadastroModal() {
     const [typePassword, setTypePassword] = useState(true)
@@ -15,6 +16,18 @@ function CadastroModal() {
         senha: '',
         confSenha: ''
     })
+
+    const [botaoCadastro, setBotaoCadastro] = useState(true)
+
+    useEffect(() => {
+
+        if (form.nome && form.email && form.senha && form.confSenha) {
+            setBotaoCadastro(false)
+        } else {
+            setBotaoCadastro(true)
+        }
+    }, [form])
+
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -36,6 +49,7 @@ function CadastroModal() {
         if (form.senha.length < 6) {
             return notifyError('A senha deve ter ao menos 6 caracteres')
         }
+
 
         try {
             await axios.post('/profissional', {
@@ -100,7 +114,7 @@ function CadastroModal() {
                     value={form.senha}
                 />
 
-                <img className='olho1' src={olho} alt='olho' onClick={() => setTypePassword(!typePassword)} />
+                <img className='olho1' src={typePassword ? olhoAberto : olhoFechado} alt='olho' onClick={() => setTypePassword(!typePassword)} />
 
                 <input
                     placeholder='Confirme sua senha'
@@ -110,16 +124,13 @@ function CadastroModal() {
                     value={form.confSenha}
                 />
 
-                <img className='olho2' src={olho} alt='olho' onClick={() => setTypeConfPassword(!typeConfPassword)} />
+                <img className='olho2' src={typeConfPassword ? olhoAberto : olhoFechado} alt='olho' onClick={() => setTypeConfPassword(!typeConfPassword)} />
 
-                <div className="termos">
-                    <img style={{ cursor: 'pointer' }} src={termos} alt='termos' />
-                    <span style={{ color: '#AAAAAA' }}>Aceito os <span style={{ color: 'var(--purple)', fontWeight: '700' }}>termos</span> e <span style={{ color: 'var(--purple)', fontWeight: '700' }}>políticas de privacidade</span></span>
-                </div>
+
                 <Link style={{ textDecoration: 'none', marginTop: '10px', color: 'var(--purple)' }} to={'/login'}>Fazer Login</Link>
 
                 <div className="botao">
-                    <button type='submit'>Confirmar</button>
+                    <button disabled={botaoCadastro} type='submit' style={botaoCadastro ? { backgroundColor: 'var(--light-purple)', cursor: 'default' } : { backgroundColor: 'var(--purple)', cursor: 'pointer' }} >Confirmar</button>
                 </div>
 
             </form>
