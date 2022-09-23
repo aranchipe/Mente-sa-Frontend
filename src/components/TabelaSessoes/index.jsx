@@ -10,8 +10,8 @@ import ModalSessoes from "../ModalSessoes";
 function TabelaSessoes({
   sessoes,
   setSessoes,
-  page,
-  setPage,
+  pagina,
+  setPagina,
   size,
   setSize,
   sessoesTotais,
@@ -23,7 +23,7 @@ function TabelaSessoes({
   modalExcluir,
   action,
   setModalAction,
-  pacientes,
+  pacientes
 }) {
   const [sessaoAtual, setSessaoAtual] = useState();
 
@@ -32,14 +32,14 @@ function TabelaSessoes({
     if (!e.target.value) {
       setSize(6);
     }
-    setPage(1);
+    setPagina(1);
   }
 
   function handleNextPage() {
-    if ((page - 1) * size + sessoes.length === sessoesTotais.length) {
+    if ((pagina - 1) * size + sessoes.length === sessoesTotais.length) {
       return;
     }
-    setPage(page + 1);
+    setPagina(pagina + 1);
   }
 
 
@@ -72,7 +72,7 @@ function TabelaSessoes({
             {sessoes.map((item) => (
               <tr key={item.id}>
                 <td>{item.paciente}</td>
-                <td>{format(new Date(item.data), "dd/MM/yyyy HH:mm")}</td>
+                <td>{format(new Date(+new Date(item.data) + 10800000), "dd/MM/yyyy HH:mm")}</td>
                 <td>
                   <div
                     className={
@@ -132,11 +132,11 @@ function TabelaSessoes({
             <option value="10">10</option>
           </select>
           <span>
-            {(page - 1) * size + 1} - {(page - 1) * size + sessoes.length} de{" "}
+            {(pagina - 1) * size + 1} - {(pagina - 1) * size + sessoes.length} de{" "}
             {sessoesTotais.length}
           </span>
           <img
-            onClick={() => page !== 1 && setPage(page - 1)}
+            onClick={() => pagina !== 1 && setPagina(pagina - 1)}
             src={esquerda}
             alt="esquerda"
             className="esquerda"

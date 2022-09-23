@@ -1,63 +1,27 @@
 import "./style.css";
 import MenuLateral from "../../components/MenuLateral";
 import TabelaSessoes from "../../components/TabelaSessoes";
-import axios from "../../services/axios";
-import { getItem } from "../../utils/storage";
 import { useState } from "react";
 import { useEffect } from "react";
 import lupa from "../../assets/lupa.svg";
 import plus from "../../assets/plus.svg";
 import { notifyError } from "../../utils/toast";
 
-function Sessoes({ page, setPage }) {
-  const token = getItem("token");
-  const [sessoes, setSessoes] = useState([]);
-  const [sessoesTotais, setSessoesTotais] = useState([]);
+function Sessoes({ page, setPage, pacientesTotais, listarPacientes, listarSessoes, sessoesTotais, sessoes, setSessoes, pagina, setPagina }) {
   const [sessoesFiltradas, setSessoesFiltradas] = useState([]);
   const [pesquisando, setPesquisando] = useState(false);
-  const [pagina, setPagina] = useState(1);
   const [size, setSize] = useState(6);
   const [modalCadastrar, setModalCadastrar] = useState(false);
   const [modalEditar, setModalEditar] = useState(false);
   const [modalExcluir, setModalExcluir] = useState(false);
-  const [pacientes, setPacientes] = useState();
   const [modalAction, setModalAction] = useState("");
 
   useEffect(() => {
     listarSessoes();
     setPage("sessoes");
     listarPacientes();
-  }, [sessoes, sessoesTotais, pagina, size]);
+  });
 
-  async function listarSessoes() {
-    try {
-      const response = await axios.get(`/sessao?page=${pagina}&size=${size}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      const sessoesTotais = await axios.get("/sessao", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      setSessoesTotais(sessoesTotais.data);
-      setSessoes(response.data);
-    } catch (error) { }
-  }
-
-  async function listarPacientes() {
-    try {
-      const response = await axios.get("/paciente", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      setPacientes(response.data);
-    } catch (error) { }
-  }
 
   function handleFilter(e) {
     if (e.target.value !== "") {
@@ -76,7 +40,7 @@ function Sessoes({ page, setPage }) {
   }
 
   function handleNovaSessao() {
-    if (!pacientes) {
+    if (!pacientesTotais) {
       return notifyError('Você não possui um paciente para cadastrar uma nova sessão')
     }
     setModalCadastrar(true);
@@ -112,8 +76,8 @@ function Sessoes({ page, setPage }) {
         <TabelaSessoes
           sessoes={pesquisando ? sessoesFiltradas : sessoes}
           setSessoes={setSessoes}
-          page={pagina}
-          setPage={setPagina}
+          pagina={pagina}
+          setPagina={setPagina}
           size={size}
           setSize={setSize}
           sessoesTotais={sessoesTotais}
@@ -123,7 +87,7 @@ function Sessoes({ page, setPage }) {
           modalCadastrar={modalCadastrar}
           modalEditar={modalEditar}
           modalExcluir={modalExcluir}
-          pacientes={pacientes}
+          pacientes={pacientesTotais}
           action={modalAction}
           setModalAction={setModalAction}
         />
