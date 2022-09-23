@@ -1,6 +1,6 @@
 import './style.css'
-import termos from '../../assets/termos.svg'
-import olho from '../../assets/olho.svg'
+import olhoAberto from '../../assets/olho-aberto.svg'
+import olhoFechado from '../../assets/olho-fechado.svg'
 import { useState } from 'react'
 import axios from '../../services/axios'
 import { notifyError, notifySucess } from '../../utils/toast'
@@ -20,8 +20,8 @@ function CadastroModal() {
     const [botaoCadastro, setBotaoCadastro] = useState(true)
 
     useEffect(() => {
-        
-        if(form.nome && form.email && form.senha && form.confSenha){
+
+        if (form.nome && form.email && form.senha && form.confSenha) {
             setBotaoCadastro(false)
         } else {
             setBotaoCadastro(true)
@@ -114,7 +114,7 @@ function CadastroModal() {
                     value={form.senha}
                 />
 
-                <img className='olho1' src={olho} alt='olho' onClick={() => setTypePassword(!typePassword)} />
+                <img className='olho1' src={typePassword ? olhoAberto : olhoFechado} alt='olho' onClick={() => setTypePassword(!typePassword)} />
 
                 <input
                     placeholder='Confirme sua senha'
@@ -124,13 +124,13 @@ function CadastroModal() {
                     value={form.confSenha}
                 />
 
-                <img className='olho2' src={olho} alt='olho' onClick={() => setTypeConfPassword(!typeConfPassword)} />
+                <img className='olho2' src={typeConfPassword ? olhoAberto : olhoFechado} alt='olho' onClick={() => setTypeConfPassword(!typeConfPassword)} />
 
-               
+
                 <Link style={{ textDecoration: 'none', marginTop: '10px', color: 'var(--purple)' }} to={'/login'}>Fazer Login</Link>
 
                 <div className="botao">
-                    <button disabled={botaoCadastro} type='submit' style={ botaoCadastro ? {backgroundColor: 'var(--light-purple)', cursor: 'default' }: {backgroundColor: 'var(--purple)', cursor: 'pointer' }} >Confirmar</button>
+                    <button disabled={botaoCadastro} type='submit' style={botaoCadastro ? { backgroundColor: 'var(--light-purple)', cursor: 'default' } : { backgroundColor: 'var(--purple)', cursor: 'pointer' }} >Confirmar</button>
                 </div>
 
             </form>

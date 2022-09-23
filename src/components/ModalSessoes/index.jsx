@@ -19,7 +19,7 @@ function ModalSessoes({
   const [formEditar, setFormEditar] = useState({
     profissional_id: id,
     paciente_id: sessaoAtual && sessaoAtual.paciente_id,
-    data: sessaoAtual && format(new Date(sessaoAtual.data), "yyyy-MM-dd"),
+    data: sessaoAtual && format(new Date(sessaoAtual.data), "yyyy-MM-dd HH:mm"),
     status: sessaoAtual && sessaoAtual.status,
     tema: sessaoAtual && sessaoAtual.tema,
     duracao: sessaoAtual && sessaoAtual.duracao,
@@ -59,7 +59,12 @@ function ModalSessoes({
         notifyError(error.response.data.mensagem);
       }
     } else if (action === "cadastrar") {
+      const now = new Date()
+      if (+new Date(formCadastrar.data) < +now) {
+        return notifyError('Não é possível cadastrar uma sessão marcada para datas passadas')
+      }
       try {
+
         await axios.post(
           "/sessao",
           {

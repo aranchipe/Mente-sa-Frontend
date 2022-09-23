@@ -85,10 +85,7 @@ function Login() {
                                 />
                                 <label for="password" class="form-label">Digite a sua senha</label>
                             </div>
-                            <div class="form-check">
-                                <input class="form-check-input" checked type="checkbox" id="lembrar" value="option1" />
-                                <label class="form-check-label" for="lembrar">Lembrar usuario</label>
-                            </div>
+
                             <input type="submit" class="btn btn-primary" value="Entrar" />
                         </form>
                     </section>
