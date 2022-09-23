@@ -88,9 +88,11 @@ function ModalSessoes({
 
   function handleChangeInput(e) {
     if (action === "editar") {
-      setFormEditar({ ...formEditar, [e.target.name]: e.target.value });
+      setFormEditar({ ...formEditar, [e.target.name]: e.target.value });      
     } else {
       setFormCadastrar({ ...formCadastrar, [e.target.name]: e.target.value });
+      const display = document.getElementsByClassName('element');
+      display.style.display = 'none';
     }
   }
 
@@ -151,6 +153,17 @@ function ModalSessoes({
             </option>
           ))}
         </select>
+        <select
+          className="element"
+          name="status"
+          id=""
+          defaultValue={formEditar.status}
+          onChange={(e) => handleChangeInput(e)}
+        >
+          <option disabled value='Status'>
+            Mude o status
+          </option>
+        </select>
         <input
           type="datetime-local"
           name="data"
@@ -158,6 +171,7 @@ function ModalSessoes({
           onChange={(e) => handleChangeInput(e)}
           value={(action === "editar" ? formEditar : formCadastrar).data}
         />
+
         <input
           type="text"
           name="tema"
