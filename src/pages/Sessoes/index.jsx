@@ -21,7 +21,6 @@ function Sessoes({ page, setPage, pacientesTotais, listarPacientes, listarSessoe
   useEffect(() => {
     listarSessoes();
     setPage("sessoes");
-    listarPacientes();
   }, [pagina, sizeSessoes, modalCadastrar, modalExcluir, modalEditar]);
 
 
