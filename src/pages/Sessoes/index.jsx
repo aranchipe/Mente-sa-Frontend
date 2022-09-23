@@ -22,7 +22,8 @@ function Sessoes({
   isSessoesLoading,
   sizeSessoes,
   setSizeSessoes,
-  setIsPacientesLoading
+  setIsPacientesLoading,
+  listarPacientes
 }) {
   const [sessoesFiltradas, setSessoesFiltradas] = useState([]);
   const [pesquisando, setPesquisando] = useState(false);
@@ -34,6 +35,7 @@ function Sessoes({
 
   useEffect(() => {
     listarSessoes();
+    listarPacientes()
     setPage("sessoes");
   }, [pagina, sizeSessoes, modalCadastrar, modalExcluir, modalEditar]);
 

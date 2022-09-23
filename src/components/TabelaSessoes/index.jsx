@@ -101,8 +101,8 @@ function TabelaSessoes({
                     <img
                       src={editIcon}
                       alt="editIcon"
-                      onClick={async () => {
-                        await setSessaoAtual(item);
+                      onClick={() => {
+                        setSessaoAtual(item);
                         setModalEditar(true);
                         setModalAction("editar");
                       }}
