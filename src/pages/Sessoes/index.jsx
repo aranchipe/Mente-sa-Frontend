@@ -40,12 +40,13 @@ function Sessoes({ page, setPage, pacientesTotais, listarPacientes, listarSessoe
   }
 
   function handleNovaSessao() {
-    if (!pacientesTotais) {
+    if (pacientesTotais.length === 0) {
       return notifyError('Você não possui um paciente para cadastrar uma nova sessão')
     }
     setModalCadastrar(true);
     setModalAction("cadastrar");
   }
+
 
   return (
 
@@ -54,7 +55,7 @@ function Sessoes({ page, setPage, pacientesTotais, listarPacientes, listarSessoe
       <MenuLateral page={page} setPage={setPage} />
       <div className="sessoes-content">
         <div className="sessoes-cabecalho">
-          <h1>Minhas Sessões</h1>
+          <h1 onClick={() => console.log(pacientesTotais)}>Minhas Sessões</h1>
           <img src={lupa} alt="lupa" className="lupa" />
           <input
             placeholder="Pesquisar"
@@ -72,7 +73,6 @@ function Sessoes({ page, setPage, pacientesTotais, listarPacientes, listarSessoe
             Nova Sessão
           </button>
         </div>
-        {pesquisando && <h1>Pesquisando</h1>}
         <TabelaSessoes
           sessoes={pesquisando ? sessoesFiltradas : sessoes}
           setSessoes={setSessoes}
