@@ -94,7 +94,7 @@ function TabelaSessoes({
                 <td>{item.tema}</td>
                 <td>{item.duracao}</td>
                 <td>{item.tipo}</td>
-                <td>
+                <td >
                   <div className="action-icons">
                     <img
                       src={editIcon}

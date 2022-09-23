@@ -24,7 +24,7 @@ function ModalSessoes({
     profissional_id: id,
     paciente_id: sessaoAtual && sessaoAtual.paciente_id,
     data: sessaoAtual && format(new Date(sessaoAtual.data), "yyyy-MM-dd HH:mm"),
-    status: sessaoAtual && sessaoAtual.status,
+    status: sessaoAtual && 'Atendido',
     tema: sessaoAtual && sessaoAtual.tema,
     duracao: sessaoAtual && sessaoAtual.duracao,
     tipo: sessaoAtual && sessaoAtual.tipo,
@@ -45,6 +45,7 @@ function ModalSessoes({
     e.preventDefault();
 
     if (action === "editar") {
+
       setIsPacientesLoading(true)
       try {
         await axios.put(
@@ -58,13 +59,14 @@ function ModalSessoes({
             },
           }
         );
-        listarPacientes()
         setModalEditar(false);
 
         return notifySucess("Sessão alterada com sucesso");
+
       } catch (error) {
         notifyError(error.response.data.mensagem);
-      } finally {
+      }
+      finally {
         setIsPacientesLoading(false)
       }
     } else if (action === "cadastrar") {
@@ -175,6 +177,12 @@ function ModalSessoes({
           >
             <option disabled value='Status'>
               Mude o status
+            </option>
+            <option value='Atendido' >
+              Atendido
+            </option>
+            <option value='Cancelado' >
+              Cancelado
             </option>
           </select>
 

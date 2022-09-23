@@ -83,17 +83,3 @@
      background-color: var(--purple);
      box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
  }
-
- .olho1 {
-     position: absolute;
-     top: 195px;
-     right: 5px;
-     cursor: pointer;
- }
-
- .olho2 {
-     position: absolute;
-     top: 265.5px;
-     right: 5px;
-     cursor: pointer;
- }
