@@ -33,7 +33,6 @@ function Main({ page, setPage }) {
 
             setPacientes(response.data.length)
         } catch (error) {
-            return notifyError(error.response.data.mensagem);
         }
     }
 
