@@ -15,6 +15,7 @@ function ModalPacientes({
   pacienteAtual,
   temSessoes,
   setTemSessoes,
+  setIsPacientesLoading
 }) {
   const token = getItem("token");
   const id = getItem("id");
@@ -96,6 +97,7 @@ function ModalPacientes({
   }
 
   async function handleDeletePaciente() {
+    setIsPacientesLoading(true)
     try {
       if (temSessoes) {
         await axios.delete(`/sessoes/${pacienteAtual.id}`, {
@@ -116,6 +118,8 @@ function ModalPacientes({
       return notifySucess("Paciente excluído com sucesso");
     } catch (error) {
       return notifyError("Não foi possível excluir o paciente");
+    } finally {
+      setIsPacientesLoading(false)
     }
   }
 

@@ -9,7 +9,21 @@ import { notifyError } from "../../utils/toast";
 import Backdrop from '@mui/material/Backdrop'
 import CircularProgress from '@mui/material/CircularProgress';
 
-function Sessoes({ page, setPage, pacientesTotais, listarPacientes, listarSessoes, sessoesTotais, sessoes, setSessoes, pagina, setPagina, isSessoesLoading, sizeSessoes, setSizeSessoes }) {
+function Sessoes({
+  page,
+  setPage,
+  pacientesTotais,
+  listarSessoes,
+  sessoesTotais,
+  sessoes,
+  setSessoes,
+  pagina,
+  setPagina,
+  isSessoesLoading,
+  sizeSessoes,
+  setSizeSessoes,
+  setIsPacientesLoading
+}) {
   const [sessoesFiltradas, setSessoesFiltradas] = useState([]);
   const [pesquisando, setPesquisando] = useState(false);
   const [modalCadastrar, setModalCadastrar] = useState(false);
@@ -95,6 +109,7 @@ function Sessoes({ page, setPage, pacientesTotais, listarPacientes, listarSessoe
           pacientes={pacientesTotais}
           action={modalAction}
           setModalAction={setModalAction}
+          setIsPacientesLoading={setIsPacientesLoading}
         />
       </div>
     </div>

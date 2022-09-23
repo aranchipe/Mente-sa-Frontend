@@ -23,7 +23,8 @@ function TabelaSessoes({
   action,
   setModalAction,
   pacientes,
-  listarPacientes
+  listarPacientes,
+  setIsPacientesLoading
 }) {
   const [sessaoAtual, setSessaoAtual] = useState();
 
@@ -54,6 +55,7 @@ function TabelaSessoes({
           pacientes={pacientes}
           sessaoAtual={sessaoAtual}
           listarPacientes={listarPacientes}
+          setIsPacientesLoading={setIsPacientesLoading}
         />
       )}
       <div className="table-completa">

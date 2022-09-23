@@ -27,6 +27,9 @@ function TabelaPacientes({
   setModalAction,
   modalSessoes,
   setModalSessoes,
+  isPacientesLoading,
+  setIsPacientesLoading,
+
 }) {
   const token = getItem("token");
 
@@ -82,6 +85,7 @@ function TabelaPacientes({
           pacienteAtual={pacienteAtual}
           temSessoes={temSessoes}
           setTemSessoes={setTemSessoes}
+          setIsPacientesLoading={setIsPacientesLoading}
         />
       )}
       <div className="container-paciente">

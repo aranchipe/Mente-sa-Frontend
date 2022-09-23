@@ -8,7 +8,7 @@ import { BsFillPersonPlusFill } from "react-icons/bs";
 import Backdrop from '@mui/material/Backdrop'
 import CircularProgress from '@mui/material/CircularProgress';
 
-function Pacientes({ page, setPage, pacientes, pacientesTotais, listarPacientes, size, setSize, isPacientesLoading }) {
+function Pacientes({ page, setPage, pacientes, pacientesTotais, listarPacientes, size, setSize, isPacientesLoading, setIsPacientesLoading }) {
     const [pacientesFiltrados, setPacientesFiltrados] = useState([]);
     const [pesquisando, setPesquisando] = useState(false);
     const [pagina, setPagina] = useState(1);
@@ -92,6 +92,8 @@ function Pacientes({ page, setPage, pacientes, pacientesTotais, listarPacientes,
                     modalSessoes={modalSessoes}
                     setModalSessoes={setModalSessoes}
                     listarPacientes={listarPacientes}
+                    isPacientesLoading={isPacientesLoading}
+                    setIsPacientesLoading={setIsPacientesLoading}
                 />
             </div>
         </div>

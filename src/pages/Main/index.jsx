@@ -2,6 +2,8 @@ import './style.css';
 import MenuLateral from '../../components/MenuLateral';
 import DashboardCard from '../../components/DashboardCard';
 import { useEffect } from 'react';
+import Backdrop from '@mui/material/Backdrop'
+import CircularProgress from '@mui/material/CircularProgress';
 
 function Main({
     page,
@@ -13,16 +15,23 @@ function Main({
     sessoesCanceladasMes,
     sessoesIndividuais,
     sessoesDupla,
-    sessoesGrupo
+    sessoesGrupo,
+    isSessoesLoading
 }) {
 
     useEffect(() => {
         setPage('dashboard')
         listarSessoes()
-    })
+    }, [])
 
     return (
         <div className="Main">
+            <Backdrop
+                sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+                open={isSessoesLoading}
+            >
+                <CircularProgress sx={{ color: 'var(--purple)' }} />
+            </Backdrop>
             <MenuLateral page={page} setPage={setPage} />
             <div className='main-content'>
                 <DashboardCard

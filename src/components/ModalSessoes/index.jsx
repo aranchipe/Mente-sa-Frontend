@@ -12,7 +12,8 @@ function ModalSessoes({
   setModalEditar,
   setModalExcluir,
   sessaoAtual,
-  listarPacientes
+  listarPacientes,
+  setIsPacientesLoading
 }) {
 
 
@@ -44,6 +45,7 @@ function ModalSessoes({
     e.preventDefault();
 
     if (action === "editar") {
+      setIsPacientesLoading(true)
       try {
         await axios.put(
           `/sessao/${sessaoAtual.id}`,
@@ -62,12 +64,15 @@ function ModalSessoes({
         return notifySucess("Sessão alterada com sucesso");
       } catch (error) {
         notifyError(error.response.data.mensagem);
+      } finally {
+        setIsPacientesLoading(false)
       }
     } else if (action === "cadastrar") {
       const now = new Date()
       if (+new Date(formCadastrar.data) < +now) {
         return notifyError('Não é possível cadastrar uma sessão marcada para datas passadas')
       }
+      setIsPacientesLoading(true)
       try {
 
         await axios.post(
@@ -86,6 +91,8 @@ function ModalSessoes({
         return notifySucess("Sessão cadastrada com sucesso");
       } catch (error) {
         return notifyError(error.response.data.mensagem);
+      } finally {
+        setIsPacientesLoading(false)
       }
     }
   };
@@ -99,6 +106,7 @@ function ModalSessoes({
   }
 
   async function handleDeleteSessao() {
+    setIsPacientesLoading(true)
     try {
       await axios.delete(`/sessao/${sessaoAtual.id}`, {
         headers: {
@@ -110,6 +118,8 @@ function ModalSessoes({
       return notifySucess("Sessão excluída com sucesso");
     } catch (error) {
       return notifyError("Não foi possível excluir a sessão");
+    } finally {
+      setIsPacientesLoading(false)
     }
   }
 

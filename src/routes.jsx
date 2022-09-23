@@ -149,6 +149,7 @@ function MainRoutes() {
                             listarSessoes={listarSessoes}
                             sessoesDupla={sessoesDupla}
                             sessoesGrupo={sessoesGrupo}
+                            isSessoesLoading={isSessoesLoading}
                         />}
                     />
                     <Route path='/sessoes' element={
@@ -166,6 +167,8 @@ function MainRoutes() {
                             pagina={pagina}
                             setPagina={setPagina}
                             isSessoesLoading={isSessoesLoading}
+                            setIsPacientesLoading={setIsPacientesLoading}
+
                         />
                     } />
                     <Route path='/pacientes' element={
@@ -178,6 +181,7 @@ function MainRoutes() {
                             size={size}
                             setSize={setSize}
                             isPacientesLoading={isPacientesLoading}
+                            setIsPacientesLoading={setIsPacientesLoading}
                         />
                     }
                     />
