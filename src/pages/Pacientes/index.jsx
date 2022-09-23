@@ -5,9 +5,10 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import lupa from '../../assets/lupa.svg';
 import { BsFillPersonPlusFill } from "react-icons/bs";
+import Backdrop from '@mui/material/Backdrop'
+import CircularProgress from '@mui/material/CircularProgress';
 
-
-function Pacientes({ page, setPage, pacientes, pacientesTotais, listarPacientes, size, setSize }) {
+function Pacientes({ page, setPage, pacientes, pacientesTotais, listarPacientes, size, setSize, isPacientesLoading }) {
     const [pacientesFiltrados, setPacientesFiltrados] = useState([]);
     const [pesquisando, setPesquisando] = useState(false);
     const [pagina, setPagina] = useState(1);
@@ -43,6 +44,12 @@ function Pacientes({ page, setPage, pacientes, pacientesTotais, listarPacientes,
 
 
         <div className="paciente">
+            <Backdrop
+                sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+                open={isPacientesLoading}
+            >
+                <CircularProgress sx={{ color: 'var(--purple)' }} />
+            </Backdrop>
 
             <MenuLateral page={page} setPage={setPage} />
             <div className="pacientes-content">

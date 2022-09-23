@@ -61,7 +61,7 @@ function Sessoes({ page, setPage, pacientesTotais, listarPacientes, listarSessoe
         sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
         open={isSessoesLoading}
       >
-        <CircularProgress sx={{ color: '#DA0175' }} />
+        <CircularProgress sx={{ color: 'var(--purple)' }} />
       </Backdrop>
       <MenuLateral page={page} setPage={setPage} />
       <div className="sessoes-content">

@@ -35,9 +35,11 @@ function MainRoutes() {
     const [sessoesDupla, setSessoesDupla] = useState()
     const [sessoesGrupo, setSessoesGrupo] = useState()
     const [isSessoesLoading, setIsSessoesLoading] = useState(false)
+    const [isPacientesLoading, setIsPacientesLoading] = useState(false)
 
 
     async function listarPacientes() {
+        setIsPacientesLoading(true)
         try {
             const pacientesTotais = await axios.get('/paciente', {
                 headers: {
@@ -58,6 +60,8 @@ function MainRoutes() {
 
         } catch (error) {
 
+        } finally {
+            setIsPacientesLoading(false)
         }
     }
 
@@ -173,6 +177,7 @@ function MainRoutes() {
                             setPage={setPage}
                             size={size}
                             setSize={setSize}
+                            isPacientesLoading={isPacientesLoading}
                         />
                     }
                     />
