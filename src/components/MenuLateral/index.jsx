@@ -24,66 +24,66 @@ export default function MenuLateral({ page, setPage }) {
         navigate('/login')
     }
     return (
-    <MenuLateralStyle>
-        <div className="menu-lateral-container">
+        <MenuLateralStyle>
+            <div className="menu-lateral-container">
 
-            <h1>Mente Sã</h1>
+                <h1>Mente Sã</h1>
 
-            <p>Bem-vindo(a),</p>
-            <div className='logout'>
-                <span style={{ fontWeight: '700' }}>Dr(a) {nome}</span>
-                <img src={exit} alt='exit' style={{ width: '30px' }} onClick={logout} />
-            </div>
+                <p>Bem-vindo(a),</p>
+                <div className='logout'>
+                    <span style={{ fontWeight: '700' }}>Dr(a) {nome}</span>
+                    <img src={exit} alt='exit' style={{ width: '30px' }} onClick={logout} />
+                </div>
 
-            <nav>
-                <div
-                    onMouseLeave={() => setLinkDashboard(false)}
-                    onMouseOver={() => setLinkDashboard(true)}
-                    className={page === 'dashboard' ? "link-div selecionado" : 'link-div'}
-                    onClick={() => navigate('/')}
-                >
-                    <img style={{ width: '24px' }} src={linkDashboard || page === 'dashboard' ? dashboardRoxo : dashboard} alt='dashboard' />
-                    <Link
-                        style={linkDashboard || page === 'dashboard' ? { color: 'blueviolet' } : {}}
-                        to='/'
-                        className='link'
+                <nav>
+                    <div
+                        onMouseLeave={() => setLinkDashboard(false)}
+                        onMouseOver={() => setLinkDashboard(true)}
+                        className={page === 'dashboard' ? "link-div selecionado" : 'link-div'}
+                        onClick={() => navigate('/main')}
                     >
-                        Dashboard
-                    </Link>
-                </div>
-                <div
-                    onMouseLeave={() => setLinkPacientes(false)}
-                    onMouseOver={() => setLinkPacientes(true)}
-                    className={page === 'pacientes' ? "link-div selecionado" : 'link-div'}
-                    onClick={() => navigate('/pacientes')}
+                        <img style={{ width: '24px' }} src={linkDashboard || page === 'dashboard' ? dashboardRoxo : dashboard} alt='dashboard' />
+                        <Link
+                            style={linkDashboard || page === 'dashboard' ? { color: 'blueviolet' } : {}}
+                            className='link'
+                            to={'/main'}
+                        >
+                            Dashboard
+                        </Link>
+                    </div>
+                    <div
+                        onMouseLeave={() => setLinkPacientes(false)}
+                        onMouseOver={() => setLinkPacientes(true)}
+                        className={page === 'pacientes' ? "link-div selecionado" : 'link-div'}
+                        onClick={() => navigate('/pacientes')}
 
 
-                >
-                    <img style={{ width: '24px' }} src={linkPacientes || page === 'pacientes' ? pacientesRoxo : pacientes} alt='pacientes' />
-                    <Link
-                        style={linkPacientes || page === 'pacientes' ? { color: 'blueviolet' } : {}}
-                        to='/pacientes'
-                        className='link'
                     >
-                        Pacientes
-                    </Link>
-                </div>
+                        <img style={{ width: '24px' }} src={linkPacientes || page === 'pacientes' ? pacientesRoxo : pacientes} alt='pacientes' />
+                        <Link
+                            style={linkPacientes || page === 'pacientes' ? { color: 'blueviolet' } : {}}
+                            to='/pacientes'
+                            className='link'
+                        >
+                            Pacientes
+                        </Link>
+                    </div>
 
-                <div
-                    onMouseLeave={() => setLinkSessoes(false)}
-                    onMouseOver={() => setLinkSessoes(true)}
-                    className={page === 'sessoes' ? "link-div selecionado" : 'link-div'}
-                    onClick={() => navigate('/sessoes')}
-                >
-                    <img style={{ width: '24px' }} src={linkSessoes || page === 'sessoes' ? sessoesRoxo : sessoes} alt='sessoes' />
-                    <Link
-                        style={linkSessoes || page === 'sessoes' ? { color: 'blueviolet' } : {}}
-                        to='/sessoes'
-                        className='link'>Sessões</Link>
-                </div>
-            </nav >
+                    <div
+                        onMouseLeave={() => setLinkSessoes(false)}
+                        onMouseOver={() => setLinkSessoes(true)}
+                        className={page === 'sessoes' ? "link-div selecionado" : 'link-div'}
+                        onClick={() => navigate('/sessoes')}
+                    >
+                        <img style={{ width: '24px' }} src={linkSessoes || page === 'sessoes' ? sessoesRoxo : sessoes} alt='sessoes' />
+                        <Link
+                            style={linkSessoes || page === 'sessoes' ? { color: 'blueviolet' } : {}}
+                            to='/sessoes'
+                            className='link'>Sessões</Link>
+                    </div>
+                </nav >
 
-        </div >
-    </MenuLateralStyle>
+            </div >
+        </MenuLateralStyle>
     )
 }
