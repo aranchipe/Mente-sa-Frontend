@@ -12,7 +12,6 @@ function ModalSessoes({
   setModalEditar,
   setModalExcluir,
   sessaoAtual,
-  listarPacientes,
   setIsPacientesLoading
 }) {
 

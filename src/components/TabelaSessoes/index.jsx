@@ -6,6 +6,7 @@ import direita from "../../assets/direita.svg";
 import { format } from "date-fns";
 import { useState } from "react";
 import ModalSessoes from "../ModalSessoes";
+import { getItem, setItem } from '../../utils/storage'
 
 function TabelaSessoes({
   sessoes,
@@ -27,6 +28,7 @@ function TabelaSessoes({
   setIsPacientesLoading
 }) {
   const [sessaoAtual, setSessaoAtual] = useState();
+
 
   function handleChangeInputSize(e) {
     setSizeSessoes(e.target.value);
@@ -99,8 +101,8 @@ function TabelaSessoes({
                     <img
                       src={editIcon}
                       alt="editIcon"
-                      onClick={() => {
-                        setSessaoAtual(item);
+                      onClick={async () => {
+                        await setSessaoAtual(item);
                         setModalEditar(true);
                         setModalAction("editar");
                       }}
