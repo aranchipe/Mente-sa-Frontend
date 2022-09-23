@@ -22,7 +22,6 @@ export const ModalSessoesDoPacienteStyle = styled.form`
     width: 23%;
     background: #ffffff;
     max-height: 70%;
-    /* border-radius: 3rem; */
     display: flex;
     flex-direction: column;
     padding: 4rem 2.8rem;

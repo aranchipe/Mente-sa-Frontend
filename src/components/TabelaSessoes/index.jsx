@@ -9,7 +9,6 @@ import ModalSessoes from "../ModalSessoes";
 
 function TabelaSessoes({
   sessoes,
-  setSessoes,
   pagina,
   setPagina,
   sizeSessoes,
@@ -23,7 +22,8 @@ function TabelaSessoes({
   modalExcluir,
   action,
   setModalAction,
-  pacientes
+  pacientes,
+  listarPacientes
 }) {
   const [sessaoAtual, setSessaoAtual] = useState();
 
@@ -53,6 +53,7 @@ function TabelaSessoes({
           setModalExcluir={setModalExcluir}
           pacientes={pacientes}
           sessaoAtual={sessaoAtual}
+          listarPacientes={listarPacientes}
         />
       )}
       <div className="table-completa">
@@ -119,7 +120,7 @@ function TabelaSessoes({
         </table>
         <div className="table-footer">
           <span>Itens por página: </span>
-          <select /* value="6" */ defaultValue='6' onClick={() => console.log(sizeSessoes)} onChange={handleChangeInputSize}>
+          <select defaultValue='6' onChange={handleChangeInputSize}>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>

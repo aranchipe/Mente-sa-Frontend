@@ -12,17 +12,17 @@ import CircularProgress from '@mui/material/CircularProgress';
 function Sessoes({ page, setPage, pacientesTotais, listarPacientes, listarSessoes, sessoesTotais, sessoes, setSessoes, pagina, setPagina, isSessoesLoading, sizeSessoes, setSizeSessoes }) {
   const [sessoesFiltradas, setSessoesFiltradas] = useState([]);
   const [pesquisando, setPesquisando] = useState(false);
-  // const [size, setSize] = useState(6);
   const [modalCadastrar, setModalCadastrar] = useState(false);
   const [modalEditar, setModalEditar] = useState(false);
   const [modalExcluir, setModalExcluir] = useState(false);
   const [modalAction, setModalAction] = useState("");
-  console.log(pagina)
+
+
   useEffect(() => {
     listarSessoes();
     setPage("sessoes");
     listarPacientes();
-  }, [pagina, sizeSessoes]);
+  }, [pagina, sizeSessoes, modalCadastrar, modalExcluir, modalEditar]);
 
 
   function handleFilter(e) {
@@ -49,11 +49,6 @@ function Sessoes({ page, setPage, pacientesTotais, listarPacientes, listarSessoe
     setModalAction("cadastrar");
   }
 
-  //  if (isSessoesLoading) {
-  //    return (
-  //      <h1>Carregando</h1>
-  //   )
-  //  }
   return (
 
     <div className="sessoes">
@@ -66,7 +61,7 @@ function Sessoes({ page, setPage, pacientesTotais, listarPacientes, listarSessoe
       <MenuLateral page={page} setPage={setPage} />
       <div className="sessoes-content">
         <div className="sessoes-cabecalho">
-          <h1 onClick={() => console.log(pacientesTotais)}>Minhas Sessões</h1>
+          <h1 >Minhas Sessões</h1>
           <img src={lupa} alt="lupa" className="lupa" />
           <input
             placeholder="Pesquisar"

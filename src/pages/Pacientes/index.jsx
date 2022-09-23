@@ -22,7 +22,7 @@ function Pacientes({ page, setPage, pacientes, pacientesTotais, listarPacientes,
     useEffect(() => {
         listarPacientes()
         setPage('pacientes')
-    }, [size, pagina])
+    }, [size, pagina, modalCadastrar, modalEditar, modalExcluir])
 
 
     function handleFilter(e) {
@@ -91,6 +91,7 @@ function Pacientes({ page, setPage, pacientes, pacientesTotais, listarPacientes,
                     setModalAction={setModalAction}
                     modalSessoes={modalSessoes}
                     setModalSessoes={setModalSessoes}
+                    listarPacientes={listarPacientes}
                 />
             </div>
         </div>

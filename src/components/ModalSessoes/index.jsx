@@ -11,8 +11,11 @@ function ModalSessoes({
   setModalCadastrar,
   setModalEditar,
   setModalExcluir,
-  sessaoAtual
+  sessaoAtual,
+  listarPacientes
 }) {
+
+
   const token = getItem("token");
   const id = getItem("id");
 
@@ -53,6 +56,7 @@ function ModalSessoes({
             },
           }
         );
+        listarPacientes()
         setModalEditar(false);
 
         return notifySucess("Sessão alterada com sucesso");
