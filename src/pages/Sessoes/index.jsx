@@ -6,21 +6,23 @@ import { useEffect } from "react";
 import lupa from "../../assets/lupa.svg";
 import plus from "../../assets/plus.svg";
 import { notifyError } from "../../utils/toast";
+import Backdrop from '@mui/material/Backdrop'
+import CircularProgress from '@mui/material/CircularProgress';
 
-function Sessoes({ page, setPage, pacientesTotais, listarPacientes, listarSessoes, sessoesTotais, sessoes, setSessoes, pagina, setPagina }) {
+function Sessoes({ page, setPage, pacientesTotais, listarPacientes, listarSessoes, sessoesTotais, sessoes, setSessoes, pagina, setPagina, isSessoesLoading, sizeSessoes, setSizeSessoes }) {
   const [sessoesFiltradas, setSessoesFiltradas] = useState([]);
   const [pesquisando, setPesquisando] = useState(false);
-  const [size, setSize] = useState(6);
+  // const [size, setSize] = useState(6);
   const [modalCadastrar, setModalCadastrar] = useState(false);
   const [modalEditar, setModalEditar] = useState(false);
   const [modalExcluir, setModalExcluir] = useState(false);
   const [modalAction, setModalAction] = useState("");
-
+  console.log(pagina)
   useEffect(() => {
     listarSessoes();
     setPage("sessoes");
     listarPacientes();
-  });
+  }, [pagina, sizeSessoes]);
 
 
   function handleFilter(e) {
@@ -47,11 +49,20 @@ function Sessoes({ page, setPage, pacientesTotais, listarPacientes, listarSessoe
     setModalAction("cadastrar");
   }
 
-
+  //  if (isSessoesLoading) {
+  //    return (
+  //      <h1>Carregando</h1>
+  //   )
+  //  }
   return (
 
     <div className="sessoes">
-
+      <Backdrop
+        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={isSessoesLoading}
+      >
+        <CircularProgress sx={{ color: '#DA0175' }} />
+      </Backdrop>
       <MenuLateral page={page} setPage={setPage} />
       <div className="sessoes-content">
         <div className="sessoes-cabecalho">
@@ -78,8 +89,8 @@ function Sessoes({ page, setPage, pacientesTotais, listarPacientes, listarSessoe
           setSessoes={setSessoes}
           pagina={pagina}
           setPagina={setPagina}
-          size={size}
-          setSize={setSize}
+          sizeSessoes={sizeSessoes}
+          setSizeSessoes={setSizeSessoes}
           sessoesTotais={sessoesTotais}
           setModalCadastrar={setModalCadastrar}
           setModalEditar={setModalEditar}

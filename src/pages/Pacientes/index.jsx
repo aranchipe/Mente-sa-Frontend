@@ -21,7 +21,7 @@ function Pacientes({ page, setPage, pacientes, pacientesTotais, listarPacientes,
     useEffect(() => {
         listarPacientes()
         setPage('pacientes')
-    }/* , [pacientes, size, page] */)
+    }, [size, pagina])
 
 
     function handleFilter(e) {

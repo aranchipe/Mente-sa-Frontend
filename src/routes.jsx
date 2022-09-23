@@ -25,6 +25,7 @@ function MainRoutes() {
     const [pagina, setPagina] = useState(1);
     const [pacientesTotais, setPacientesTotais] = useState([]);
     const [size, setSize] = useState(6);
+    const [sizeSessoes, setSizeSessoes] = useState(6);
     const [sessoes, setSessoes] = useState([]);
     const [sessoesTotais, setSessoesTotais] = useState([]);
     const [sessoesDoDia, setSessoesDoDia] = useState()
@@ -33,6 +34,7 @@ function MainRoutes() {
     const [sessoesIndividuais, setSessoesIndividuais] = useState()
     const [sessoesDupla, setSessoesDupla] = useState()
     const [sessoesGrupo, setSessoesGrupo] = useState()
+    const [isSessoesLoading, setIsSessoesLoading] = useState(false)
 
 
     async function listarPacientes() {
@@ -60,8 +62,9 @@ function MainRoutes() {
     }
 
     async function listarSessoes() {
+        setIsSessoesLoading(true)
         try {
-            const response = await axios.get(`/sessao?page=${pagina}&size=${size}`, {
+            const response = await axios.get(`/sessao?page=${pagina}&size=${sizeSessoes}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -110,6 +113,9 @@ function MainRoutes() {
             setSessoesTotais(sessoesTotais.data);
             setSessoes(response.data);
         } catch (error) { }
+        finally {
+            setIsSessoesLoading(false)
+        }
     }
 
 
@@ -151,10 +157,11 @@ function MainRoutes() {
                             sessoesTotais={sessoesTotais}
                             sessoes={sessoes}
                             setSessoes={setSessoes}
-                            size={size}
-                            setSize={setSize}
+                            sizeSessoes={sizeSessoes}
+                            setSizeSessoes={setSizeSessoes}
                             pagina={pagina}
                             setPagina={setPagina}
+                            isSessoesLoading={isSessoesLoading}
                         />
                     } />
                     <Route path='/pacientes' element={
@@ -175,4 +182,4 @@ function MainRoutes() {
     )
 }
 
-export default MainRoutes 
+export default MainRoutes

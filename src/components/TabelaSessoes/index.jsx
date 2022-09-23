@@ -12,8 +12,8 @@ function TabelaSessoes({
   setSessoes,
   pagina,
   setPagina,
-  size,
-  setSize,
+  sizeSessoes,
+  setSizeSessoes,
   sessoesTotais,
   setModalCadastrar,
   setModalEditar,
@@ -28,15 +28,15 @@ function TabelaSessoes({
   const [sessaoAtual, setSessaoAtual] = useState();
 
   function handleChangeInputSize(e) {
-    setSize(e.target.value);
+    setSizeSessoes(e.target.value);
     if (!e.target.value) {
-      setSize(6);
+      setSizeSessoes(6);
     }
     setPagina(1);
   }
 
   function handleNextPage() {
-    if ((pagina - 1) * size + sessoes.length === sessoesTotais.length) {
+    if ((pagina - 1) * sizeSessoes + sessoes.length === sessoesTotais.length) {
       return;
     }
     setPagina(pagina + 1);
@@ -119,7 +119,7 @@ function TabelaSessoes({
         </table>
         <div className="table-footer">
           <span>Itens por página: </span>
-          <select /* value="6" */ defaultValue='6' onChange={handleChangeInputSize}>
+          <select /* value="6" */ defaultValue='6' onClick={() => console.log(sizeSessoes)} onChange={handleChangeInputSize}>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -132,7 +132,7 @@ function TabelaSessoes({
             <option value="10">10</option>
           </select>
           <span>
-            {(pagina - 1) * size + 1} - {(pagina - 1) * size + sessoes.length} de{" "}
+            {(pagina - 1) * sizeSessoes + 1} - {(pagina - 1) * sizeSessoes + sessoes.length} de{" "}
             {sessoesTotais.length}
           </span>
           <img

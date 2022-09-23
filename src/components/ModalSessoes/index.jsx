@@ -151,6 +151,21 @@ function ModalSessoes({
             </option>
           ))}
         </select>
+        {action === "editar" && (
+          <select
+            className="element"
+            name="status"
+            id=""
+            defaultValue={formEditar.status}
+            onChange={(e) => handleChangeInput(e)}
+          >
+            <option disabled value='Status'>
+              Mude o status
+            </option>
+          </select>
+
+        )}
+
         <input
           type="datetime-local"
           name="data"
@@ -158,6 +173,7 @@ function ModalSessoes({
           onChange={(e) => handleChangeInput(e)}
           value={(action === "editar" ? formEditar : formCadastrar).data}
         />
+
         <input
           type="text"
           name="tema"
