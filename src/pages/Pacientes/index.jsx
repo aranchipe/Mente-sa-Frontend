@@ -8,10 +8,22 @@ import { BsFillPersonPlusFill } from "react-icons/bs";
 import Backdrop from '@mui/material/Backdrop'
 import CircularProgress from '@mui/material/CircularProgress';
 
-function Pacientes({ page, setPage, pacientes, pacientesTotais, listarPacientes, size, setSize, isPacientesLoading, setIsPacientesLoading }) {
+function Pacientes({
+    page,
+    setPage,
+    pacientes,
+    pacientesTotais,
+    listarPacientes,
+    size,
+    setSize,
+    isPacientesLoading,
+    setIsPacientesLoading,
+    paginaPacientes,
+    setPaginaPacientes
+}) {
     const [pacientesFiltrados, setPacientesFiltrados] = useState([]);
     const [pesquisando, setPesquisando] = useState(false);
-    const [pagina, setPagina] = useState(1);
+    /* const [pagina, setPagina] = useState(1); */
     const [modalCadastrar, setModalCadastrar] = useState(false);
     const [modalEditar, setModalEditar] = useState(false);
     const [modalExcluir, setModalExcluir] = useState(false);
@@ -22,7 +34,7 @@ function Pacientes({ page, setPage, pacientes, pacientesTotais, listarPacientes,
     useEffect(() => {
         listarPacientes()
         setPage('pacientes')
-    }, [size, pagina, modalCadastrar, modalEditar, modalExcluir])
+    }, [size, paginaPacientes, modalCadastrar, modalEditar, modalExcluir])
 
 
     function handleFilter(e) {
@@ -76,8 +88,8 @@ function Pacientes({ page, setPage, pacientes, pacientesTotais, listarPacientes,
                 {pesquisando && <h1>Pesquisando</h1>}
                 <TabelaPacientes
                     pacientes={pesquisando ? pacientesFiltrados : pacientes}
-                    page={pagina}
-                    setPage={setPagina}
+                    paginaPacientes={paginaPacientes}
+                    setPaginaPacientes={setPaginaPacientes}
                     size={size}
                     setSize={setSize}
                     pacientesTotais={pacientesTotais}

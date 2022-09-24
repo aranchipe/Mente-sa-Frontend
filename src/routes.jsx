@@ -23,6 +23,7 @@ function MainRoutes() {
     const token = getItem('token');
     const [pacientes, setPacientes] = useState([]);
     const [pagina, setPagina] = useState(1);
+    const [paginaPacientes, setPaginaPacientes] = useState(1);
     const [pacientesTotais, setPacientesTotais] = useState([]);
     const [size, setSize] = useState(6);
     const [sizeSessoes, setSizeSessoes] = useState(6);
@@ -48,7 +49,7 @@ function MainRoutes() {
                 }
             })
 
-            const response = await axios.get(`/paciente?page=${pagina}&size=${size}`, {
+            const response = await axios.get(`/paciente?page=${paginaPacientes}&size=${size}`, {
                 headers: {
                     Authorization: `Bearer ${token}`
 
@@ -178,6 +179,8 @@ function MainRoutes() {
                             pacientes={pacientes}
                             page={page}
                             setPage={setPage}
+                            paginaPacientes={paginaPacientes}
+                            setPaginaPacientes={setPaginaPacientes}
                             size={size}
                             setSize={setSize}
                             isPacientesLoading={isPacientesLoading}

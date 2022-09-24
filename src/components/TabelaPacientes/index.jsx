@@ -29,6 +29,8 @@ function TabelaPacientes({
   setModalSessoes,
   isPacientesLoading,
   setIsPacientesLoading,
+  paginaPacientes,
+  setPaginaPacientes
 
 }) {
   const token = getItem("token");
@@ -40,14 +42,14 @@ function TabelaPacientes({
     if (!e.target.value) {
       setSize(6);
     }
-    setPage(1);
+    setPaginaPacientes(1);
   }
 
   function handleNextPage() {
-    if ((page - 1) * size + pacientes.length === pacientesTotais.length) {
+    if ((paginaPacientes - 1) * size + pacientes.length === pacientesTotais.length) {
       return;
     }
-    setPage(page + 1);
+    setPaginaPacientes(paginaPacientes + 1);
   }
 
   async function verificarSessoes(id) {
@@ -158,11 +160,11 @@ function TabelaPacientes({
           </select>
 
           <span>
-            {(page - 1) * size + 1} - {(page - 1) * size + pacientes.length} de{" "}
+            {(paginaPacientes - 1) * size + 1} - {(paginaPacientes - 1) * size + pacientes.length} de{" "}
             {pacientesTotais.length}
           </span>
           <img
-            onClick={() => page !== 1 && setPage(page - 1)}
+            onClick={() => paginaPacientes !== 1 && setPaginaPacientes(paginaPacientes - 1)}
             src={esquerda}
             alt="esquerda"
             className="esquerda"
