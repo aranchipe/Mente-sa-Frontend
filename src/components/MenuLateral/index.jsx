@@ -28,7 +28,7 @@ export default function MenuLateral({ page, setPage }) {
             <div className="menu-lateral-container">
 
                 <h1>Mente Sã</h1>
-
+                <p>Olá</p>
                 <p>Bem-vindo(a),</p>
                 <div className='logout'>
                     <span className='doutor' style={{ fontWeight: '700' }}>Dr(a) {nome}</span>
